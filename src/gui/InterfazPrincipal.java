@@ -119,6 +119,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         entrar();
+
     }//GEN-LAST:event_botonEntrarActionPerformed
 
     /**
@@ -174,6 +175,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     ventanaAdmin = new InterfazAdministrador();
                     ventanaAdmin.setVisible(true);
 
+
                 } else if (u.getTipo().equals("enfermera")) {
                     ventanaEnfermera = new InterfazEnfermera();
                     ventanaEnfermera.setVisible(true);
@@ -181,10 +183,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                     ventanaMedico = new InterfazMedico();
                     ventanaMedico.setVisible(true);
                 }
-                dispose();
+
+                this.dispose();
             } else {
 
-                Icon p = new ImageIcon(getClass().getResource("/gui/images/user (3).png"));
+                Icon p = new ImageIcon(getClass().getResource("/GUI/images/user (3).png"));
+
                 JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE, p);
                 campoPassword.setText("");
                 campoUsuario.setText(null);

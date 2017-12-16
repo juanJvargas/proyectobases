@@ -11,7 +11,8 @@ package gui;
  */
 public class InterfazAdministrador extends javax.swing.JFrame {
 
-    AgregarEnfermera ventanaAgregar;
+    AgregarEmpleados ventanaAgregar;
+
     /**
      * Creates new form InterfazAdmin
      */
@@ -71,9 +72,13 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
     private void agregarUsuarioBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUsuarioBActionPerformed
         // TODO add your handling code here:
-        ventanaAgregar = new AgregarEnfermera();
+
+        ventanaAgregar = new AgregarEmpleados();
+        System.out.println("abrir ventana");
         ventanaAgregar.setVisible(true);
-        dispose();
+        System.out.println("cerar ventana");
+        this.dispose();
+
     }//GEN-LAST:event_agregarUsuarioBActionPerformed
 
     /**
