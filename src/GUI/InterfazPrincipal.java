@@ -5,17 +5,31 @@
  */
 package GUI;
 
+import controlador.*;
+import java.awt.event.KeyEvent;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import logica.Usuario;
+
 /**
  *
  * @author jdtorres
  */
 public class InterfazPrincipal extends javax.swing.JFrame {
 
+    ControladorUsuarios controladorUsuarios;
+    InterfazAdministrador ventanaAdmin;
+    InterfazEnfermera ventanaEnfermera;
+    InterfazMedico ventanaMedico;
+
     /**
      * Creates new form InterfazPrincipal
      */
     public InterfazPrincipal() {
         initComponents();
+        controladorUsuarios = new ControladorUsuarios();
+
     }
 
     /**
@@ -27,19 +41,19 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        usuarioL = new javax.swing.JLabel();
+        contraseñaL = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
-        campoContraseña = new javax.swing.JTextField();
         botonEntrar = new javax.swing.JButton();
+        campoPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Usuario");
+        usuarioL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        usuarioL.setText("Usuario");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Contraseña");
+        contraseñaL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        contraseñaL.setText("Contraseña");
 
         campoUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         campoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -48,10 +62,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
-        campoContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         botonEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonEntrar.setText("Entrar");
+        botonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,14 +78,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jLabel1))
+                        .addComponent(usuarioL))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel2)))
+                        .addComponent(contraseñaL)))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoUsuario)
-                    .addComponent(campoContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(campoPassword))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 202, Short.MAX_VALUE)
@@ -81,11 +98,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 .addContainerGap(128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(campoUsuario)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(usuarioL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoContraseña))
+                    .addComponent(contraseñaL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoPassword))
                 .addGap(18, 18, 18)
                 .addComponent(botonEntrar)
                 .addGap(47, 47, 47))
@@ -97,6 +114,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoUsuarioActionPerformed
+
+    private void botonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEntrarActionPerformed
+        // TODO add your handling code here:
+
+        entrar();
+    }//GEN-LAST:event_botonEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,11 +156,54 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
     }
 
+    private void entrar() {
+
+        String nombre = campoUsuario.getText();
+        String contraseña = new String(campoPassword.getText());
+
+        Usuario u = new Usuario();
+
+        u = controladorUsuarios.consultarUsuario(nombre);
+
+        String usuarioCorrecto = u.getLogin();
+        String contraseñaCorrecta = u.getPassword();
+
+        if (nombre.equals(usuarioCorrecto) && contraseña.equals(contraseñaCorrecta)) { //Valida que el usuario y contraseña sean correctos.
+            if (u.getEstado().equals("activo")) { //valida que el usuario ingresado se encuentra activo.
+                if (u.getTipo().equals("administrador")) {
+                    ventanaAdmin = new InterfazAdministrador();
+                    ventanaAdmin.setVisible(true);
+
+                } else if (u.getTipo().equals("enfermera")) {
+                    ventanaEnfermera = new InterfazEnfermera();
+                    ventanaEnfermera.setVisible(true);
+                } else if (u.getTipo().equals("medico")) {
+                    ventanaMedico = new InterfazMedico();
+                    ventanaMedico.setVisible(true);
+                }
+                dispose();
+            } else {
+
+                Icon p = new ImageIcon(getClass().getResource("/gui/images/user (3).png"));
+                JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE, p);
+                campoPassword.setText("");
+                campoUsuario.setText(null);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
+            campoUsuario.setText(null);
+            campoPassword.setText(null);
+
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonEntrar;
-    private javax.swing.JTextField campoContraseña;
+    private javax.swing.JPasswordField campoPassword;
     private javax.swing.JTextField campoUsuario;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel contraseñaL;
+    private javax.swing.JLabel usuarioL;
     // End of variables declaration//GEN-END:variables
 }

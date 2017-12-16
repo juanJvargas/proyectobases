@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS area CASCADE;
+﻿DROP TABLE IF EXISTS area CASCADE;
 CREATE TABLE area(
 	codigo_area INTEGER PRIMARY KEY,
 	nombre VARCHAR(100),
@@ -38,8 +38,8 @@ CREATE TABLE empleado(
 	direccion VARCHAR(100),
 	telefono VARCHAR(50),
 	nombre VARCHAR(100),
-	email VARCHAR(100),
-	salario VARCHAR(100),cargo VARCHAR(100),
+	email VARCHAR(50),
+	salario VARCHAR(100),cargo VARCHAR(20),
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
@@ -112,8 +112,8 @@ CREATE TABLE enfermera(
 
 DROP TABLE IF EXISTS habilidad CASCADE;
 CREATE TABLE habilidad(
-	codigo_habilidad INTEGER PRYMARY KEY NOT NULL,
-	descripcion VARVHAR(500)
+	codigo_habilidad INTEGER PRIMARY KEY NOT NULL,
+	descripcion VARCHAR(500)
 	
 );
 
@@ -121,14 +121,14 @@ DROP TABLE IF EXISTS habilidad_empleado CASCADE;
 CREATE TABLE habilidad_empleado(
 	identificacion_empleado INTEGER,
 	codigo_habilidad INTEGER,
-	PRYMARY KEY(identificacion_empleado, codigo_habilidad)
-	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
-	FOREIGN KEY (codigo_abilidad) REFERENCES habilidad(codigo_abilidad)
+	PRIMARY KEY(identificacion_empleado, codigo_habilidad),
+	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
+	FOREIGN KEY (codigo_habilidad) REFERENCES habilidad(codigo_habilidad)
 );
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
 CREATE TABLE  especialidad(
-	codigo_ especialidad INTEGER PRIMARY KEY NOT NULL,
+	codigo_especialidad INTEGER PRIMARY KEY NOT NULL,
 	descripcion VARCHAR (500)	
 );
 
@@ -136,10 +136,10 @@ DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,
 	numero_licencia VARCHAR(100),
-	codigo_ especialidad INTEGER,
+	codigo_especialidad INTEGER,
 	universidad VARCHAR(100),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
-	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_ especialidad)
+	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_especialidad)
 );
 
 DROP TABLE IF EXISTS asignado CASCADE;
@@ -174,3 +174,15 @@ CREATE TABLE incluye(
 	FOREIGN KEY (numero_registro) REFERENCES registro(numero_registro),
 	FOREIGN KEY (codigo_causa) REFERENCES causa(codigo_causa)
 );
+
+DROP TABLE IF EXISTS usuarios CASCADE;
+CREATE TABLE usuarios(
+	login VARCHAR(20) PRIMARY KEY NOT NULL,
+	contraseña VARCHAR(20),
+	tipo VARCHAR(20),
+	estado VARCHAR(10)
+);
+
+INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
+INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
+INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
