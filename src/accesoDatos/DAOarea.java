@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import logica.Area;
 
 /**
@@ -47,14 +48,14 @@ public class DAOarea {
     public Area consultarArea(int codigo) {
         Area area = new Area();
         String sql_select;
-        sql_select= "SELECT * FROM area WHERE codigo_area='"+codigo+"'";
-         try {
+        sql_select = "SELECT * FROM area WHERE codigo_area='" + codigo + "'";
+        try {
             Connection conn = acceso.getConnetion();
-            System.out.println("consultando la sede en la bd");
+            System.out.println("consultando la area en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
-                
+
                 area.setCodigo(Integer.parseInt(tabla.getString(1)));
                 area.setNombre(tabla.getString(2));
                 area.setDescripcion(tabla.getString(3));
@@ -69,5 +70,62 @@ public class DAOarea {
             System.out.println(e);
         }
         return null;
+    }
+
+    public Vector todasAreas() {
+
+        String sql_select;
+        Vector ve = new Vector();
+
+        sql_select = "SELECT * FROM  area";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la area en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+
+                ve.add(tabla.getString(1));
+                ve.add(tabla.getString(2));
+                ve.add(tabla.getString(3));
+                ve.add(tabla.getString(4));
+                ve.add(tabla.getString(5));
+
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public boolean updateArea(Area area) {
+        String sql_select;
+        sql_select = "UPDATE sedes "
+                + "SET "
+                + "codigo='" + area.getCodigo() + "', "
+                + "nombre='" + area.getNombre() + "', "
+                + "descripcion='" + area.getDescripcion() + "', "
+                + "' WHERE codigo='" + String.valueOf(area.getCodigo()) + "' ";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("actualizando area  en  bd");
+            Statement sentencia = conn.createStatement();
+            sentencia.executeUpdate(sql_select);
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+
+    }
+
+    public void cerrarConexionBD() {
+        acceso.closeConection(acceso.getConnetion());
     }
 }
