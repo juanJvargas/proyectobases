@@ -11,13 +11,22 @@ package logica;
  */
 public class Area {
 
-    private String nombre, descripcion;
+    private String nombre, descripcion, estado;
     private int codigo;
 
     public void Area() {
         nombre = "";
         descripcion = "";
         codigo = 0;
+        estado = "";
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void setNombre(String nombre) {

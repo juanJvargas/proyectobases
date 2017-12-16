@@ -5,10 +5,9 @@
  */
 /**
  * Author:  juan
- * Created: 15-dic-2017
+ * Created: 16-dic-2017
  */
 
-SELECT * FROM area;
+insert into empleado values(123,'prueba','prueba','carlos','carlos@elmaspendejo.com','50','jefe',1,null,'activo');
 
---insert into area values (51, 'Ovinis voladores', 'jojo que miedo','activa');
---insert into cama values (123, 'Cama para gente rara', 'activa', 51);
+SELECT * FROM empleado;
