@@ -12,9 +12,10 @@ DROP TABLE IF EXISTS area CASCADE;
 CREATE TABLE area(
 	codigo_area INTEGER PRIMARY KEY,
 	nombre VARCHAR(100),
-	descripcion VARCHAR(100)
+	descripcion VARCHAR(100),
+        estado VARCHAR(50)
 );
-
+INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
 	numero_cama INTEGER PRIMARY KEY,

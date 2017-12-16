@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package gui;
 
 /**
  *
@@ -11,7 +11,7 @@ package GUI;
  */
 public class InterfazAdministrador extends javax.swing.JFrame {
 
-    AgregarEnfermera ventanaAgregar;
+    AgregarEmpleados ventanaAgregar;
     /**
      * Creates new form InterfazAdmin
      */
@@ -71,9 +71,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
     private void agregarUsuarioBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUsuarioBActionPerformed
         // TODO add your handling code here:
-        ventanaAgregar = new AgregarEnfermera();
+        ventanaAgregar = new AgregarEmpleados();
+        System.out.println("abrir ventana");
         ventanaAgregar.setVisible(true);
-        dispose();
+        System.out.println("cerar ventana");
+        this.dispose();
     }//GEN-LAST:event_agregarUsuarioBActionPerformed
 
     /**
