@@ -22,6 +22,8 @@ public class AgregarEmpleados extends javax.swing.JFrame {
      */
     public AgregarEmpleados() {
         initComponents();
+        controlArea = new ControladorArea();
+
     }
 
     /**
@@ -326,14 +328,12 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
     private void buscar_areasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_areasActionPerformed
 
-        
         codigo_areas.removeAllItems();
         ArrayList<String> ve = new ArrayList<String>();
         ve = controlArea.retornarAreas();
         codigo_areas.addItem("");
 
         for (int i = 0; i < ve.size(); i++) {
-
             String item;
             item = ve.get(i);
             codigo_areas.addItem(item);

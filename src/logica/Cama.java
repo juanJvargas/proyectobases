@@ -16,6 +16,10 @@ public class Cama {
     private String descripcion = "";
     private String estado;
     
+    public Cama(){
+        numeroCama = 0; //cama no  existe
+    }
+    
     public int getNumeroCama(){
         return numeroCama;
     }
