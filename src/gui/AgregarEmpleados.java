@@ -28,6 +28,8 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         controlArea = new ControladorArea();
         controlEmpleado = new ControladorEmpleado();
         initComponents();
+        controlArea = new ControladorArea();
+
     }
 
     /**
@@ -356,8 +358,8 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         ve = controlArea.retornarAreas();
         codigo_areas.addItem("");
 
-        for (int i = 0; i < ve.size() - 1; i += 2) {
 
+        for (int i = 0; i < ve.size() - 1; i += 2) {
             String item;
             item = ve.get(i) + "," + ve.get(i + 1);
             codigo_areas.addItem(item);
