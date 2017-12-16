@@ -15,13 +15,12 @@ CREATE TABLE area(
 	descripcion VARCHAR(100),
         estado VARCHAR(50)
 );
-INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
 	numero_cama INTEGER PRIMARY KEY,
 	descripcion VARCHAR(100),
 	estado VARCHAR(100),
-	codigo_area integer,
+	codigo_area INTEGER,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area)
 );
 
@@ -159,10 +158,12 @@ CREATE TABLE asignado(
 	identificacion_paciente INTEGER,
 	fecha_asignacion DATE,
 	fecha_retiro DATE,
+	estado_asignacion VARCHAR(100),
 	PRIMARY KEY (numero_cama, identificacion_paciente, fecha_asignacion),
-	FOREIGN KEY (numero_cama) REFERENCES cama(numero_cama),
-	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente)
+	FOREIGN KEY (numero_cama) REFERENCES cama(numero_cama)
+	--, FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente)
 );
+
 
 DROP TABLE IF EXISTS cita CASCADE;
 CREATE TABLE cita(
@@ -197,3 +198,17 @@ CREATE TABLE usuarios(
 INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
 INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
+
+
+insert into area values (51, 'Ovinis voladores', 'jojo que miedo');
+INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
+
+insert into cama values (123, 'Cama para gente rara', 'activa', 1);
+insert into cama values (124, 'Cama para locos', 'inactiva',51);
+
+insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
+select * from cama;
+
+select numero_cama from cama
+EXCEPT
+select numero_cama from asignado WHERE estado_asignacion = 'activa';

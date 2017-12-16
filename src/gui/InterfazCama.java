@@ -396,6 +396,8 @@ public class InterfazCama extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazCama().setVisible(true);
+    java.util.Date today = new java.util.Date();
+    System.out.println(new java.sql.Timestamp(today.getTime()));
             }
         });
     }
