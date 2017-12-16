@@ -30,7 +30,8 @@ public class DAOarea {
                 + "(codigo_area, nombre, descripcion)"
                 + " VALUES('" + String.valueOf(area.getCodigo())
                 + "','" + area.getNombre()
-                + "','" + area.getDescripcion() + "')";
+                + "','" + area.getDescripcion() 
+                + "','" + area.getEstado() + "')";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -59,6 +60,7 @@ public class DAOarea {
                 area.setCodigo(Integer.parseInt(tabla.getString(1)));
                 area.setNombre(tabla.getString(2));
                 area.setDescripcion(tabla.getString(3));
+                area.setEstado(tabla.getString(4));
 
                 System.out.println("ok");
             }
@@ -85,6 +87,7 @@ public class DAOarea {
             ResultSet tabla = sentencia.executeQuery(sql_select);
              while (tabla.next()) {
               ve.add((tabla.getString(1)));
+              ve.add((tabla.getString(2)));
               
             }
            return ve;
@@ -103,6 +106,7 @@ public class DAOarea {
                 + "codigo='" + area.getCodigo() + "', "
                 + "nombre='" + area.getNombre() + "', "
                 + "descripcion='" + area.getDescripcion() + "', "
+                + "estado='" + area.getEstado()+ "', "
                 + "' WHERE codigo='" + String.valueOf(area.getCodigo()) + "' ";
         try {
             Connection conn = acceso.getConnetion();

@@ -15,6 +15,7 @@ CREATE TABLE area(
 	descripcion VARCHAR(100),
         estado VARCHAR(50)
 );
+
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
 	numero_cama INTEGER PRIMARY KEY,
@@ -49,12 +50,17 @@ CREATE TABLE empleado(
 	telefono VARCHAR(50),
 	nombre VARCHAR(100),
 	email VARCHAR(50),
-	salario VARCHAR(100),cargo VARCHAR(20),
+	salario VARCHAR(100),
+        cargo VARCHAR(20) NOT NULL,
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
+        Estado VARCHAR(50) NOT NULL,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
+
 );
+
+
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
