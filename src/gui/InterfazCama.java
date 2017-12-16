@@ -6,6 +6,7 @@
 package gui;
 
 import controlador.ControladorCama;
+import javax.swing.JOptionPane;
 import logica.Cama;
 
 /**
@@ -102,6 +103,11 @@ public class InterfazCama extends javax.swing.JFrame {
         });
 
         botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
 
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -228,10 +234,14 @@ public class InterfazCama extends javax.swing.JFrame {
 
         if (cama.getNumeroCama() == 0) {
             // cama no existe
+            JOptionPane.showMessageDialog(this, "Cama no existe", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (cama.getNumeroCama() == -1) {
             //error sql
+            JOptionPane.showMessageDialog(this, "Error con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (cama.getNumeroCama() == -2) {
             //error desconocido
+            JOptionPane.showMessageDialog(this, "Error desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+
         } else {
             textoCodigoArea.setText(String.valueOf(cama.getCodigoArea()));
             textoDescripcion.setText(cama.getDescripcion());
@@ -245,10 +255,8 @@ public class InterfazCama extends javax.swing.JFrame {
             if (radioModificar.isSelected()) {
                 textoCodigoCama.setEnabled(false);
                 textoCodigoCama.setEditable(false);
-                textoCodigoArea.setText("");
                 textoCodigoArea.setEnabled(true);
                 textoCodigoArea.setEditable(true);
-                textoDescripcion.setText("");
                 textoDescripcion.setEnabled(true);
                 textoDescripcion.setEditable(true);
                 comboEstado.setEnabled(true);
@@ -333,6 +341,11 @@ public class InterfazCama extends javax.swing.JFrame {
         comboEstado.setSelectedIndex(0);
 
     }//GEN-LAST:event_radioEliminarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        // TODO add your handling code here:
+        Cama c = new Cama();
+    }//GEN-LAST:event_botonModificarActionPerformed
 
     /**
      * @param args the command line arguments

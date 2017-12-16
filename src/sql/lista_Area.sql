@@ -9,3 +9,6 @@
  */
 
 SELECT * FROM area;
+
+insert into area values (51, 'Ovinis voladores', 'jojo que miedo');
+insert into cama values (123, 'Cama para gente rara', 'activa', 51);
