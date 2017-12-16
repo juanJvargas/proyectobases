@@ -112,8 +112,8 @@ CREATE TABLE enfermera(
 
 DROP TABLE IF EXISTS habilidad CASCADE;
 CREATE TABLE habilidad(
-	codigo_habilidad INTEGER PRYMARY KEY NOT NULL,
-	descripcion VARVHAR(500)
+	codigo_habilidad INTEGER PRIMARY KEY NOT NULL,
+	descripcion VARCHAR(500)
 	
 );
 
@@ -121,14 +121,14 @@ DROP TABLE IF EXISTS habilidad_empleado CASCADE;
 CREATE TABLE habilidad_empleado(
 	identificacion_empleado INTEGER,
 	codigo_habilidad INTEGER,
-	PRYMARY KEY(identificacion_empleado, codigo_habilidad)
-	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
-	FOREIGN KEY (codigo_abilidad) REFERENCES habilidad(codigo_abilidad)
+	PRIMARY KEY(identificacion_empleado, codigo_habilidad),
+	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
+	FOREIGN KEY (codigo_habilidad) REFERENCES habilidad(codigo_habilidad)
 );
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
 CREATE TABLE  especialidad(
-	codigo_ especialidad INTEGER PRIMARY KEY NOT NULL,
+	codigo_especialidad INTEGER PRIMARY KEY NOT NULL,
 	descripcion VARCHAR (500)	
 );
 
@@ -136,10 +136,10 @@ DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,
 	numero_licencia VARCHAR(100),
-	codigo_ especialidad INTEGER,
+	codigo_especialidad INTEGER,
 	universidad VARCHAR(100),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
-	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_ especialidad)
+	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_especialidad)
 );
 
 DROP TABLE IF EXISTS asignado CASCADE;

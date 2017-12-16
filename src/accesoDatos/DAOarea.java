@@ -6,6 +6,7 @@
 package accesoDatos;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import logica.Area;
@@ -42,6 +43,31 @@ public class DAOarea {
         }
         return false;
     }
-    
-    
+
+    public Area consultarArea(int codigo) {
+        Area area = new Area();
+        String sql_select;
+        sql_select= "SELECT * FROM area WHERE codigo_area='"+codigo+"'";
+         try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                
+                area.setCodigo(Integer.parseInt(tabla.getString(1)));
+                area.setNombre(tabla.getString(2));
+                area.setDescripcion(tabla.getString(3));
+
+                System.out.println("ok");
+            }
+
+            return area;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }
