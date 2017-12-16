@@ -29,12 +29,13 @@ public class DAOCama {
                 + "numero_cama, "
                 + "codigo_area, "
                 + "descripcion, "
-                + "estado "
+                + "estado) "
                 + "VALUES ("
                 + "'" + c.getNumeroCama() + "',"
                 + "'" + c.getCodigoArea() + "', "
                 + "'" + c.getDescripcion() + "', "
                 + "'" + c.getEstado() + "')";
+        System.out.println(sql_select);
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -86,8 +87,9 @@ public class DAOCama {
                 + "SET "
                 + "codigo_area = '" + String.valueOf(c.getCodigoArea()) + "', "
                 + "descripcion = '" + c.getDescripcion() + "', "
-                + "estado = '" + c.getDescripcion() + "', "
-                + "' WHERE numero_cama ='" + String.valueOf(c.getNumeroCama()) + "' ";
+                + "estado = '" + c.getEstado() + "' "
+                + " WHERE numero_cama = '" + String.valueOf(c.getNumeroCama()) + "' ";
+        System.out.println(sql_select);
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("actualizando area  en  bd");

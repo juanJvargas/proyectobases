@@ -13,17 +13,25 @@ import logica.Cama;
  * @author tovar
  */
 public class ControladorCama {
-    
+
     DAOCama daoCama;
-    
-    public ControladorCama(){
+
+    public ControladorCama() {
         daoCama = new DAOCama();
     }
-    
-    public Cama consultarCama(int codigoCama){
+
+    public Cama consultarCama(int codigoCama) {
         Cama c = new Cama();
         c = daoCama.consultarCama(codigoCama);
         return c;
     }
-    
+
+    public boolean actualizarCama(Cama c) {
+        return daoCama.actualizarCama(c);
+    }
+
+    public boolean insertarCama(Cama c) {
+        return daoCama.insertarCama(c);
+    }
+
 }
