@@ -61,7 +61,6 @@
                               <Component id="direccion" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel9" min="-2" pref="189" max="-2" attributes="0"/>
@@ -74,8 +73,9 @@
                                       <Component id="codigo_jefe" min="-2" pref="192" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel8" min="-2" pref="189" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="medico" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="enfermera" min="-2" max="-2" attributes="0"/>
@@ -84,24 +84,19 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-
                               <Component id="jLabel7" min="-2" pref="189" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="salario" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="buscar_areas" max="32767" attributes="0"/>
                           <Component id="buscar_jefes" max="32767" attributes="0"/>
-
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-
                   <Group type="102" alignment="1" attributes="0">
-
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jLabel10" min="-2" pref="189" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -157,14 +152,12 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-
-                  <Component id="jLabel8" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="enfermera" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="medico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-
                   <Component id="jLabel9" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="codigo_areas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buscar_areas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -184,7 +177,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="58" max="32767" attributes="0"/>
-
           </Group>
       </Group>
     </DimensionLayout>
@@ -279,7 +271,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailActionPerformed"/>
       </Events>
     </Component>
-
     <Component class="javax.swing.JRadioButton" name="medico">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -291,7 +282,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="medicoActionPerformed"/>
       </Events>
     </Component>
-
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
@@ -299,7 +289,6 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-
     <Component class="javax.swing.JRadioButton" name="enfermera">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -311,7 +300,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enfermeraActionPerformed"/>
       </Events>
     </Component>
-
     <Component class="javax.swing.JTextField" name="salario">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -320,15 +308,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salarioActionPerformed"/>
       </Events>
     </Component>
-
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Cargo:"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
@@ -396,13 +375,16 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-
         <Property name="text" type="java.lang.String" value="Siguiente -&gt;"/>
-
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cargo:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
