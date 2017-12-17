@@ -172,4 +172,5 @@ public class DAOEmpleado {
     public void cerrarConexionBD() {
         acceso.closeConection(acceso.getConnetion());
     }
+
 }

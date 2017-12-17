@@ -6,7 +6,13 @@
 package gui;
 
 import controlador.ControladorArea;
+import controlador.ControladorAsignacion;
+import controlador.ControladorCama;
 import java.util.ArrayList;
+import static javax.management.Query.and;
+import javax.swing.JOptionPane;
+import logica.Asignacion;
+import logica.Cama;
 
 /**
  *
@@ -14,11 +20,14 @@ import java.util.ArrayList;
  */
 public class InterfazAsignarCamas extends javax.swing.JFrame {
 
+    private ControladorArea controlArea;
+
     /**
      * Creates new form InterfazAsignarCamas
      */
     public InterfazAsignarCamas() {
         initComponents();
+        controlArea = new ControladorArea();
     }
 
     /**
@@ -38,30 +47,47 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Identificacion paciente:");
 
-        codigo_areas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
+        codigo_areas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actualice las Areas" }));
+        codigo_areas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                codigo_areasItemStateChanged(evt);
+            }
+        });
+        codigo_areas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigo_areasActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Codigo area:");
 
         jLabel3.setText("Camas disponibles:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un area" }));
 
         jButton1.setText("Asignar Cama");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Actualizar Areas");
+        jButton2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jButton2ItemStateChanged(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jButton3.setText("Actualizar Camas disponibles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,14 +104,12 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(codigo_areas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jComboBox2, 0, 118, Short.MAX_VALUE))))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigo_areas, 0, 188, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +126,10 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,19 +137,85 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ControladorArea controlArea = new ControladorArea();
         codigo_areas.removeAllItems();
         ArrayList<String> ve = new ArrayList<String>();
         ve = controlArea.retornarAreas();
-        codigo_areas.addItem("");
+        codigo_areas.addItem("Seleccionar:");
 
-        for (int i = 0; i < ve.size(); i++) {
+        for (int i = 0; i < ve.size() - 1; i += 2) {
             String item;
-            item = ve.get(i);
+            item = ve.get(i) + "," + ve.get(i + 1);
             codigo_areas.addItem(item);
             item = "";
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        System.out.println("VALIDAR QUE EXISTA USUARIO");
+        System.out.println("VALIDAR QUE NO EXISTA UNA ASIGNACION");
+
+        try {
+            String codigo = this.codigo_areas.getSelectedItem().toString();
+            String[] cod = codigo.split(",");
+            int areaSeleccionada = Integer.parseInt(cod[0]);
+            int numeroCama = Integer.valueOf(jComboBox2.getSelectedItem().toString());
+            int idpaciente = Integer.valueOf(jTextField1.getText());
+
+            Asignacion a = new Asignacion();
+            a.setIdentificacionPaciente(idpaciente);
+            a.setNumeroCama(numeroCama);
+
+            ControladorAsignacion controladorAsignacion = new ControladorAsignacion();
+            boolean res = controladorAsignacion.insertarAsignacion(a);
+
+            if (res) {
+                JOptionPane.showMessageDialog(this, "Asignacion agregada correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Asignacion no se pudo agregar", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Verifica que la identificacion sea solo numerica o que hayas seleccionado el area y la cama", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void codigo_areasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codigo_areasItemStateChanged
+        // TODO add your handling code here:
+        System.out.println(codigo_areas.getSelectedIndex());
+        if (codigo_areas.getSelectedIndex() != 0 && codigo_areas.getSelectedIndex() !=-1) {
+            jComboBox2.removeAllItems();
+            jComboBox2.addItem("Seleccionar:");
+            ControladorCama controladorCama = new ControladorCama();
+            ArrayList<Cama> camas = new ArrayList<Cama>();
+
+            String codigo = this.codigo_areas.getSelectedItem().toString();
+            String[] cod = codigo.split(",");
+            int areaSeleccionada = Integer.parseInt(cod[0]);
+
+            camas = controladorCama.traerTodasCamasActivasLibresPorArea(areaSeleccionada);
+            for (int i = 0; i < camas.size(); i++) {
+                jComboBox2.addItem(String.valueOf(camas.get(i).getNumeroCama()));
+            }
+        }else{
+            jComboBox2.removeAllItems();
+            jComboBox2.addItem("Seleccione un area");
+        }
+    }//GEN-LAST:event_codigo_areasItemStateChanged
+
+    private void codigo_areasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigo_areasActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_codigo_areasActionPerformed
+
+    private void jButton2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jButton2ItemStateChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton2ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -167,7 +256,6 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> codigo_areas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

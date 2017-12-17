@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS area CASCADE;
 CREATE TABLE area(
 	codigo_area INTEGER PRIMARY KEY,
 	nombre VARCHAR(100),
-	descripcion VARCHAR(100),
+	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
 
@@ -53,7 +53,6 @@ CREATE TABLE empleado(
 	salario VARCHAR(100),
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
-        Estado VARCHAR(50) NOT NULL,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
@@ -151,10 +150,10 @@ DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,
 	numero_licencia VARCHAR(100),
-	codigo_especialidad INTEGER,
+	codigo_especialidad VARCHAR(100),
 	universidad VARCHAR(100),
-	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
-	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_especialidad)
+	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
+
 );
 
 DROP TABLE IF EXISTS asignado CASCADE;
@@ -205,15 +204,68 @@ INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
 
 
-insert into area values (51, 'Ovinis voladores', 'jojo que miedo','activa');
-INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
+INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
+INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
+INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
+INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
+INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
 
-insert into cama values (123, 'Cama para gente rara', 'activa', 1);
-insert into cama values (124, 'Cama para locos', 'inactiva',51);
+--- CAMAS
 
-insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
+insert into cama values (1, 'Partos 1', 'activa', 1);
+insert into cama values (2, 'Partos 2', 'activa', 1);
+insert into cama values (3, 'Partos 3', 'inactiva', 1);
+insert into cama values (4, 'Partos 4', 'inactiva', 1);
+insert into cama values (5, 'Habitacion 1 - Ginecologia ', 'activa', 1);
+insert into cama values (6, 'Habitacion 2 - Ginecologia', 'inactiva', 1);
+insert into cama values (7, 'Habitacion 3 - Ginecologia', 'activa', 1);
+
+insert into cama values (8, 'Cirugia 1 - Medicina Interna', 'activa', 2);
+insert into cama values (9, 'Cirugia 2 - Medicina Interna', 'activa', 2);
+insert into cama values (10, 'Cirugia 3 - Medicina Interna', 'inactiva', 2);
+insert into cama values (11, 'Cirugia 4 - Medicina Interna', 'activa', 2);
+insert into cama values (12, 'Habitacion 1 - Medicina Interna ', 'activa', 2);
+insert into cama values (13, 'Habitacion 2 - Medicina Interna', 'inactiva', 2);
+insert into cama values (14, 'Habitacion 3 - Medicina Interna', 'activa', 2);
+
+insert into cama values (15, 'Cirugia 1 - Infectologia', 'activa', 3);
+insert into cama values (16, 'Cirugia 2 - Infectologia', 'activa', 3);
+insert into cama values (17, 'Cirugia 3 - Infectologia', 'activa', 3);
+insert into cama values (18, 'Cirugia 4 - Infectologia', 'inactiva', 3);
+insert into cama values (19, 'Habitacion 1 - Infectologia ', 'activa', 3);
+insert into cama values (20, 'Habitacion 2 - Infectologia', 'inactiva', 3);
+insert into cama values (21, 'Habitacion 3 - Infectologia', 'activa', 3);
+
+insert into cama values (22, 'Cirugia 1 - Pediatria', 'inactiva', 4);
+insert into cama values (23, 'Cirugia 2 - Pediatria', 'activa', 4);
+insert into cama values (24, 'Cirugia 3 - Pediatria', 'inactiva', 4);
+insert into cama values (25, 'Cirugia 4 - Pediatria', 'inactiva', 4);
+insert into cama values (26, 'Habitacion 1 - Infectologia ', 'activa', 4);
+insert into cama values (27, 'Habitacion 2 - Infectologia', 'activa', 4);
+insert into cama values (28, 'Habitacion 3 - Infectologia', 'activa', 4);
+
+insert into cama values (29, 'Cirugia 1 - UCI', 'activa', 5);
+insert into cama values (30, 'Cirugia 2 - UCI', 'activa', 5);
+insert into cama values (31, 'Cirugia 3 - UCI', 'activa', 5);
+insert into cama values (32, 'Cirugia 4 - UCI', 'inactiva', 5);
+insert into cama values (33, 'Habitacion 1 - UCI ', 'activa', 5);
+insert into cama values (34, 'Habitacion 2 - UCI', 'activa', 5);
+insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
+
+--- fin camas
+
+
+
+---insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
+
+
+
 select * from cama;
 
-select numero_cama from cama
+select * from 
+cama 
+natural join 
+(select numero_cama from cama
 EXCEPT
-select numero_cama from asignado WHERE estado_asignacion = 'activa';
+select numero_cama from asignado WHERE estado_asignacion = 'activa') T
+WHERE codigo_area = '1';
