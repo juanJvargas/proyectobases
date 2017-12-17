@@ -55,12 +55,12 @@ CREATE TABLE empleado(
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
+        numero_registro SERIAL PRIMARY KEY,
 	identificacion_paciente INTEGER,
 	identificacion_empleado INTEGER,
-	numero_registro INTEGER,
+	
 	fecha_consulta DATE,
-	valor INTEGER,
-	PRIMARY KEY(identificacion_paciente , numero_registro ),
+	observaciones VARCHAR(200),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
 	unique(numero_registro)
