@@ -73,7 +73,7 @@ public class DAOEmpleado {
                 empleado.setTelefono(tabla.getString(3));
                 empleado.setNombre(tabla.getString(4));
                 empleado.setEmail(tabla.getString(5));
-                empleado.setSalario(Integer.valueOf(tabla.getShort(6)));
+                empleado.setSalario(Integer.valueOf(tabla.getString(6)));
                 empleado.setCodigo_area(Integer.parseInt(tabla.getString(8)));
                 empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(9)));
                 empleado.setEstado(tabla.getString(10));
@@ -102,7 +102,7 @@ public class DAOEmpleado {
                 + "salario='" + empleado.getSalario() + "', "
                 + "codigo_area='" + empleado.getCodigo_area() + "', "
                 + "identificacion_jefe='" + empleado.getIdentificacion_jefe() + "', "
-                + "estado='" + empleado.getEstado() + "', "
+                + "estado='" + empleado.getEstado() + "' "
                 + "' WHERE idenitfiacion_empleado='" + empleado.getIdentificacion_empleado() + "' ";
         try {
             Connection conn = acceso.getConnetion();
