@@ -56,10 +56,9 @@ CREATE TABLE empleado(
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
-        numero_registro SERIAL PRIMARY KEY,
+  numero_registro SERIAL PRIMARY KEY,
 	identificacion_paciente INTEGER,
 	identificacion_empleado INTEGER,
-	
 	fecha_consulta DATE,
 	observaciones VARCHAR(200),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),
@@ -166,8 +165,9 @@ CREATE TABLE asignado(
 DROP TABLE IF EXISTS cita CASCADE;
 CREATE TABLE cita(
 	identificacion_paciente INTEGER,
-	identificacion_empleado INTEGER,fecha DATE,
-	hora VARCHAR(10),
+	identificacion_empleado INTEGER,
+        fecha DATE,
+	hora INTEGER,
 	
 	PRIMARY KEY (identificacion_paciente, identificacion_empleado, fecha),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),

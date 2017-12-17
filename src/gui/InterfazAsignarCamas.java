@@ -47,6 +47,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,13 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Limpiar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +104,10 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
@@ -128,7 +139,9 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -137,17 +150,8 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        codigo_areas.removeAllItems();
-        ArrayList<String> ve = new ArrayList<String>();
-        ve = controlArea.retornarAreas();
-        codigo_areas.addItem("Seleccionar:");
-
-        for (int i = 0; i < ve.size() - 1; i += 2) {
-            String item;
-            item = ve.get(i) + "," + ve.get(i + 1);
-            codigo_areas.addItem(item);
-            item = "";
-        }
+        actualizarAreas();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -160,7 +164,11 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             String codigo = this.codigo_areas.getSelectedItem().toString();
             String[] cod = codigo.split(",");
             int areaSeleccionada = Integer.parseInt(cod[0]);
-            int numeroCama = Integer.valueOf(jComboBox2.getSelectedItem().toString());
+            
+            String textoComboSeleccionado = jComboBox2.getSelectedItem().toString();
+            String[] tex = textoComboSeleccionado.split("-");
+            
+            int numeroCama = Integer.valueOf(tex[0]);
             int idpaciente = Integer.valueOf(jTextField1.getText());
 
             Asignacion a = new Asignacion();
@@ -175,7 +183,9 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Asignacion no se pudo agregar", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
+            
+            jTextField1.setText("");
+            actualizarAreas();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Verifica que la identificacion sea solo numerica o que hayas seleccionado el area y la cama", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -199,7 +209,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
 
             camas = controladorCama.traerTodasCamasActivasLibresPorArea(areaSeleccionada);
             for (int i = 0; i < camas.size(); i++) {
-                jComboBox2.addItem(String.valueOf(camas.get(i).getNumeroCama()));
+                jComboBox2.addItem(String.valueOf(camas.get(i).getNumeroCama() + "-" + camas.get(i).getDescripcion()));
             }
         }else{
             jComboBox2.removeAllItems();
@@ -216,6 +226,12 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jButton2ItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        actualizarAreas();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,10 +272,25 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> codigo_areas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private void actualizarAreas() {
+        codigo_areas.removeAllItems();
+        ArrayList<String> ve = new ArrayList<String>();
+        ve = controlArea.retornarAreas();
+        codigo_areas.addItem("Seleccionar:");
+
+        for (int i = 0; i < ve.size() - 1; i += 2) {
+            String item;
+            item = ve.get(i) + "," + ve.get(i + 1);
+            codigo_areas.addItem(item);
+            item = "";
+        }
+    }
 }
