@@ -29,11 +29,11 @@ public class DAOEmpleado {
     public boolean insertarEmpleado(Empleado empleado) {
         String sql_select, ide_jefe;
         if(empleado.getIdentificacion_jefe()==0){
-            ide_jefe="'NULL'";
+            ide_jefe="null";
         }else{
             ide_jefe=String.valueOf(empleado.getIdentificacion_jefe());
         }
-        sql_select = "INSERT INTO area"
+        sql_select = "INSERT INTO empleado"
                 + " VALUES('" + String.valueOf(empleado.getIdentificacion_empleado())
                 + "','" + empleado.getDireccion()
                 + "','" + empleado.getTelefono()
@@ -42,8 +42,8 @@ public class DAOEmpleado {
                 + "','" + String.valueOf(empleado.getSalario())
                 + "','" + empleado.getCargo()
                 + "','" + String.valueOf(empleado.getCodigo_area())
-                + "','" + ide_jefe
-                + "','" + empleado.getEstado() + "')";
+                + "'," + ide_jefe
+                + ",'" + empleado.getEstado() + "')";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -61,7 +61,7 @@ public class DAOEmpleado {
     public Empleado consultarEmpleado(int codigo) {
         Empleado empleado = new Empleado();
         String sql_select;
-        sql_select = "SELECT * FROM area WHERE identificacion_empleado='" + codigo + "'";
+        sql_select = "SELECT * FROM empleado WHERE identificacion_empleado='" + codigo + "'";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la empleado en la bd");
@@ -148,6 +148,30 @@ public class DAOEmpleado {
         return null;
     }
 
+     public ArrayList<String> todosjefes() {
+        Empleado s = new Empleado();
+        String sql_select;
+        ArrayList<String> ve = new ArrayList<String>();
+
+        sql_select = "SELECT * FROM  empleado WHERE estado='activa' AND cargo='jefe'";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                ve.add((tabla.getString(1)));
+                ve.add((tabla.getString(4)));
+
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     public void cerrarConexionBD() {
         acceso.closeConection(acceso.getConnetion());
     }

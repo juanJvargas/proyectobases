@@ -336,7 +336,18 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     }//GEN-LAST:event_nombreActionPerformed
 
     private void buscar_jefesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_jefesActionPerformed
-        // TODO add your handling code here:
+
+        codigo_jefe.removeAllItems();
+        ArrayList<String> ve = new ArrayList<String>();
+        ve = controlEmpleado.retornarJefes();
+        codigo_jefe.addItem("");
+
+        for (int i = 0; i < ve.size() - 1; i += 2) {
+            String item;
+            item = ve.get(i) + "," + ve.get(i + 1);
+            codigo_jefe.addItem(item);
+            item = "";
+        }
     }//GEN-LAST:event_buscar_jefesActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
@@ -357,7 +368,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         ArrayList<String> ve = new ArrayList<String>();
         ve = controlArea.retornarAreas();
         codigo_areas.addItem("");
-
 
         for (int i = 0; i < ve.size() - 1; i += 2) {
             String item;
@@ -380,12 +390,15 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         } else if (this.empleado.isSelected()) {
             empleado.setCargo("empleado");
         }
-        empleado.setCodigo_area(Integer.parseInt(String.valueOf(this.codigo_areas.getItemAt(1).charAt(0))));
+        
+        empleado.setCodigo_area(Integer.parseInt(String.valueOf(this.codigo_areas.getSelectedItem().toString())));
+        String parametro = "" + this.codigo_jefe.getItemAt(1);
+        int aux = parametro.compareTo("null");
+        if (aux != 0) {
 
-        if (!(this.codigo_jefe.getItemAt(1).isEmpty())) {
-            empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getItemAt(1)));
+            empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getSelectedItem().toString()));
         } else {
-             empleado.setIdentificacion_jefe(0);
+            empleado.setIdentificacion_jefe(0);
         }
         if (this.activa.isSelected()) {
             empleado.setEstado("activa");
