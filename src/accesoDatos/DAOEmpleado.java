@@ -145,5 +145,32 @@ public class DAOEmpleado {
         return null;
     }
 
-     
+     public ArrayList<String> todosjefes() {
+        Empleado s = new Empleado();
+        String sql_select;
+        ArrayList<String> ve = new ArrayList<String>();
+
+        sql_select = "SELECT * FROM  empleado WHERE estado='activa'";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                ve.add((tabla.getString(1)));
+                ve.add((tabla.getString(4)));
+
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    public void cerrarConexionBD() {
+        acceso.closeConection(acceso.getConnetion());
+    }
+
 }
