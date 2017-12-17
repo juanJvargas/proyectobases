@@ -6,6 +6,7 @@
 package controlador;
 
 import accesoDatos.DAOCama;
+import java.util.ArrayList;
 import logica.Cama;
 
 /**
@@ -32,6 +33,12 @@ public class ControladorCama {
 
     public boolean insertarCama(Cama c) {
         return daoCama.insertarCama(c);
+    }
+
+    public ArrayList<Cama> traerTodasCamas() {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = daoCama.trarTodasCamas();
+        return ve;
     }
 
 }
