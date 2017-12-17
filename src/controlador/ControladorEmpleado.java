@@ -23,7 +23,7 @@ public class ControladorEmpleado {
         return resultado;
     }
 
-    public Empleado consultarArea(int codigo) {
+    public Empleado consultarEmpleado(int codigo) {
         Empleado empleado = new Empleado();
         System.out.println("Se va a consultar un area");
         empleado = daoEmpleado.consultarEmpleado(codigo);
@@ -37,16 +37,12 @@ public class ControladorEmpleado {
         return resultado;
     }
 
-    public ArrayList<String> retornarAreas() {
+    public ArrayList<String> retornarEmpleados() {
         ArrayList<String> ve = new ArrayList<String>();
         ve = daoEmpleado.todosEmpleados();
         System.out.print(ve);
         return ve;
     }
-    public ArrayList<String> retornarJefes() {
-        ArrayList<String> ve = new ArrayList<String>();
-        ve = daoEmpleado.todosjefes();
-        System.out.print(ve);
-        return ve;
-    }
+    
+    
 }

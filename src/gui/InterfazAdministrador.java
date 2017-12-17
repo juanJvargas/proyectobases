@@ -12,12 +12,16 @@ package gui;
 public class InterfazAdministrador extends javax.swing.JFrame {
 
     AgregarEmpleados ventanaAgregar;
+    AgregarAreas ventanaAgregarArea;
+    ModificarArea ventanaModificarArea;
 
     /**
      * Creates new form InterfazAdmin
      */
     public InterfazAdministrador() {
         initComponents();
+        ventanaAgregarArea = new AgregarAreas();
+        ventanaModificarArea = new ModificarArea();
     }
 
     /**
@@ -31,6 +35,8 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         agregarUsuarioB = new javax.swing.JButton();
+        areasButton = new javax.swing.JButton();
+        modificarAB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +50,20 @@ public class InterfazAdministrador extends javax.swing.JFrame {
             }
         });
 
+        areasButton.setText("Areas");
+        areasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                areasButtonActionPerformed(evt);
+            }
+        });
+
+        modificarAB.setText("Modificar areas");
+        modificarAB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarABActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -54,7 +74,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(agregarUsuarioB, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(modificarAB, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(areasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(agregarUsuarioB, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
                 .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
@@ -64,7 +88,11 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(agregarUsuarioB)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(areasButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(modificarAB)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,6 +108,18 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_agregarUsuarioBActionPerformed
+
+    private void areasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areasButtonActionPerformed
+        // TODO add your handling code here:
+        ventanaAgregarArea.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_areasButtonActionPerformed
+
+    private void modificarABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarABActionPerformed
+        // TODO add your handling code here:
+        ventanaModificarArea.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_modificarABActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +159,8 @@ public class InterfazAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarUsuarioB;
+    private javax.swing.JButton areasButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton modificarAB;
     // End of variables declaration//GEN-END:variables
 }

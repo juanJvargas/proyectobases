@@ -70,6 +70,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
+        campoPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoPasswordKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,6 +127,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         entrar();
 
     }//GEN-LAST:event_botonEntrarActionPerformed
+
+    private void campoPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            entrar();
+        }
+    }//GEN-LAST:event_campoPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -174,7 +187,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 if (u.getTipo().equals("administrador")) {
                     ventanaAdmin = new InterfazAdministrador();
                     ventanaAdmin.setVisible(true);
-
 
                 } else if (u.getTipo().equals("enfermera")) {
                     ventanaEnfermera = new InterfazEnfermera();

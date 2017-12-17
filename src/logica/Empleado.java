@@ -23,7 +23,6 @@ public class Empleado {
         telefono = "";
         nombre = "";
         email = "";
-        cargo = "";
         estado = "";
     }
 
