@@ -378,10 +378,10 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         } else if (this.empleado.isSelected()) {
             empleado.setCargo("empleado");
         }
-        empleado.setCodigo_area(Integer.parseInt(this.codigo_areas.getItemAt(0)));
-        empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getItemAt(0)));
-        if (this.codigo_jefe.getItemAt(0) != "") {
-            empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getItemAt(0)));
+        empleado.setCodigo_area(Integer.parseInt(String.valueOf(this.codigo_areas.getItemAt(1).charAt(0))));
+
+        if (!(this.codigo_jefe.getItemAt(1).isEmpty())) {
+            empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getItemAt(1)));
         } else {
              empleado.setIdentificacion_jefe(0);
         }
