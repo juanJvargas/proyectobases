@@ -54,7 +54,6 @@ CREATE TABLE empleado(
         cargo VARCHAR(20) NOT NULL,
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
-        Estado VARCHAR(50) NOT NULL,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 

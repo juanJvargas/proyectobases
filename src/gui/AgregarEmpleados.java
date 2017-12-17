@@ -60,7 +60,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         empleado = new javax.swing.JRadioButton();
         salario = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         codigo_areas = new javax.swing.JComboBox<>();
@@ -70,6 +69,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         activa = new javax.swing.JRadioButton();
         inactiva = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,7 +139,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jefe);
-        jefe.setText("jefe");
+        jefe.setText("medico");
         jefe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jefeActionPerformed(evt);
@@ -151,19 +151,17 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel7.setToolTipText("");
 
         buttonGroup1.add(empleado);
-        empleado.setText("empleado");
+        empleado.setText("enfermera");
+        empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empleadoActionPerformed(evt);
+            }
+        });
 
         salario.setToolTipText("");
         salario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salarioActionPerformed(evt);
-            }
-        });
-
-        jToggleButton1.setText("siguiente ->");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -195,6 +193,13 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
         buttonGroup2.add(inactiva);
         inactiva.setText("incativa");
+
+        jButton1.setText("Siguiente ->");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,9 +243,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                                         .addComponent(codigo_jefe, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jefe)
-                                        .addGap(31, 31, 31)
+                                        .addGap(25, 25, 25)
                                         .addComponent(empleado)))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -251,17 +256,19 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buscar_jefes, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscar_areas)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jToggleButton1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(activa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inactiva)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(activa)
+                        .addGap(35, 35, 35)
+                        .addComponent(inactiva)
+                        .addGap(170, 170, 170)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(218, 218, 218))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,9 +319,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(activa)
                     .addComponent(inactiva))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -340,7 +347,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
         codigo_jefe.removeAllItems();
         ArrayList<String> ve = new ArrayList<String>();
-        ve = controlEmpleado.retornarJefes();
+        ve = controlEmpleado.retornarEmpleados();
         codigo_jefe.addItem("");
 
         for (int i = 0; i < ve.size() - 1; i += 2) {
@@ -378,47 +385,56 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscar_areasActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Empleado empleado = new Empleado();
+    private void empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_empleadoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                Empleado empleado = new Empleado();
         empleado.setIdentificacion_empleado(Integer.parseInt(this.identifiacion.getText()));
         empleado.setDireccion(this.direccion.getText());
         empleado.setTelefono(this.telefono.getText());
         empleado.setNombre(this.nombre.getText());
         empleado.setEmail(this.email.getText());
         empleado.setSalario(Integer.parseInt(this.salario.getText()));
-        if (this.jefe.isSelected()) {
-            empleado.setCargo("jefe");
-        } else if (this.empleado.isSelected()) {
-            empleado.setCargo("empleado");
-        }
+        
         String codigo= this.codigo_areas.getSelectedItem().toString();
         String[] cod= codigo.split(",");
-        empleado.setCodigo_area(Integer.parseInt(cod[0]));
+        
+        boolean seModifico= false;
+        boolean aux=false;
+        if((cod[0].compareTo("null")!=0)&&(cod[0].compareTo("")!=0)&&!(aux)){
+            empleado.setCodigo_area(Integer.parseInt(cod[0]));
+        }else{
+            aux=true;
+        }
         String parametro = ""+this.codigo_jefe.getSelectedItem();
-        int aux = parametro.compareTo("null");
-        if (aux != 0) {
+        if ((parametro.compareTo("null") != 0)&&(parametro.compareTo("") != 0)&&!(aux)) {
             codigo= this.codigo_jefe.getSelectedItem().toString();
             cod= codigo.split(",");
             empleado.setIdentificacion_jefe(Integer.parseInt(cod[0]));
         } else {
             empleado.setIdentificacion_jefe(0);
         }
-        if (this.activa.isSelected()) {
+        
+        if (this.activa.isSelected()&&!(aux)) {
             empleado.setEstado("activa");
-        } else if (this.inactiva.isSelected()) {
+            seModifico = controlEmpleado.agregarEmpleado(empleado);
+        } else if (this.inactiva.isSelected()&&!(aux)) {
             empleado.setEstado("inactiva");
+            seModifico = controlEmpleado.agregarEmpleado(empleado);
         }
 
-        boolean seModifico = controlEmpleado.agregarEmpleado(empleado);
+        
         if (seModifico) {
             JOptionPane.showMessageDialog(this, "Se modifico  la base de datos");
             //limpiar();
 
         } else {
-            Icon p = new ImageIcon(getClass().getResource("/gui/images/x.png"));
-            JOptionPane.showMessageDialog(this, "Hubo un error al modificar", "", JOptionPane.INFORMATION_MESSAGE, p);
+            //Icon p = new ImageIcon(getClass().getResource("/gui/images/x.png"));
+            JOptionPane.showMessageDialog(this, "Hubo un error al modificar", "", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,6 +484,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     private javax.swing.JRadioButton empleado;
     private javax.swing.JTextField identifiacion;
     private javax.swing.JRadioButton inactiva;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -479,7 +496,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JRadioButton jefe;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField salario;
