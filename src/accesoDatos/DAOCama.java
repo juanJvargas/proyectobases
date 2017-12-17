@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import logica.Cama;
 
 /**
@@ -18,11 +19,11 @@ import logica.Cama;
 public class DAOCama {
 
     AccesoBD acceso;
-    
-    public DAOCama(){
+
+    public DAOCama() {
         acceso = new AccesoBD();
     }
-    
+
     public boolean insertarCama(Cama c) {
         String sql_select;
         sql_select = "INSERT INTO Cama ("
@@ -75,11 +76,11 @@ public class DAOCama {
         } catch (Exception e) {
             System.out.println(e);
             c.setNumeroCama(-2); //codigo -2 desconocido
-            
+
         }
         return c;
     }
-    
+
     public boolean actualizarCama(Cama c) {
         //numero_cama, codigo_area, descripcion, estado
         String sql_select;
@@ -104,6 +105,49 @@ public class DAOCama {
         }
         return false;
 
+    }
+
+    public ArrayList<Cama> traerTodasCamas() {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = traerCamasConSql("SELECT * FROM cama");;
+        return ve;
+    }
+
+    public ArrayList<Cama> traerTodasCamasPorArea(int areaSeleccionada) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = traerCamasConSql("SELECT * FROM cama WHERE codigo_area = '" + String.valueOf(areaSeleccionada) + "'");;
+        return ve;
+    }
+
+    public ArrayList<Cama> traerTodasCamasActivasLibresPorArea(int areaSeleccionada) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = traerCamasConSql("select * from cama natural join (select numero_cama from cama EXCEPT select numero_cama from asignado WHERE estado_asignacion = 'activa') T WHERE codigo_area = '"+String.valueOf(areaSeleccionada)+"' and estado = 'activa'");
+        return ve;
+    }
+
+    public ArrayList<Cama> traerCamasConSql(String sql_select) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                Cama aux = new Cama();
+                aux.setNumeroCama(Integer.valueOf(tabla.getString(1)));
+                aux.setDescripcion(tabla.getString(2));
+                aux.setEstado(tabla.getString(3));
+                aux.setCodigoArea(Integer.valueOf(tabla.getString(4)));
+                ve.add(aux);
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
 }

@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS area CASCADE;
 CREATE TABLE area(
 	codigo_area INTEGER PRIMARY KEY,
 	nombre VARCHAR(100),
-	descripcion VARCHAR(100),
+	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
 
@@ -205,15 +205,34 @@ INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
 
 
-insert into area values (51, 'Ovinis voladores', 'jojo que miedo','activa');
-INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
+INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
+INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
+INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
+INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
+INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
+INSERT INTO area VALUES (6, 'CIRUGIA', 'Área específica del hospital donde se realizan procedimientos quirúrgicos con los máximos cuidados de asepsia.','activa');
 
-insert into cama values (123, 'Cama para gente rara', 'activa', 1);
-insert into cama values (124, 'Cama para locos', 'inactiva',51);
 
-insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
+insert into cama values (1, 'Partos 1', 'activa', 1);
+insert into cama values (2, 'Partos 2', 'activa', 1);
+insert into cama values (3, 'Partos 3', 'inactiva', 1);
+insert into cama values (4, 'Partos 4', 'inactiva', 1);
+insert into cama values (5, 'Habitacion 1 - Ginecologia ', 'activa', 1);
+insert into cama values (6, 'Habitacion 2 - Ginecologia', 'inactiva', 1);
+insert into cama values (7, 'Habitacion 3 - Ginecologia', 'activa', 1);
+
+
+
+---insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
+
+
+
 select * from cama;
 
-select numero_cama from cama
+select * from 
+cama 
+natural join 
+(select numero_cama from cama
 EXCEPT
-select numero_cama from asignado WHERE estado_asignacion = 'activa';
+select numero_cama from asignado WHERE estado_asignacion = 'activa') T
+WHERE codigo_area = '1';
