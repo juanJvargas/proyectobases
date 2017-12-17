@@ -5,6 +5,12 @@
  */
 package gui;
 
+import controlador.ControladorArea;
+import controlador.ControladorCama;
+import javax.swing.JOptionPane;
+import logica.Area;
+import logica.Cama;
+
 /**
  *
  * @author tovar
@@ -16,6 +22,9 @@ public class InterfazCama extends javax.swing.JFrame {
      */
     public InterfazCama() {
         initComponents();
+        limpiar();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Gestion Camas");
     }
 
     /**
@@ -27,48 +36,334 @@ public class InterfazCama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        grupoRadio = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        textoCodigoCama = new javax.swing.JTextField();
+        textoCodigoArea = new javax.swing.JTextField();
+        textoDescripcion = new javax.swing.JTextField();
+        botonBuscarCama = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        radioAgregar = new javax.swing.JRadioButton();
+        radioModificar = new javax.swing.JRadioButton();
+        botonModificar = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
+        comboEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Probando ramas");
+        jLabel2.setText("Codigo Cama:");
 
-        jLabel2.setText("Hola mundo");
+        jLabel3.setText("Codigo Area:");
 
-        jLabel3.setText("Cambio 19:13 hola mundo otra vez");
+        jLabel4.setText("Descripcion:");
+
+        jLabel5.setText("Estado:");
+
+        textoCodigoArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoCodigoAreaActionPerformed(evt);
+            }
+        });
+
+        botonBuscarCama.setText("Buscar Cama");
+        botonBuscarCama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarCamaActionPerformed(evt);
+            }
+        });
+
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("¿Que desea hacer?");
+
+        grupoRadio.add(radioAgregar);
+        radioAgregar.setText("Agregar Cama");
+        radioAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAgregarActionPerformed(evt);
+            }
+        });
+
+        grupoRadio.add(radioModificar);
+        radioModificar.setText("Modificar Cama");
+        radioModificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radioModificarItemStateChanged(evt);
+            }
+        });
+        radioModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioModificarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
+        botonLimpiar.setText("Limpiar");
+        botonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLimpiarActionPerformed(evt);
+            }
+        });
+
+        comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar:", "activa", "inactiva" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel3)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                    .addComponent(textoCodigoArea))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel5)
+                        .addGap(25, 25, 25)
+                        .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel3)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addGap(93, 93, 93)
+                        .addComponent(botonLimpiar)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonAgregar)
+                        .addGap(6, 6, 6)
+                        .addComponent(botonModificar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioModificar)
+                            .addComponent(radioAgregar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(jLabel2)
+                        .addGap(25, 25, 25)
+                        .addComponent(textoCodigoCama, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscarCama, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(radioAgregar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioModificar)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(textoCodigoCama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonBuscarCama))
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel3))
+                    .addComponent(textoCodigoArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel4))
+                    .addComponent(textoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel5))
+                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonLimpiar)
+                    .addComponent(botonAgregar)
+                    .addComponent(botonModificar))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonBuscarCamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarCamaActionPerformed
+        // TODO add your handling code here:
+
+        ControladorCama cm = new ControladorCama();
+        Cama cama = new Cama();
+        try {
+            cama = cm.consultarCama(Integer.valueOf(textoCodigoCama.getText()));
+            if (cama.getNumeroCama() == 0) {
+                // cama no existe
+                JOptionPane.showMessageDialog(this, "Cama no existe", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (cama.getNumeroCama() == -1) {
+                //error sql
+                JOptionPane.showMessageDialog(this, "Error con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (cama.getNumeroCama() == -2) {
+                //error desconocido
+                JOptionPane.showMessageDialog(this, "Error desconocido", "Error", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                textoCodigoArea.setText(String.valueOf(cama.getCodigoArea()));
+                textoDescripcion.setText(cama.getDescripcion());
+
+                if (cama.getEstado().equals("activa")) {
+                    comboEstado.setSelectedIndex(1);
+                } else {
+                    comboEstado.setSelectedIndex(2); //inactiva
+                }
+
+                if (radioModificar.isSelected()) {
+                    textoCodigoCama.setEnabled(false);
+                    textoCodigoCama.setEditable(false);
+                    textoCodigoArea.setEnabled(true);
+                    textoCodigoArea.setEditable(true);
+                    textoDescripcion.setEnabled(true);
+                    textoDescripcion.setEditable(true);
+                    comboEstado.setEnabled(true);
+                    botonBuscarCama.setEnabled(false);
+                    botonModificar.setEnabled(true);
+
+                }
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Solo se aceptan numeros en codigo cama y codigo area", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_botonBuscarCamaActionPerformed
+
+    private void botonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_botonLimpiarActionPerformed
+
+    private void radioModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioModificarItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioModificarItemStateChanged
+
+    private void radioModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModificarActionPerformed
+        // TODO add your handling code here:
+        botonAgregar.setEnabled(false);
+        botonBuscarCama.setEnabled(true);
+        botonModificar.setEnabled(false);
+
+        //textos
+        textoCodigoCama.setText("");
+        textoCodigoCama.setEnabled(true);
+        textoCodigoCama.setEditable(true);
+        textoCodigoArea.setText("");
+        textoCodigoArea.setEnabled(false);
+        textoCodigoArea.setEditable(false);
+        textoDescripcion.setText("");
+        textoDescripcion.setEnabled(false);
+        textoDescripcion.setEditable(false);
+
+        //combo
+        comboEstado.setEnabled(false);
+        comboEstado.setSelectedIndex(0);
+
+    }//GEN-LAST:event_radioModificarActionPerformed
+
+    private void radioAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAgregarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_radioAgregarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        try {
+            if (validarArea()) {
+                if (validarCombo()) {
+                    ControladorCama ccama = new ControladorCama();
+                    Cama c = new Cama();
+
+                    c.setNumeroCama(Integer.valueOf(textoCodigoCama.getText()));
+                    c.setDescripcion(textoDescripcion.getText());
+                    c.setCodigoArea(Integer.valueOf(textoCodigoArea.getText()));
+
+                    c.setEstado(comboEstado.getSelectedItem().toString());
+                    boolean res = ccama.actualizarCama(c);
+                    if (res) {
+                        JOptionPane.showMessageDialog(this, "Se actualizo la cama correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar la cama", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+            limpiar();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Solo se aceptan numeros en codigo cama y codigo area", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void textoCodigoAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCodigoAreaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoCodigoAreaActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+        // TODO add your handling code here:
+        ControladorCama ccama = new ControladorCama();
+        try {
+            Cama c = ccama.consultarCama(Integer.valueOf(textoCodigoCama.getText()));
+
+            if (c.getNumeroCama() != 0) {
+                JOptionPane.showMessageDialog(this, "Cama ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (validarArea()) {
+                    if (validarCombo()) {
+                        Cama camaAgregar = new Cama();
+                        camaAgregar.setNumeroCama(Integer.valueOf(textoCodigoCama.getText()));
+                        camaAgregar.setCodigoArea(Integer.valueOf(textoCodigoArea.getText()));
+                        camaAgregar.setDescripcion(textoDescripcion.getText());
+                        camaAgregar.setEstado(comboEstado.getSelectedItem().toString());
+                        boolean res = ccama.insertarCama(camaAgregar);
+                        if (res) {
+                            JOptionPane.showMessageDialog(this, "Se agrego la cama correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "No se pudo agregar la cama", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        limpiar();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Solo se aceptan numeros en codigo cama y codigo area", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,13 +396,66 @@ public class InterfazCama extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazCama().setVisible(true);
+    java.util.Date today = new java.util.Date();
+    System.out.println(new java.sql.Timestamp(today.getTime()));
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonBuscarCama;
+    private javax.swing.JButton botonLimpiar;
+    private javax.swing.JButton botonModificar;
+    private javax.swing.JComboBox<String> comboEstado;
+    private javax.swing.ButtonGroup grupoRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JRadioButton radioAgregar;
+    private javax.swing.JRadioButton radioModificar;
+    private javax.swing.JTextField textoCodigoArea;
+    private javax.swing.JTextField textoCodigoCama;
+    private javax.swing.JTextField textoDescripcion;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        botonAgregar.setEnabled(true);
+        botonBuscarCama.setEnabled(false);
+        radioAgregar.setSelected(true);
+        textoCodigoCama.setText("");
+        textoCodigoCama.setEnabled(true);
+        textoCodigoCama.setEditable(true);
+        textoCodigoArea.setText("");
+        textoCodigoArea.setEnabled(true);
+        textoCodigoArea.setEditable(true);
+        textoDescripcion.setText("");
+        textoDescripcion.setEnabled(true);
+        textoDescripcion.setEditable(true);
+        comboEstado.setSelectedIndex(0);
+        botonModificar.setEnabled(false);
+        comboEstado.setEnabled(true);
+    }
+
+    private boolean validarArea() {
+        ControladorArea ca = new ControladorArea();
+        Area a = ca.consultarArea(Integer.valueOf(textoCodigoArea.getText()));
+        if (a.getCodigo() == 0) {
+            JOptionPane.showMessageDialog(this, "Area no existe", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validarCombo() {
+        if (comboEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un estado", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
 }
