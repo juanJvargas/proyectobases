@@ -1,1 +1,2 @@
-SELECT * FROM cama;
+--SELECT * FROM cama;
+

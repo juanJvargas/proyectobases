@@ -98,6 +98,11 @@ public class ConsultarAsignaciones extends javax.swing.JFrame {
         });
 
         jButton4.setText("Liberar Cama");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,6 +237,19 @@ public class ConsultarAsignaciones extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ControladorAsignacion controladorasignacion = new ControladorAsignacion();
+        boolean res = controladorasignacion.liberarAsignacion(Integer.valueOf(identificacionPacienteLabel.getText()));
+        if (res) {
+            JOptionPane.showMessageDialog(this, "Se libero la cama correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo liberar la cama", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,7 +315,7 @@ public class ConsultarAsignaciones extends javax.swing.JFrame {
         jTextField2.setEnabled(false);
         jButton2.setEnabled(false);
     }
-    
+
     private void limpiar() {
         jPanel1.setVisible(false);
         jTextField1.setEditable(true);
@@ -308,7 +326,7 @@ public class ConsultarAsignaciones extends javax.swing.JFrame {
         jTextField2.setEnabled(true);
         jTextField2.setText("");
         jButton2.setEnabled(true);
-        
+
         numeroCamaTexto.setText("");
         fechaAsignacionTexto.setText("");
         nombrePacienteTexto.setText("");

@@ -116,5 +116,28 @@ public class DAOAsignacion {
         }
         return null;
     }
+    
+    public boolean liberarAsignacion(int identificacionPaciente){
+        String sql_select;
+        sql_select = "UPDATE asignado "
+                + "SET "
+                + "estado_asignacion = 'inactiva', "
+                + "fecha_retiro = NOW() "
+                + "WHERE identificacion_paciente = '" + String.valueOf(identificacionPaciente) + "' "
+                + "and estado_asignacion = 'activa'";
+        System.out.println(sql_select);
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("liberando cama");
+            Statement sentencia = conn.createStatement();
+            sentencia.executeUpdate(sql_select);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 
 }

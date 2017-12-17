@@ -37,7 +37,13 @@ public class ControladorCama {
 
     public ArrayList<Cama> traerTodasCamas() {
         ArrayList<Cama> ve = new ArrayList<Cama>();
-        ve = daoCama.trarTodasCamas();
+        ve = daoCama.traerTodasCamas();
+        return ve;
+    }
+
+    public ArrayList<Cama> traerTodasCamasActivasLibresPorArea(int areaSeleccionada) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = daoCama.traerTodasCamasActivasLibresPorArea(areaSeleccionada);
         return ve;
     }
 

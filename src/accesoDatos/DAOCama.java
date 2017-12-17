@@ -107,9 +107,21 @@ public class DAOCama {
 
     }
 
-    public ArrayList<Cama> trarTodasCamas() {
+    public ArrayList<Cama> traerTodasCamas() {
         ArrayList<Cama> ve = new ArrayList<Cama>();
         ve = traerCamasConSql("SELECT * FROM cama");;
+        return ve;
+    }
+
+    public ArrayList<Cama> traerTodasCamasPorArea(int areaSeleccionada) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = traerCamasConSql("SELECT * FROM cama WHERE codigo_area = '" + String.valueOf(areaSeleccionada) + "'");;
+        return ve;
+    }
+
+    public ArrayList<Cama> traerTodasCamasActivasLibresPorArea(int areaSeleccionada) {
+        ArrayList<Cama> ve = new ArrayList<Cama>();
+        ve = traerCamasConSql("select * from cama natural join (select numero_cama from cama EXCEPT select numero_cama from asignado WHERE estado_asignacion = 'activa') T WHERE codigo_area = '"+String.valueOf(areaSeleccionada)+"' and estado = 'activa'");
         return ve;
     }
 

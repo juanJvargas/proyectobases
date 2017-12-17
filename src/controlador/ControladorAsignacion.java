@@ -31,4 +31,8 @@ public class ControladorAsignacion {
     public Asignacion buscarAsignacionActivaPorCama(int numeroCama) {
         return dao.buscarAsignacionActivaPorCama(numeroCama);
     }
+    
+    public boolean liberarAsignacion(int identificacionPaciente){
+        return dao.liberarAsignacion(identificacionPaciente);
+    }
 }
