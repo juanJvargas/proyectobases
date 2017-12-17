@@ -27,7 +27,7 @@ public class DAOarea {
     public boolean insertarArea(Area area) {
         String sql_select;
         sql_select = "INSERT INTO area"
-                + "(codigo_area, nombre, descripcion)"
+                + "(codigo_area, nombre, descripcion, estado)"
                 + " VALUES('" + String.valueOf(area.getCodigo())
                 + "','" + area.getNombre()
                 + "','" + area.getDescripcion() 
@@ -103,11 +103,10 @@ public class DAOarea {
         String sql_select;
         sql_select = "UPDATE area "
                 + "SET "
-                + "codigo='" + area.getCodigo() + "', "
+                
                 + "nombre='" + area.getNombre() + "', "
                 + "descripcion='" + area.getDescripcion() + "', "
-                + "estado='" + area.getEstado()+ "', "
-                + "' WHERE codigo='" + String.valueOf(area.getCodigo()) + "' ";
+                + "estado='" + area.getEstado()+ "' WHERE codigo_area='" + area.getCodigo() + "' ";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("actualizando area  en  bd");
