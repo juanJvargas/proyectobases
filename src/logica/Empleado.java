@@ -23,8 +23,7 @@ public class Empleado {
         telefono = "";
         nombre = "";
         email = "";
-        cargo = "";
-        estado = "";
+        estado = "NULL";
     }
 
     public String getEstado() {

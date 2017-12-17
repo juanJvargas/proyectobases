@@ -28,7 +28,7 @@ public class DAOarea {
         String sql_select;
         sql_select = "INSERT INTO area"
                 + "(codigo_area, nombre, descripcion)"
-                + " VALUES('" + String.valueOf(area.getCodigo())
+                + " VALUES('" + area.getCodigo()
                 + "','" + area.getNombre()
                 + "','" + area.getDescripcion() 
                 + "','" + area.getEstado() + "')";

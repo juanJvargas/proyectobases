@@ -40,7 +40,6 @@ public class DAOEmpleado {
                 + "','" + empleado.getNombre()
                 + "','" + empleado.getEmail()
                 + "','" + String.valueOf(empleado.getSalario())
-                + "','" + empleado.getCargo()
                 + "','" + String.valueOf(empleado.getCodigo_area())
                 + "'," + ide_jefe
                 + ",'" + empleado.getEstado() + "')";
@@ -75,7 +74,6 @@ public class DAOEmpleado {
                 empleado.setNombre(tabla.getString(4));
                 empleado.setEmail(tabla.getString(5));
                 empleado.setSalario(Integer.valueOf(tabla.getShort(6)));
-                empleado.setCargo(tabla.getString(7));
                 empleado.setCodigo_area(Integer.parseInt(tabla.getString(8)));
                 empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(9)));
                 empleado.setEstado(tabla.getString(10));
@@ -102,7 +100,6 @@ public class DAOEmpleado {
                 + "nombre='" + empleado.getNombre() + "', "
                 + "email='" + empleado.getEmail() + "', "
                 + "salario='" + empleado.getSalario() + "', "
-                + "cargo='" + empleado.getCargo() + "', "
                 + "codigo_area='" + empleado.getCodigo_area() + "', "
                 + "identificacion_jefe='" + empleado.getIdentificacion_jefe() + "', "
                 + "estado='" + empleado.getEstado() + "', "
@@ -153,7 +150,7 @@ public class DAOEmpleado {
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
-        sql_select = "SELECT * FROM  empleado WHERE estado='activa' AND cargo='jefe'";
+        sql_select = "SELECT * FROM  empleado WHERE estado='activa'";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");

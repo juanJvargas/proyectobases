@@ -51,7 +51,6 @@ CREATE TABLE empleado(
 	nombre VARCHAR(100),
 	email VARCHAR(50),
 	salario VARCHAR(100),
-        cargo VARCHAR(20) NOT NULL,
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
         Estado VARCHAR(50) NOT NULL,
