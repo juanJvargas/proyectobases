@@ -56,13 +56,10 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         buscar_jefes = new javax.swing.JButton();
         email = new javax.swing.JTextField();
-
         medico = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         enfermera = new javax.swing.JRadioButton();
         salario = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-
         jLabel9 = new javax.swing.JLabel();
         codigo_areas = new javax.swing.JComboBox<>();
         buscar_areas = new javax.swing.JButton();
@@ -72,6 +69,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         activa = new javax.swing.JRadioButton();
         inactiva = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,7 +138,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             }
         });
 
-
         buttonGroup1.add(medico);
         medico.setText("medico");
         medico.addActionListener(new java.awt.event.ActionListener() {
@@ -149,21 +146,17 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             }
         });
 
-
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Salario:");
         jLabel7.setToolTipText("");
 
-
         buttonGroup1.add(enfermera);
         enfermera.setText("enfermera");
         enfermera.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enfermeraActionPerformed(evt);
             }
         });
-
 
         salario.setToolTipText("");
         salario.addActionListener(new java.awt.event.ActionListener() {
@@ -171,11 +164,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                 salarioActionPerformed(evt);
             }
         });
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Cargo:");
-        jLabel8.setToolTipText("");
-
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Codigo area:");
@@ -202,14 +190,14 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         buttonGroup2.add(inactiva);
         inactiva.setText("incativa");
 
-
         jButton1.setText("Siguiente ->");
-
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("Cargo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,7 +230,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(direccion))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,8 +240,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(codigo_jefe, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(140, 140, 140)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(medico)
                                         .addGap(25, 25, 25)
                                         .addComponent(enfermera)))
@@ -276,7 +264,6 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(inactiva)
                         .addGap(170, 170, 170)))
-
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -314,13 +301,11 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enfermera)
-                    .addComponent(medico))
+                    .addComponent(medico)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo_areas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar_areas))
@@ -336,9 +321,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                     .addComponent(inactiva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-
                 .addContainerGap(58, Short.MAX_VALUE))
-
         );
 
         pack();
@@ -532,10 +515,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-
     private javax.swing.JRadioButton medico;
-
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField salario;
     private javax.swing.JTextField telefono;
