@@ -256,18 +256,12 @@ insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
 
 --- fin camas
 
+insert into asignado values(1, 1523382, NOW(), NULL, 'activa');
+insert into asignado values(19, 1526750, NOW(), NULL, 'activa');
+insert into asignado values(29, 1530267, NOW(), NULL, 'activa');
+insert into asignado values(14, 1527471, NOW(), NULL, 'activa');
+insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
+insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
+insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
 
 
----insert into asignado (numero_cama, identificacion_paciente, fecha_asignacion, fecha_retiro, estado_asignacion) values(123, 1144197211, NOW(), NULL, 'activa');
-
-
-
-select * from cama;
-
-select * from 
-cama 
-natural join 
-(select numero_cama from cama
-EXCEPT
-select numero_cama from asignado WHERE estado_asignacion = 'activa') T
-WHERE codigo_area = '1';
