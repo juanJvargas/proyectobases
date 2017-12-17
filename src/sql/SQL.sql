@@ -44,7 +44,6 @@ CREATE TABLE empleado(
 	nombre VARCHAR(100),
 	email VARCHAR(50),
 	salario VARCHAR(100),
-        cargo VARCHAR(20) NOT NULL,
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
@@ -147,6 +146,7 @@ CREATE TABLE medico(
 	codigo_especialidad VARCHAR(100),
 	universidad VARCHAR(100),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
+
 );
 
 DROP TABLE IF EXISTS asignado CASCADE;

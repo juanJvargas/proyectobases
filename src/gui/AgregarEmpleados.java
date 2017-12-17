@@ -56,11 +56,13 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         buscar_jefes = new javax.swing.JButton();
         email = new javax.swing.JTextField();
+
         medico = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         enfermera = new javax.swing.JRadioButton();
         salario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+
         jLabel9 = new javax.swing.JLabel();
         codigo_areas = new javax.swing.JComboBox<>();
         buscar_areas = new javax.swing.JButton();
@@ -138,6 +140,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             }
         });
 
+
         buttonGroup1.add(medico);
         medico.setText("medico");
         medico.addActionListener(new java.awt.event.ActionListener() {
@@ -146,17 +149,21 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             }
         });
 
+
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Salario:");
         jLabel7.setToolTipText("");
 
+
         buttonGroup1.add(enfermera);
         enfermera.setText("enfermera");
         enfermera.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enfermeraActionPerformed(evt);
             }
         });
+
 
         salario.setToolTipText("");
         salario.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +175,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Cargo:");
         jLabel8.setToolTipText("");
+
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Codigo area:");
@@ -194,7 +202,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         buttonGroup2.add(inactiva);
         inactiva.setText("incativa");
 
+
         jButton1.setText("Siguiente ->");
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -232,6 +242,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(direccion))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,6 +276,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(inactiva)
                         .addGap(170, 170, 170)))
+
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,11 +314,13 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enfermera)
                     .addComponent(medico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo_areas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar_areas))
@@ -322,7 +336,9 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                     .addComponent(inactiva))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+
                 .addContainerGap(58, Short.MAX_VALUE))
+
         );
 
         pack();
@@ -363,9 +379,11 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
+
     private void medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicoActionPerformed
 
     }//GEN-LAST:event_medicoActionPerformed
+
 
     private void salarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarioActionPerformed
         // TODO add your handling code here:
@@ -386,9 +404,11 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscar_areasActionPerformed
 
+
     private void enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enfermeraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_enfermeraActionPerformed
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Empleado empleado = new Empleado();
@@ -398,6 +418,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         empleado.setNombre(this.nombre.getText());
         empleado.setEmail(this.email.getText());
         empleado.setSalario(Integer.parseInt(this.salario.getText()));
+
 
         String codigo = this.codigo_areas.getSelectedItem().toString();
         String[] cod = codigo.split(",");
@@ -411,12 +432,14 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         }
         String parametro = "" + this.codigo_jefe.getSelectedItem();
         if ((parametro.compareTo("null") != 0) && (parametro.compareTo("") != 0) && !(aux)) {
+
             codigo = this.codigo_jefe.getSelectedItem().toString();
             cod = codigo.split(",");
             empleado.setIdentificacion_jefe(Integer.parseInt(cod[0]));
         } else {
             empleado.setIdentificacion_jefe(0);
         }
+
         if (!(medico.isSelected()||enfermera.isSelected())) {
             aux=true;
         }
@@ -424,9 +447,11 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             empleado.setEstado("activa");
             seModifico = controlEmpleado.agregarEmpleado(empleado);
         } else if (this.inactiva.isSelected() && !(aux)) {
+
             empleado.setEstado("inactiva");
             seModifico = controlEmpleado.agregarEmpleado(empleado);
         }
+
 
         if (seModifico) {
             JOptionPane.showMessageDialog(this, "Se modifico  la base de datos");
@@ -446,6 +471,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             //Icon p = new ImageIcon(getClass().getResource("/gui/images/x.png"));
             JOptionPane.showMessageDialog(this, "Hubo un error al modificar", "", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -506,9 +532,10 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+
     private javax.swing.JRadioButton medico;
+
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField salario;
     private javax.swing.JTextField telefono;
