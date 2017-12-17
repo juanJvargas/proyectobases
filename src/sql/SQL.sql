@@ -206,7 +206,7 @@ INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
 
 
-insert into area values (51, 'Ovinis voladores', 'jojo que miedo');
+insert into area values (51, 'Ovinis voladores', 'jojo que miedo','activa');
 INSERT INTO area VALUES (1, 'prueba', 'prueba','activa');
 
 insert into cama values (123, 'Cama para gente rara', 'activa', 1);

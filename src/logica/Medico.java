@@ -1,13 +1,16 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package logica;
+
 /**
- * Author:  juan
- * Created: 16-dic-2017
+ *
+ * @author juan
  */
-
---insert into empleado values(123,'prueba','prueba','carlos','carlos@elmaspendejo.com','50','jefe',1,null,'activo');
-
-SELECT * FROM empleado;
+public class Medico {
+    int identificacion_empleado, codigo_especialidad;
+    String numero_licencia,universidad;
+    
+}
