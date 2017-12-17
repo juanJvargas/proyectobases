@@ -210,8 +210,8 @@ INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se ded
 INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
 INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
 INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
-INSERT INTO area VALUES (6, 'CIRUGIA', 'Área específica del hospital donde se realizan procedimientos quirúrgicos con los máximos cuidados de asepsia.','activa');
 
+--- CAMAS
 
 insert into cama values (1, 'Partos 1', 'activa', 1);
 insert into cama values (2, 'Partos 2', 'activa', 1);
@@ -220,6 +220,40 @@ insert into cama values (4, 'Partos 4', 'inactiva', 1);
 insert into cama values (5, 'Habitacion 1 - Ginecologia ', 'activa', 1);
 insert into cama values (6, 'Habitacion 2 - Ginecologia', 'inactiva', 1);
 insert into cama values (7, 'Habitacion 3 - Ginecologia', 'activa', 1);
+
+insert into cama values (8, 'Cirugia 1 - Medicina Interna', 'activa', 2);
+insert into cama values (9, 'Cirugia 2 - Medicina Interna', 'activa', 2);
+insert into cama values (10, 'Cirugia 3 - Medicina Interna', 'inactiva', 2);
+insert into cama values (11, 'Cirugia 4 - Medicina Interna', 'activa', 2);
+insert into cama values (12, 'Habitacion 1 - Medicina Interna ', 'activa', 2);
+insert into cama values (13, 'Habitacion 2 - Medicina Interna', 'inactiva', 2);
+insert into cama values (14, 'Habitacion 3 - Medicina Interna', 'activa', 2);
+
+insert into cama values (15, 'Cirugia 1 - Infectologia', 'activa', 3);
+insert into cama values (16, 'Cirugia 2 - Infectologia', 'activa', 3);
+insert into cama values (17, 'Cirugia 3 - Infectologia', 'activa', 3);
+insert into cama values (18, 'Cirugia 4 - Infectologia', 'inactiva', 3);
+insert into cama values (19, 'Habitacion 1 - Infectologia ', 'activa', 3);
+insert into cama values (20, 'Habitacion 2 - Infectologia', 'inactiva', 3);
+insert into cama values (21, 'Habitacion 3 - Infectologia', 'activa', 3);
+
+insert into cama values (22, 'Cirugia 1 - Pediatria', 'inactiva', 4);
+insert into cama values (23, 'Cirugia 2 - Pediatria', 'activa', 4);
+insert into cama values (24, 'Cirugia 3 - Pediatria', 'inactiva', 4);
+insert into cama values (25, 'Cirugia 4 - Pediatria', 'inactiva', 4);
+insert into cama values (26, 'Habitacion 1 - Infectologia ', 'activa', 4);
+insert into cama values (27, 'Habitacion 2 - Infectologia', 'activa', 4);
+insert into cama values (28, 'Habitacion 3 - Infectologia', 'activa', 4);
+
+insert into cama values (29, 'Cirugia 1 - UCI', 'activa', 5);
+insert into cama values (30, 'Cirugia 2 - UCI', 'activa', 5);
+insert into cama values (31, 'Cirugia 3 - UCI', 'activa', 5);
+insert into cama values (32, 'Cirugia 4 - UCI', 'inactiva', 5);
+insert into cama values (33, 'Habitacion 1 - UCI ', 'activa', 5);
+insert into cama values (34, 'Habitacion 2 - UCI', 'activa', 5);
+insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
+
+--- fin camas
 
 
 
