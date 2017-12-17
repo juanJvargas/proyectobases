@@ -26,6 +26,7 @@ public class AgregarMedico extends javax.swing.JFrame {
     
     
     private void acomodarTabla(){
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,7 +61,7 @@ public class AgregarMedico extends javax.swing.JFrame {
         jLabel3.setText("Universidad:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("LISTA DE HABILIDADES");
+        jLabel4.setText("LISTA DE ESPECIALIDADES:");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Ides de habilidades:");
