@@ -13,12 +13,22 @@ import logica.Asignacion;
  * @author tovar
  */
 public class ControladorAsignacion {
+
     DAOAsignacion dao;
-    public ControladorAsignacion(){
+
+    public ControladorAsignacion() {
         dao = new DAOAsignacion();
     }
-    
-    public boolean insertarAsignacion(Asignacion a){
+
+    public boolean insertarAsignacion(Asignacion a) {
         return dao.insertarAsignacion(a);
+    }
+
+    public Asignacion buscarAsignacionActivaPorPaciente(int identificacionPaciente) {
+        return dao.buscarAsignacionActivaPorPaciente(identificacionPaciente);
+    }
+
+    public Asignacion buscarAsignacionActivaPorCama(int numeroCama) {
+        return dao.buscarAsignacionActivaPorCama(numeroCama);
     }
 }

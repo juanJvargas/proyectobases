@@ -13,6 +13,8 @@ public class Asignacion {
     private int numeroCama;
     private int identificacionPaciente;
     private String estado;
+    private String fechaAsignacion;
+    private String fechaRetiro;
     
     public Asignacion(){
         numeroCama = 0;
@@ -32,6 +34,14 @@ public class Asignacion {
         return estado;
     }
     
+    public String getFechaAsignacion(){
+        return fechaAsignacion;
+    }
+    
+    public String getFechaRetiro(){
+        return fechaRetiro;
+    }
+    
     public void setNumeroCama(int nuevoNumeroCama){
         numeroCama = nuevoNumeroCama;
     }
@@ -42,6 +52,14 @@ public class Asignacion {
     
     public void setEstado(String nuevoEstado){
         estado = nuevoEstado;
+    }
+    
+    public void setFechaAsignacion(String nuevaFechaAsignacion){
+        fechaAsignacion = nuevaFechaAsignacion;
+    }
+    
+    public void setFechaRetiro(String nuevaFechaRetiro){
+        fechaRetiro = nuevaFechaRetiro;
     }
     
     
