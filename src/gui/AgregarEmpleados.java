@@ -7,6 +7,7 @@ package gui;
 
 import logica.*;
 import controlador.*;
+import java.sql.Array;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -390,13 +391,15 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         } else if (this.empleado.isSelected()) {
             empleado.setCargo("empleado");
         }
-        
-        empleado.setCodigo_area(Integer.parseInt(String.valueOf(this.codigo_areas.getSelectedItem().toString())));
-        String parametro = "" + this.codigo_jefe.getItemAt(1);
+        String codigo= this.codigo_areas.getSelectedItem().toString();
+        String[] cod= codigo.split(",");
+        empleado.setCodigo_area(Integer.parseInt(cod[0]));
+        String parametro = ""+this.codigo_jefe.getSelectedItem();
         int aux = parametro.compareTo("null");
         if (aux != 0) {
-
-            empleado.setIdentificacion_jefe(Integer.parseInt(this.codigo_jefe.getSelectedItem().toString()));
+            codigo= this.codigo_jefe.getSelectedItem().toString();
+            cod= codigo.split(",");
+            empleado.setIdentificacion_jefe(Integer.parseInt(cod[0]));
         } else {
             empleado.setIdentificacion_jefe(0);
         }

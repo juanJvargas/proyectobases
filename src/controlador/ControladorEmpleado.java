@@ -45,7 +45,7 @@ public class ControladorEmpleado {
     }
     public ArrayList<String> retornarJefes() {
         ArrayList<String> ve = new ArrayList<String>();
-        ve = daoEmpleado.todosEmpleados();
+        ve = daoEmpleado.todosjefes();
         System.out.print(ve);
         return ve;
     }
