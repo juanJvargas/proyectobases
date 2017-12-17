@@ -101,7 +101,7 @@ public class DAOarea {
 
     public boolean updateArea(Area area) {
         String sql_select;
-        sql_select = "UPDATE sedes "
+        sql_select = "UPDATE area "
                 + "SET "
                 + "codigo='" + area.getCodigo() + "', "
                 + "nombre='" + area.getNombre() + "', "

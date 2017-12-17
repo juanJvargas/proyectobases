@@ -151,10 +151,9 @@ DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,
 	numero_licencia VARCHAR(100),
-	codigo_especialidad INTEGER,
+	codigo_especialidad VARCHAR(100),
 	universidad VARCHAR(100),
-	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
-	FOREIGN KEY (codigo_especialidad) REFERENCES especialidad(codigo_especialidad)
+	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
 DROP TABLE IF EXISTS asignado CASCADE;
