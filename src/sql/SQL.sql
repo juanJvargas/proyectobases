@@ -15,6 +15,11 @@ CREATE TABLE area(
 	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
+INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
+INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
+INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
+INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
+INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
 
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
@@ -46,19 +51,19 @@ CREATE TABLE empleado(
 	salario VARCHAR(100),
 	codigo_area INTEGER,
 	identificacion_jefe INTEGER,
+        estado VARCHAR(50),
 	FOREIGN KEY (codigo_area) REFERENCES area(codigo_area),
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
 );
-
+INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
 
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
-        numero_registro SERIAL PRIMARY KEY,
+  numero_registro SERIAL PRIMARY KEY,
 	identificacion_paciente INTEGER,
 	identificacion_empleado INTEGER,
-	
 	fecha_consulta DATE,
 	observaciones VARCHAR(200),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),
@@ -124,14 +129,6 @@ CREATE TABLE habilidad(
 	
 );
 
-DROP TABLE IF EXISTS habilidad_empleado CASCADE;
-CREATE TABLE habilidad_empleado(
-	identificacion_empleado INTEGER,
-	codigo_habilidad INTEGER,
-	PRIMARY KEY(identificacion_empleado, codigo_habilidad),
-	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
-	FOREIGN KEY (codigo_habilidad) REFERENCES habilidad(codigo_habilidad)
-);
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
 CREATE TABLE  especialidad(
@@ -148,7 +145,7 @@ CREATE TABLE medico(
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 
 );
-
+INSERT INTO medico VALUES(1523382,'1527471','1,2,3','UNIVALLE');
 DROP TABLE IF EXISTS asignado CASCADE;
 CREATE TABLE asignado(
 	numero_cama INTEGER,
@@ -165,8 +162,9 @@ CREATE TABLE asignado(
 DROP TABLE IF EXISTS cita CASCADE;
 CREATE TABLE cita(
 	identificacion_paciente INTEGER,
-	identificacion_empleado INTEGER,fecha DATE,
-	hora VARCHAR(10),
+	identificacion_empleado INTEGER,
+        fecha DATE,
+	hora INTEGER,
 	
 	PRIMARY KEY (identificacion_paciente, identificacion_empleado, fecha),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),
@@ -197,11 +195,6 @@ INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
 
 
-INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
-INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
-INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
-INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
-INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
 
 --- CAMAS
 
@@ -254,5 +247,7 @@ insert into asignado values(14, 1527471, NOW(), NULL, 'activa');
 insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
 insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
+
+
 
 
