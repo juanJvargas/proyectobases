@@ -66,6 +66,7 @@ public class DAOEmpleado {
             System.out.println("consultando la empleados en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
+
             boolean encontro = false;
             while (tabla.next()) {
 
@@ -86,7 +87,6 @@ public class DAOEmpleado {
 
                 }
                 empleado.setEstado(tabla.getString(9));
-
                 System.out.println("ok");
             }
 

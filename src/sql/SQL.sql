@@ -15,6 +15,11 @@ CREATE TABLE area(
 	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
+INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
+INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
+INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
+INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
+INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
 
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
@@ -53,7 +58,7 @@ CREATE TABLE empleado(
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
 );
-
+INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
@@ -119,6 +124,7 @@ DROP TABLE IF EXISTS enfermera CASCADE;
 CREATE TABLE enfermera(
 	identificacion_empleado INTEGER,
 	anos_experiencia INTEGER,
+        codigo_habilidad INTEGER,
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
@@ -128,6 +134,7 @@ CREATE TABLE habilidad(
 	descripcion VARCHAR(500)
 	
 );
+INSERT INTO habilidad VALUES(1,'INYECTARLE LAS NALGAS A CARLOS');
 
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
@@ -135,6 +142,7 @@ CREATE TABLE  especialidad(
 	codigo_especialidad INTEGER PRIMARY KEY NOT NULL,
 	descripcion VARCHAR (500)	
 );
+INSERT INTO especialidad VALUES(1, 'EXPERTO EN CIRUGIA PLASTICA DEL DEDO GORDO DEL PIE');
 
 DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
@@ -145,6 +153,7 @@ CREATE TABLE medico(
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 
 );
+
 DROP TABLE IF EXISTS asignado CASCADE;
 CREATE TABLE asignado(
 	numero_cama INTEGER,
@@ -194,6 +203,7 @@ INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
 INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
 --- FIN USUARIOS
+
 
 --- AREAS
 INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');

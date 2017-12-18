@@ -10,6 +10,7 @@ import controlador.ControladorEmpleado;
 import controlador.ControladorMedico;
 import java.util.ArrayList;
 import java.util.Date;
+
 import javax.swing.JOptionPane;
 import logica.Cita;
 import logica.Empleado;
@@ -182,7 +183,6 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
         if (jComboBox1.getSelectedIndex() != 0) {
             java.util.Date fecha = comoFecha.getSelectedDate().getTime();
             java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
@@ -218,8 +218,6 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un medico", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -261,6 +259,11 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazAgregarCita().setVisible(true);
+                Empleado e = new Empleado();
+                ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+                System.out.println(controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382")));
+                e = controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382"));
+                System.out.println(e.getNombre());
             }
         });
     }
