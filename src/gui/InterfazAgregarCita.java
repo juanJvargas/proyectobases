@@ -259,11 +259,6 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazAgregarCita().setVisible(true);
-                Empleado e = new Empleado();
-                ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
-                System.out.println(controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382")));
-                e = controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382"));
-                System.out.println(e.getNombre());
             }
         });
     }
