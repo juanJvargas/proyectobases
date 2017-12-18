@@ -56,7 +56,6 @@ CREATE TABLE empleado(
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
 );
-INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
 
 
 DROP TABLE IF EXISTS registro CASCADE;
@@ -145,7 +144,6 @@ CREATE TABLE medico(
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 
 );
-INSERT INTO medico VALUES(1523382,'1527471','1,2,3','UNIVALLE');
 DROP TABLE IF EXISTS asignado CASCADE;
 CREATE TABLE asignado(
 	numero_cama INTEGER,
@@ -240,6 +238,8 @@ insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
 
 --- fin camas
 
+
+
 insert into asignado values(1, 1523382, NOW(), NULL, 'activa');
 insert into asignado values(19, 1526750, NOW(), NULL, 'activa');
 insert into asignado values(29, 1530267, NOW(), NULL, 'activa');
@@ -247,6 +247,24 @@ insert into asignado values(14, 1527471, NOW(), NULL, 'activa');
 insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
 insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
+
+DROP TABLE IF EXISTS paciente CASCADE;
+CREATE TABLE paciente(
+	identificacion_paciente INTEGER PRIMARY KEY,
+	direccion VARCHAR(100),
+	telefono VARCHAR(100),
+	fecha_nacimiento DATE,
+	actividad_economica VARCHAR(100),
+	seguridad_social VARCHAR(100),
+	fecha_apertura DATE
+);
+
+insert into paciente values(1527471, 'cr xx # xx - xx', '370xxxx', NOW(), 'actividad economica', 'COOMEVA', NOW());
+
+
+INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
+INSERT INTO medico VALUES(1523382,'1527471','1,2,3','UNIVALLE');
+
 
 
 

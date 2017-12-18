@@ -91,7 +91,7 @@ public class DAOMedico {
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
                 ve.add((tabla.getString(1)));
-                ve.add((tabla.getString(2)));
+                //ve.add((tabla.getString(2)));
 
             }
             return ve;
@@ -103,7 +103,7 @@ public class DAOMedico {
         return null;
     }
 
-    public Medico consultarEmpleado(int codigo) {
+    public Medico consultarMedico(int codigo) {
         Medico medico = new Medico();
         String sql_select;
         sql_select = "SELECT * FROM medico WHERE identificacion_empleado='" + codigo + "'";
@@ -114,10 +114,10 @@ public class DAOMedico {
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
 
-                medico.setIdentificacion_empleado(Integer.valueOf(tabla.getString(0)));
-                medico.setNumero_licencia(tabla.getString(1));
-                medico.setCodigo_especialidad(tabla.getString(2));
-                medico.setUniversidad(tabla.getString(3));
+                medico.setIdentificacion_empleado(Integer.valueOf(tabla.getString(1)));
+                medico.setNumero_licencia(tabla.getString(2));
+                medico.setCodigo_especialidad(tabla.getString(3));
+                medico.setUniversidad(tabla.getString(4));
 
                 System.out.println("ok");
             }

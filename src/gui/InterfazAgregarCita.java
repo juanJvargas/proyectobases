@@ -5,9 +5,14 @@
  */
 package gui;
 
+import controlador.ControladorCita;
+import controlador.ControladorEmpleado;
 import controlador.ControladorMedico;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import logica.Cita;
+import logica.Empleado;
 
 /**
  *
@@ -23,6 +28,9 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         jComboBox1.setEnabled(false);
         jComboBox1.setEditable(false);
         jComboBox1.removeAllItems();
+        jButton2.setEnabled(false);
+        
+        actualizarMedicos();
     }
 
     /**
@@ -42,12 +50,19 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         comoFecha = new datechooser.beans.DateChooserCombo();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Medico:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Hora:");
 
@@ -80,49 +95,58 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Paciente (identificacion):");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, 149, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(comoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)))
+                    .addComponent(comoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,25 +162,7 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        jComboBox1.setEnabled(true);
-        jComboBox1.setEditable(true);
-        jButton2.setEnabled(true);
-        jComboBox1.removeAllItems();
-
-        java.util.Date fecha = comoFecha.getSelectedDate().getTime();
-        java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
-        
-        String horaSeleccionada = jComboBox2.getSelectedItem().toString();
-        String[] horapartida = horaSeleccionada.split(":");
-        int hora = Integer.valueOf(horapartida[0]);
-
-        ControladorMedico controladorMedicos = new ControladorMedico();
-        ArrayList <String> medicos = controladorMedicos.todosMedicosLibresEnFechaHora(fechaSql, hora);
-        
-        for(int i=0; i<medicos.size(); i++){
-            System.out.println(medicos.get(i));
-        }
-
+        actualizarMedicos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comoFechaOnSelectionChange(datechooser.events.SelectionChangedEvent evt) {//GEN-FIRST:event_comoFechaOnSelectionChange
@@ -169,11 +175,50 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        java.util.Date fecha = comoFecha.getSelectedDate().getTime();
-        java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
 
-        System.out.println(fechaSql.toString());
+        if (jComboBox1.getSelectedIndex() != 0) {
+            java.util.Date fecha = comoFecha.getSelectedDate().getTime();
+            java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
+
+            System.out.println(fechaSql.toString());
+
+            String horaSeleccionada = jComboBox2.getSelectedItem().toString();
+            String[] horapartida = horaSeleccionada.split(":");
+            int hora = Integer.valueOf(horapartida[0]);
+
+            String medicoSeleccionado = jComboBox1.getSelectedItem().toString();
+            String[] medicoPartido = medicoSeleccionado.split("-");
+            int identificacionMedico = Integer.valueOf(medicoPartido[0]);
+
+            Cita cita = new Cita();
+            cita.setFecha(fechaSql.toString());
+            cita.setHora(hora);
+            cita.setIdentificacionEmpleado(identificacionMedico);
+            //VALIDAR QUE EXISTA PACIENTE
+            cita.setIdentificacionPaciente(Integer.valueOf(jTextField1.getText()));
+
+            ControladorCita controlcita = new ControladorCita();
+            boolean res = controlcita.insertarCita(cita);
+            if (res) {
+                JOptionPane.showMessageDialog(this, "Se asigno la cita correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                actualizarMedicos();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo asignar esta cita", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un medico", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -206,6 +251,11 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazAgregarCita().setVisible(true);
+                Empleado e = new Empleado();
+                ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+                e = controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382"));
+                System.out.println(e.getNombre());
+
             }
         });
     }
@@ -218,6 +268,33 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private void actualizarMedicos() {
+        jComboBox1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jComboBox1.removeAllItems();
+        jComboBox1.addItem("Seleccionar:");
+
+        java.util.Date fecha = comoFecha.getSelectedDate().getTime();
+        java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
+
+        String horaSeleccionada = jComboBox2.getSelectedItem().toString();
+        String[] horapartida = horaSeleccionada.split(":");
+        int hora = Integer.valueOf(horapartida[0]);
+
+        ControladorMedico controladorMedicos = new ControladorMedico();
+        ArrayList<String> medicos = controladorMedicos.todosMedicosLibresEnFechaHora(fechaSql, hora);
+
+        ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+        for (int i = 0; i < medicos.size(); i++) {
+            Empleado e = new Empleado();
+            System.out.println("sdasd" + medicos.get(i));
+            e = controladorEmpleado.consultarEmpleado(Integer.valueOf(medicos.get(i)));
+            jComboBox1.addItem(medicos.get(i) + "-" + e.getNombre());
+        }
+    }
 }
