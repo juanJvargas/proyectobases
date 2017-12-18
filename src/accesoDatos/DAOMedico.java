@@ -76,7 +76,7 @@ public class DAOMedico {
         String sql = "SELECT * FROM medico NATURAL JOIN "
                 + "(SELECT identificacion_empleado FROM medico "
                 + "EXCEPT "
-                + "SELECT identificacion_empleado FROM cita WHERE fecha = '"+fecha.toString()+"' or hora = '"+hora+"') T";
+                + "SELECT identificacion_empleado FROM cita WHERE fecha = '"+fecha.toString()+"' and hora = '"+hora+"') T";
         return todosMedicoSQL(sql);
     }
 

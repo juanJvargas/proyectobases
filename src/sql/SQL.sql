@@ -15,11 +15,6 @@ CREATE TABLE area(
 	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
-INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
-INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
-INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
-INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
-INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
 
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
@@ -194,14 +189,46 @@ CREATE TABLE usuarios(
 	estado VARCHAR(10)
 );
 
+--- USUSARIOS
 INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
 INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
 INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
+--- FIN USUARIOS
 
+--- AREAS
+INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
+INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
+INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
+INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
+INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
+--- FIN AREAS
 
+--- CAUSAS
+INSERT INTO causa VALUES (1, 'Diarrea extrema', 'El paciente se está secando de tantas cagadas');
+INSERT INTO causa VALUES (2, 'Conjuntivitis', 'El paciente presenta infección ocular');
+INSERT INTO causa VALUES (3, 'Herpes Genital', 'Sin comentarios');
+INSERT INTO causa VALUES (4, 'Varicela con pus', 'El paciente fue a la india y le salio eso');
+INSERT INTO causa VALUES (5, 'Dolor de cabeza psicologico', 'El paciente cree que le duele la cabeza pero en realidad no');
+INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El paciente debe ser remitido inmediatamente a psiquiatria');
+--- FIN CAUSAS
+
+--- EMPLEADOS
+insert into empleado VALUES (114401, 'cr 40 # 71 - 12', '30434501' , 'Carlos Tovar', 'carlos.tovar@gmail.com', '1000000', 1, NULL, 'activo');
+insert into empleado VALUES (114402, 'cr 39 # 8x - 82', '30434502' , 'Juan Jose', 'juan.jose@gmail.com', '1500000', 2, 114401, 'activo');
+insert into empleado VALUES (114403, 'cr 28 # 92 - 43', '30434503' , 'Juan David', 'juan.david@gmail.com', '2000000', 3, 114401, 'inactivo');
+insert into empleado VALUES (114404, 'cr 17 # 01 - 13', '30434504' , 'Alexandra Lopez', 'alexandra.lopez@gmail.com', '2500000', 1, NULL, 'activo');
+insert into empleado VALUES (114405, 'cr 06 # 10 - 15', '30434505' , 'Melissa Millares', 'melissa.millares@gmail.com', '3000000', 4, 114404, 'activo');
+insert into empleado VALUES (114406, 'cr 95 # 29 - 26', '30434506' , 'Felipe Montoya', 'felipe.montoya@gmail.com', '3500000', 5, 114404, 'activo');
+
+--- FIN EMPLEADOS
+
+--- MEDICOS
+insert into medico VALUES(114401,'1000123','1,2,3','UNIVALLE');
+insert into medico VALUES(114402,'1000124','1,3,4','UNILIBRE');
+insert into medico VALUES(114404,'1000125','2,3,4','UNIANDES');
+--- FIN MEDICOS
 
 --- CAMAS
-
 insert into cama values (1, 'Partos 1', 'activa', 1);
 insert into cama values (2, 'Partos 2', 'activa', 1);
 insert into cama values (3, 'Partos 3', 'inactiva', 1);
@@ -241,11 +268,26 @@ insert into cama values (32, 'Cirugia 4 - UCI', 'inactiva', 5);
 insert into cama values (33, 'Habitacion 1 - UCI ', 'activa', 5);
 insert into cama values (34, 'Habitacion 2 - UCI', 'activa', 5);
 insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
+--- FIN CAMAS
 
---- fin camas
+--- PACIENTES
+insert into paciente values(1523382, 'cr 17 # 31 - 29', '3701720', NOW(), 'Obrero', 'Coomeva', NOW());
+insert into paciente values(1526750, 'cr 26 # 42 - 38', '3702639', NOW(), 'Ingeniero de sistemas', 'Comfandi', NOW());
+insert into paciente values(1530267, 'cr 35 # 53 - 46', '3703548', NOW(), 'Comerciante', 'Cafesalud', NOW());
+insert into paciente values(1527471, 'cr 44 # 64 - 56', '3704457', NOW(), 'Secretaria', 'Coomeva', NOW());
+insert into paciente values(1527472, 'cr 53 # 75 - 65', '3705366', NOW(), 'Contadora', 'Colsalud', NOW());
+insert into paciente values(1527473, 'cr 62 # 86 - 74', '3706275', NOW(), 'Medico', 'Emssanar', NOW());
+insert into paciente values(1527474, 'cr 71 # 97 - 83', '3707184', NOW(), 'Psicologa', 'Sura', NOW());
+--- FIN PACIENTES
 
+--- CITAS
+insert into cita values(1527471, 114401, '2017-12-18', 7);
+insert into cita values(1527472, 114401, '2017-12-19', 10);
+insert into cita values(1527473, 114402, '2017-12-20', 13);
+insert into cita values(1527474, 114404, '2017-12-20', 16);
+--- FIN CITAS
 
-
+--- ASIGNACIONES
 insert into asignado values(1, 1523382, NOW(), NULL, 'activa');
 insert into asignado values(19, 1526750, NOW(), NULL, 'activa');
 insert into asignado values(29, 1530267, NOW(), NULL, 'activa');
@@ -253,30 +295,6 @@ insert into asignado values(14, 1527471, NOW(), NULL, 'activa');
 insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
 insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
+--- FIN ASIGNACIONES
 
-DROP TABLE IF EXISTS paciente CASCADE;
-CREATE TABLE paciente(
-	identificacion_paciente INTEGER PRIMARY KEY,
-	direccion VARCHAR(100),
-	telefono VARCHAR(100),
-	fecha_nacimiento DATE,
-	actividad_economica VARCHAR(100),
-	seguridad_social VARCHAR(100),
-	fecha_apertura DATE
-);
-
-insert into paciente values(1527471, 'cr xx # xx - xx', '370xxxx', NOW(), 'actividad economica', 'COOMEVA', NOW());
-
-
-INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
-INSERT INTO medico VALUES(1523382,'1527471','1,2,3','UNIVALLE');
-
-
-
-
-
-INSERT INTO causa VALUES (1, 'Diarrea extrema', 'El paciente se está secando de tantas cagadas');
-INSERT INTO causa VALUES (2, 'Conjuntivitis', 'El paciente presenta infección ocular');
-INSERT INTO empleado VALUES (1144099304, 'Mikasa', '3104166431', 'Pedro Lagaña', 'p@gmail.com', '1000000', 1, NULL, 'activo');
-INSERT INTO paciente VALUES (1144099305, 'MIKASA', '3104166431', '1997/11/19', 'Vendedor', 'Cruz blanca', now());
 

@@ -66,7 +66,10 @@ public class DAOEmpleado {
             System.out.println("consultando la empleados en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
+            boolean encontro = false;
             while (tabla.next()) {
+
+                encontro = true;
                 System.out.print(tabla.getString(1));
                 empleado.setIdentificacion_empleado(Integer.parseInt(tabla.getString(1)));
                 empleado.setDireccion(tabla.getString(2));
@@ -75,15 +78,25 @@ public class DAOEmpleado {
                 empleado.setEmail(tabla.getString(5));
                 empleado.setSalario(Integer.valueOf(tabla.getString(6)));
                 empleado.setCodigo_area(Integer.parseInt(tabla.getString(7)));
-                if (!tabla.getString(8).equals("")) {
+                try {
                     empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(8)));
+                } catch (NullPointerException e) {
+
+                }catch (NumberFormatException e) {
+
                 }
                 empleado.setEstado(tabla.getString(9));
 
                 System.out.println("ok");
             }
 
-            return empleado;
+            if (!encontro) {
+                return null;
+            } else {
+                return empleado;
+
+            }
+
         } catch (SQLException e) {
             System.out.println(e);
         } catch (Exception e) {

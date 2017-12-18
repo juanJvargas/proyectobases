@@ -29,7 +29,8 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         jComboBox1.setEditable(false);
         jComboBox1.removeAllItems();
         jButton2.setEnabled(false);
-        
+        jButton2.setEnabled(false);
+
         actualizarMedicos();
     }
 
@@ -96,6 +97,12 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Paciente (identificacion):");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,9 +223,12 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -251,11 +261,6 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazAgregarCita().setVisible(true);
-                Empleado e = new Empleado();
-                ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
-                e = controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382"));
-                System.out.println(e.getNombre());
-
             }
         });
     }
@@ -292,7 +297,6 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
         for (int i = 0; i < medicos.size(); i++) {
             Empleado e = new Empleado();
-            System.out.println("sdasd" + medicos.get(i));
             e = controladorEmpleado.consultarEmpleado(Integer.valueOf(medicos.get(i)));
             jComboBox1.addItem(medicos.get(i) + "-" + e.getNombre());
         }
