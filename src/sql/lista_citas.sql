@@ -5,7 +5,7 @@
  */
 /**
  * Author:  juan
- * Created: 16-dic-2017
+ * Created: 15-dic-2017
  */
 
-SELECT * FROM medico;
+SELECT * FROM cita;

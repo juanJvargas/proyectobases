@@ -28,10 +28,10 @@ public class DAOEmpleado {
 
     public boolean insertarEmpleado(Empleado empleado) {
         String sql_select, ide_jefe;
-        if(empleado.getIdentificacion_jefe()==0){
-            ide_jefe="null";
-        }else{
-            ide_jefe=String.valueOf(empleado.getIdentificacion_jefe());
+        if (empleado.getIdentificacion_jefe() == 0) {
+            ide_jefe = "null";
+        } else {
+            ide_jefe = String.valueOf(empleado.getIdentificacion_jefe());
         }
         sql_select = "INSERT INTO empleado"
                 + " VALUES('" + String.valueOf(empleado.getIdentificacion_empleado())
@@ -60,28 +60,43 @@ public class DAOEmpleado {
     public Empleado consultarEmpleado(int codigo) {
         Empleado empleado = new Empleado();
         String sql_select;
-        sql_select = "SELECT * FROM empleado WHERE identificacion_empleado='" + codigo + "'";
+        sql_select = "SELECT * FROM empleado WHERE identificacion_empleado='" + String.valueOf(codigo) + "'";
         try {
             Connection conn = acceso.getConnetion();
-            System.out.println("consultando la empleado en la bd");
+            System.out.println("consultando la empleados en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
+
+            boolean encontro = false;
             while (tabla.next()) {
 
+                encontro = true;
+                System.out.print(tabla.getString(1));
                 empleado.setIdentificacion_empleado(Integer.parseInt(tabla.getString(1)));
                 empleado.setDireccion(tabla.getString(2));
                 empleado.setTelefono(tabla.getString(3));
                 empleado.setNombre(tabla.getString(4));
                 empleado.setEmail(tabla.getString(5));
                 empleado.setSalario(Integer.valueOf(tabla.getString(6)));
-                empleado.setCodigo_area(Integer.parseInt(tabla.getString(8)));
-                empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(9)));
-                empleado.setEstado(tabla.getString(10));
+                empleado.setCodigo_area(Integer.parseInt(tabla.getString(7)));
+                try {
+                    empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(8)));
+                } catch (NullPointerException e) {
 
+                }catch (NumberFormatException e) {
+
+                }
+                empleado.setEstado(tabla.getString(9));
                 System.out.println("ok");
             }
 
-            return empleado;
+            if (!encontro) {
+                return null;
+            } else {
+                return empleado;
+
+            }
+
         } catch (SQLException e) {
             System.out.println(e);
         } catch (Exception e) {
@@ -145,7 +160,7 @@ public class DAOEmpleado {
         return null;
     }
 
-     public ArrayList<String> todosjefes() {
+    public ArrayList<String> todosjefes() {
         Empleado s = new Empleado();
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
@@ -169,6 +184,7 @@ public class DAOEmpleado {
         }
         return null;
     }
+
     public void cerrarConexionBD() {
         acceso.closeConection(acceso.getConnetion());
     }
