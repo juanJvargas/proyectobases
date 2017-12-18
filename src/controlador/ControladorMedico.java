@@ -53,7 +53,7 @@ public class ControladorMedico {
         ArrayList<String> ve = new ArrayList<String>();
         ve = daoMedico.especialidades();
         System.out.print(ve);
-
+    }
     public ArrayList<String> todosMedicosLibresEnFechaHora(java.sql.Date fecha, int hora) {
         ArrayList<String> ve = new ArrayList<String>();
         ve = daoMedico.todosMedicosLibresEnFechaHora(fecha, hora);
