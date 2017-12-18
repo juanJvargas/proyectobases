@@ -11,11 +11,19 @@ package logica;
  */
 public class Registro {
 
-    int numero_registro, identificacion_paciente, identificacion_empleado; //Debemos validar quien es el medico que está haciendo el registro
+    int numero_registro, identificacion_paciente, identificacion_empleado, codigo_causa; //Debemos validar quien es el medico que está haciendo el registro
     String fecha, observaciones;
 
     public int getNumero_registro() {
         return numero_registro;
+    }
+
+    public void setCodigo_causa(int codigo_causa) {
+        this.codigo_causa = codigo_causa;
+    }
+
+    public int getCodigo_causa() {
+        return codigo_causa;
     }
 
     public void setNumero_registro(int numero_registro) {

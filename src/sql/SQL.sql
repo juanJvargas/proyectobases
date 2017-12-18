@@ -36,6 +36,8 @@ CREATE TABLE paciente(
 	fecha_apertura DATE
 );
 
+
+
 DROP TABLE IF EXISTS empleado CASCADE;
 CREATE TABLE empleado(
 	identificacion_empleado INTEGER PRIMARY KEY,
@@ -61,8 +63,10 @@ CREATE TABLE registro(
 	identificacion_empleado INTEGER,
 	fecha_consulta DATE,
 	observaciones VARCHAR(200),
+        codigo_causa INTEGER,
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
+        FOREIGN KEY (codigo_causa) REFERENCES causa(codigo_causa),
 	unique(numero_registro)
 );
 
@@ -72,6 +76,8 @@ CREATE TABLE causa(
 	nombre VARCHAR(100),
 	descripcion VARCHAR(500)
 );
+
+
 
 DROP TABLE IF EXISTS campana_prevencion CASCADE;
 CREATE TABLE campana_prevencion(
@@ -256,4 +262,9 @@ insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
 insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
 
+
+INSERT INTO causa VALUES (1, 'Diarrea extrema', 'El paciente se está secando de tantas cagadas');
+INSERT INTO causa VALUES (2, 'Conjuntivitis', 'El paciente presenta infección ocular');
+INSERT INTO empleado VALUES (1144099304, 'Mikasa', '3104166431', 'Pedro Lagaña', 'p@gmail.com', '1000000', 1, NULL, 'activo');
+INSERT INTO paciente VALUES (1144099305, 'MIKASA', '3104166431', '1997/11/19', 'Vendedor', 'Cruz blanca', now());
 
