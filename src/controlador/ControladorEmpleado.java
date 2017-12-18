@@ -25,7 +25,7 @@ public class ControladorEmpleado {
 
     public Empleado consultarEmpleado(int codigo) {
         Empleado empleado = new Empleado();
-        System.out.println("Se va a consultar un area");
+        System.out.println("Se va a consultar un areasss");
         empleado = daoEmpleado.consultarEmpleado(codigo);
         return empleado;
 

@@ -76,7 +76,8 @@ public class DAOMedico {
         String sql = "SELECT * FROM medico NATURAL JOIN "
                 + "(SELECT identificacion_empleado FROM medico "
                 + "EXCEPT "
-                + "SELECT identificacion_empleado FROM cita WHERE fecha = '"+fecha.toString()+"' or hora = '"+hora+"') T";
+                + "SELECT identificacion_empleado FROM cita WHERE fecha = '"+fecha.toString()+"' and hora = '"+hora+"') T";
+
         return todosMedicoSQL(sql);
     }
 
@@ -91,8 +92,7 @@ public class DAOMedico {
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
                 ve.add((tabla.getString(1)));
-                ve.add((tabla.getString(2)));
-
+                //ve.add((tabla.getString(2)));
             }
             return ve;
         } catch (SQLException e) {
@@ -192,7 +192,6 @@ public class DAOMedico {
             while (tabla.next()) {
                 ve.add((tabla.getString(1)));
                 ve.add((tabla.getString(2)));
-
             }
             return ve;
         } catch (SQLException e) {
@@ -216,7 +215,6 @@ public class DAOMedico {
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
                 ve.add((tabla.getString(1)));
-
             }
             return ve;
         } catch (SQLException e) {
@@ -226,4 +224,5 @@ public class DAOMedico {
         }
         return null;
     }
+
 }

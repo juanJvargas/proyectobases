@@ -5,13 +5,22 @@
  */
 package controlador;
 
+import accesoDatos.DAOCita;
+import logica.Cita;
+
 /**
  *
  * @author tovar
  */
 public class ControladorCita {
+    DAOCita dao;
+    
     public ControladorCita(){
-        
+        dao = new DAOCita();
+    }
+    
+    public boolean insertarCita(Cita cita) {
+        return dao.insertarCita(cita);
     }
     
     

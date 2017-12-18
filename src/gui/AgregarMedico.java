@@ -57,6 +57,7 @@ public class AgregarMedico extends javax.swing.JFrame {
     }                                        
 
         
+
     
 
     public int getCodigo() {
