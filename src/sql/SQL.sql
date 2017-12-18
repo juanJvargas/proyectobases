@@ -257,3 +257,5 @@ insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
 
 
+
+
