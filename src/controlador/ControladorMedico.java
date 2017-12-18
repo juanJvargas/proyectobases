@@ -30,7 +30,7 @@ public class ControladorMedico {
     public Medico consultarMedico(int codigo) {
         Medico empleado = new Medico();
         System.out.println("Se va a consultar un area");
-        empleado = daoMedico.consultarEmpleado(codigo);
+        empleado = daoMedico.consultarMedico(codigo);
         return empleado;
 
     }
@@ -53,6 +53,7 @@ public class ControladorMedico {
         ArrayList<String> ve = new ArrayList<String>();
         ve = daoMedico.especialidades();
         System.out.print(ve);
+        return ve;
     }
     public ArrayList<String> todosMedicosLibresEnFechaHora(java.sql.Date fecha, int hora) {
         ArrayList<String> ve = new ArrayList<String>();

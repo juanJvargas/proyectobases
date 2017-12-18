@@ -10,4 +10,5 @@
 
 --insert into empleado values(123,'prueba','prueba','carlos','carlos@elmaspendejo.com','50','jefe',1,null,'activo');
 
-SELECT * FROM empleado;
+--SELECT * FROM empleado;
+SELECT * FROM empleado WHERE identificacion_empleado='1523382'
