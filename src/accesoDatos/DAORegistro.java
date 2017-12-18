@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import logica.Cama;
-import logica.Registro;
+import logica.*;
+
 
 /**
  *
@@ -27,22 +27,18 @@ public class DAORegistro {
 
     public boolean insertarRegistro(Registro r) {
         String sql_select;
-        sql_select = "INSERT INTO registro ("
-                + "numero_registro, "
-                + "identificacion_paciente, "
-                + "identificacion_empleado, "
-                + "fecha_consulta, "
-                + "observaciones "
-                + "VALUES ('" + r.getNumero_registro() + "',"
-                + "'" + r.getIdentificacion_paciente() + "', "
-                + "'" + r.getIdentificacion_empleado() + "', "
-                + "'" + r.getFecha() + "', "
-                + "'" + r.getObservaciones() + "'";
+        String sql_select2= "INSERT INTO registro (identificacion_paciente, identificacion_empleado, fecha_consulta, observaciones, codigo_causa) VALUES ("
+                + String.valueOf(r.getIdentificacion_paciente()) +", "
+                +String.valueOf(r.getIdentificacion_empleado())+", now(), '"
+                +r.getObservaciones()+"', "
+                +String.valueOf(r.getCodigo_causa())+")"; 
+        
+         
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
             Statement sentencia = conn.createStatement();
-            sentencia.executeUpdate(sql_select);
+            sentencia.executeUpdate(sql_select2);
 
             return true;
         } catch (SQLException e) {
@@ -69,7 +65,8 @@ public class DAORegistro {
                 aux.setIdentificacion_empleado(Integer.valueOf(tabla.getString(3)));
                 aux.setFecha(tabla.getString(4));
                 aux.setObservaciones(tabla.getString(5));
-                re.add(aux);
+                aux.setCodigo_causa(Integer.valueOf(tabla.getString(6)));
+                re.add(aux); 
             }
             return re;
         } catch (SQLException e) {
@@ -96,6 +93,7 @@ public class DAORegistro {
                 aux.setIdentificacion_empleado(Integer.valueOf(tabla.getString(3)));
                 aux.setFecha(tabla.getString(4));
                 aux.setObservaciones(tabla.getString(5));
+                aux.setCodigo_causa(Integer.valueOf(tabla.getString(6)));
                 re.add(aux);
             }
             return re;
@@ -123,6 +121,7 @@ public class DAORegistro {
                 aux.setIdentificacion_empleado(Integer.valueOf(tabla.getString(3)));
                 aux.setFecha(tabla.getString(4));
                 aux.setObservaciones(tabla.getString(5));
+                aux.setCodigo_causa(Integer.valueOf(tabla.getString(6)));
                 re.add(aux);
             }
             return re;
