@@ -5,28 +5,66 @@
  */
 package gui;
 
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import controlador.ControladorMedico;
+import java.util.ArrayList;
+
 /**
  *
  * @author juan
  */
 public class AgregarMedico extends javax.swing.JFrame {
     int codigo;
+    ControladorMedico controladorMedico = new ControladorMedico();
+    TableRowSorter<TableModel> sorter1;
     /**
      * Creates new form agregarMedico
      */
     public AgregarMedico() {
         initComponents();
-    }
-
-    public AgregarMedico(int codigo) {
-        this.codigo = codigo;
         acomodarTabla();
     }
-    
+
     
     
     private void acomodarTabla(){
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        sorter1 = new TableRowSorter<>(modelo);
+        jTable1.setRowSorter(sorter1);
+
+        ArrayList<String> v = new ArrayList();
+        v = controladorMedico.especialidades();
+
+        int i = 0;
+
+        while (i != v.size()) {
+            Vector u = new Vector();
+
+            u.add(v.get(i));
+            u.add(v.get(i + 1));
+            System.out.println(u.get(i));
+            modelo.addRow(u);
+            jTable1.setModel(modelo);
+            i += 2;
+        }
+
+        // TODO add your handling code here:
+    }                                        
+
         
+    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+        acomodarTabla();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +99,7 @@ public class AgregarMedico extends javax.swing.JFrame {
         jLabel3.setText("Universidad:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("LISTA DE ESPECIALIDADES:");
+        jLabel4.setText("LISTA DE HABILIDADES");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Ides de habilidades:");
@@ -84,19 +122,12 @@ public class AgregarMedico extends javax.swing.JFrame {
             new String [] {
                 "Codigo", "Descripcion"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Codigo");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Descripcion");
+            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(30);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,10 +140,6 @@ public class AgregarMedico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -126,7 +153,11 @@ public class AgregarMedico extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1)))))
+                                .addComponent(jTextField1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
