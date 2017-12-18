@@ -15,12 +15,6 @@ CREATE TABLE area(
 	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
-INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
-INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
-INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
-INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
-INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
-
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
 	numero_cama INTEGER PRIMARY KEY,
@@ -58,7 +52,6 @@ CREATE TABLE empleado(
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
 );
-INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
