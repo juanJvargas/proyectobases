@@ -125,6 +125,7 @@ DROP TABLE IF EXISTS enfermera CASCADE;
 CREATE TABLE enfermera(
 	identificacion_empleado INTEGER,
 	anos_experiencia INTEGER,
+        codigo_habilidad INTEGER,
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
@@ -134,6 +135,7 @@ CREATE TABLE habilidad(
 	descripcion VARCHAR(500)
 	
 );
+INSERT INTO habilidad VALUES(1,'INYECTARLE LAS NALGAS A CARLOS');
 
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
@@ -142,6 +144,7 @@ CREATE TABLE  especialidad(
 	descripcion VARCHAR (500)	
 );
 INSERT INTO especialidad VALUES(1, 'EXPERTO EN CIRUGIA PLASTICA DEL DEDO GORDO DEL PIE');
+
 DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,

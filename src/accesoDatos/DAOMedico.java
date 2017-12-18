@@ -31,7 +31,7 @@ public class DAOMedico {
                 + " VALUES('" + String.valueOf(medico.getIdentificacion_empleado())
                 + "','" + medico.getNumero_licencia()
                 + "','" + medico.getCodigo_especialidad()
-                + ",'" + medico.getUniversidad() + "')";
+                + "','" + medico.getUniversidad() + "')";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -202,5 +202,28 @@ public class DAOMedico {
         }
         return null;
     }
+    
+    public ArrayList<String> filtrarMedicoPorEspecialidad(String especialidad){
+        
+        String sql_select;
+        ArrayList<String> ve = new ArrayList<String>();
 
+        sql_select = "SELECT identificacion_empleado FROM medico  WHERE codigo_especialidad LIKE '%"+especialidad+"%'";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                ve.add((tabla.getString(1)));
+
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }
