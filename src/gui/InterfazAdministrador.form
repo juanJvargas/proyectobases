@@ -32,10 +32,8 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="modificarAB" pref="152" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="areasButton" max="32767" attributes="0"/>
-                      <Component id="agregarUsuarioB" pref="152" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="areasButton" max="32767" attributes="0"/>
+                  <Component id="agregarUsuarioB" pref="152" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>

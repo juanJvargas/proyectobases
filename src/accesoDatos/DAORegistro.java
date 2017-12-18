@@ -26,8 +26,8 @@ public class DAORegistro {
     }
 
     public boolean insertarRegistro(Registro r) {
-        String sql_select;
-        String sql_select2= "INSERT INTO registro (identificacion_paciente, identificacion_empleado, fecha_consulta, observaciones, codigo_causa) VALUES ("
+        
+        String sql_select= "INSERT INTO registro (identificacion_paciente, identificacion_empleado, fecha_consulta, observaciones, codigo_causa) VALUES ("
                 + String.valueOf(r.getIdentificacion_paciente()) +", "
                 +String.valueOf(r.getIdentificacion_empleado())+", now(), '"
                 +r.getObservaciones()+"', "
@@ -38,7 +38,7 @@ public class DAORegistro {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
             Statement sentencia = conn.createStatement();
-            sentencia.executeUpdate(sql_select2);
+            sentencia.executeUpdate(sql_select);
 
             return true;
         } catch (SQLException e) {

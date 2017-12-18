@@ -4,18 +4,24 @@
  * and open the template in the editor.
  */
 package gui;
+import logica.*;
 
 /**
  *
  * @author jdtorres
  */
 public class InterfazEnfermera extends javax.swing.JFrame {
-
+    Usuario usuarioActual;
     /**
      * Creates new form InterfazEnfermera
      */
     public InterfazEnfermera() {
         initComponents();
+    }
+    
+    public InterfazEnfermera(Usuario usuario) {
+        initComponents();
+        usuarioActual = usuario;
     }
 
     /**

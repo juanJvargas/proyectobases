@@ -20,11 +20,11 @@ public class AccesoBD {
     public AccesoBD() {
         url = "jdbc:postgresql://localhost:5432/proyectobases";
         usuario = "postgres";
-        password = "apdlt.5139";
+        password = "Admin";
     }
 
     public Connection conectar() {
-        try {
+         try {
             // Se carga el driver
             Class.forName("org.postgresql.Driver");
             //System.out.println( "Driver Cargado" );
@@ -42,7 +42,6 @@ public class AccesoBD {
             System.out.println("No se pudo abrir la bd.");
             return null;
         }
-
     }//end connectar
 
     public Connection getConnetion() {

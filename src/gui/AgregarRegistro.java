@@ -21,6 +21,8 @@ public class AgregarRegistro extends javax.swing.JFrame {
     ControladorCausa controladorCausa;
     ControladorRegistro controladorRegistro;
     ControladorEmpleado controladorEmpleado;
+    Usuario usuarioActual;
+    InterfazMedico ventanaMedico;
 
     /**
      * Creates new form AgregarRegistro
@@ -31,6 +33,14 @@ public class AgregarRegistro extends javax.swing.JFrame {
         controladorRegistro = new ControladorRegistro();
         controladorEmpleado = new ControladorEmpleado();
         causasCB.removeAllItems();
+    }
+    public AgregarRegistro(Usuario usuario) {
+        initComponents();
+        controladorCausa = new ControladorCausa();
+        controladorRegistro = new ControladorRegistro();
+        controladorEmpleado = new ControladorEmpleado();
+        causasCB.removeAllItems();
+        usuarioActual = usuario;
     }
 
     /**
@@ -45,14 +55,13 @@ public class AgregarRegistro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         idPaciente = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        idEmpleado = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         observaciones = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         causasCB = new javax.swing.JComboBox<>();
         causasB = new javax.swing.JButton();
         agregarB = new javax.swing.JButton();
+        atrasB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +75,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
                 idPacienteActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Identificacion medico");
 
         jLabel4.setText("Observaciones consulta");
 
@@ -89,50 +96,59 @@ public class AgregarRegistro extends javax.swing.JFrame {
             }
         });
 
+        atrasB.setText("Atras");
+        atrasB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(idPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                        .addComponent(observaciones))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(idPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                .addComponent(idEmpleado)
-                                .addComponent(observaciones))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(causasCB, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(causasB)))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addComponent(causasCB, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(causasB)))
+                .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(agregarB)
-                .addGap(154, 154, 154))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(agregarB)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(atrasB))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(atrasB))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(causasCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(causasB)
@@ -144,7 +160,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(agregarB)
                 .addContainerGap())
         );
@@ -177,8 +193,9 @@ public class AgregarRegistro extends javax.swing.JFrame {
         if (validar()) {
             Registro registro = new Registro();
             registro.setIdentificacion_paciente(Integer.valueOf(idPaciente.getText()));
-            registro.setIdentificacion_empleado(Integer.valueOf(idEmpleado.getText()));
-
+            
+            registro.setIdentificacion_empleado(Integer.valueOf(usuarioActual.getLogin()));
+          
             String aux = causasCB.getSelectedItem().toString();
             String[] aux2 = aux.split("-");
             registro.setCodigo_causa(Integer.valueOf(aux2[0]));
@@ -197,6 +214,13 @@ public class AgregarRegistro extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_agregarBActionPerformed
+
+    private void atrasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBActionPerformed
+        // TODO add your handling code here:
+        ventanaMedico = new InterfazMedico(usuarioActual);
+        ventanaMedico.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_atrasBActionPerformed
 
     public boolean validar() { //Falta validar que exista un paciente manualmente, no dejarselo a la BD
         boolean resultado = true;
@@ -234,7 +258,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
     
     public void limpiar(){
         idPaciente.setText("");
-        idEmpleado.setText("");
+        
         observaciones.setText("");
         causasCB.removeAllItems();
     }
@@ -276,13 +300,12 @@ public class AgregarRegistro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarB;
+    private javax.swing.JButton atrasB;
     private javax.swing.JButton causasB;
     private javax.swing.JComboBox<String> causasCB;
-    private javax.swing.JTextField idEmpleado;
     private javax.swing.JTextField idPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField observaciones;
