@@ -41,12 +41,18 @@ public class ControladorMedico {
         return resultado;
     }
 
-    public String[] retornarEspecialidades() {
+    public String[] especialidadesMedico(int codigo) {
         ArrayList<String> ve = new ArrayList<String>();
-        ve = daoMedico.todosMedico();
+        ve = daoMedico.especialidadesesMedico(codigo);
         System.out.print(ve);
         String[] respuesta = ve.get(0).split(",");
         return respuesta;
+    }
+
+    public ArrayList<String> especialidades() {
+        ArrayList<String> ve = new ArrayList<String>();
+        ve = daoMedico.especialidades();
+        System.out.print(ve);
     }
 
     public ArrayList<String> todosMedicosLibresEnFechaHora(java.sql.Date fecha, int hora) {

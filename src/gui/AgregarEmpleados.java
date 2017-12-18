@@ -442,6 +442,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
             if (medico.isSelected()) {
                    AgregarMedico medico= new AgregarMedico();
+                   medico.
                    medico.setVisible(true);
                    dispose();
             }
