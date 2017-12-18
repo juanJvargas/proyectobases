@@ -15,12 +15,6 @@ CREATE TABLE area(
 	descripcion VARCHAR(1000),
         estado VARCHAR(50)
 );
-INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
-INSERT INTO area VALUES (2, 'MEDICINA INTERNA', 'Especialidad médica que se dedica al estudio, diagnóstico y tratamiento de las enfermedades propias del adulto.','activa');
-INSERT INTO area VALUES (3, 'INFECTOLOGIA', 'Se dedica al estudio, diagnóstico y tratamiento del paciente de cualquier edad que cursa con enfermedades infecciosas tanto agudas como crónicas.','activa');
-INSERT INTO area VALUES (4, 'PEDIATRIA', 'La rama de la Medicina Clínica que se encarga de todos los aspectos médicos de la salud de los niños.','activa');
-INSERT INTO area VALUES (5, 'UNIDAD CUIDADOS INTENSIVOS', 'Area especial dentro del área hospitalaria que proporciona medicina intensiva','activa');
-
 DROP TABLE IF EXISTS cama CASCADE;
 CREATE TABLE cama(
 	numero_cama INTEGER PRIMARY KEY,
@@ -58,7 +52,6 @@ CREATE TABLE empleado(
 	FOREIGN KEY (identificacion_jefe) REFERENCES empleado(identificacion_empleado)
 
 );
-INSERT INTO empleado VALUES(1523382,'cra 4 # 2-34','3218552604','tu gfa:v','tugfa:v@gmail.com','200',1,null,'activa');
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
@@ -223,12 +216,12 @@ INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El pacien
 --- FIN CAUSAS
 
 --- EMPLEADOS
-insert into empleado VALUES (114401, 'cr 40 # 71 - 12', '30434501' , 'Carlos Tovar', 'carlos.tovar@gmail.com', '1000000', 1, NULL, 'activo');
-insert into empleado VALUES (114402, 'cr 39 # 8x - 82', '30434502' , 'Juan Jose', 'juan.jose@gmail.com', '1500000', 2, 114401, 'activo');
-insert into empleado VALUES (114403, 'cr 28 # 92 - 43', '30434503' , 'Juan David', 'juan.david@gmail.com', '2000000', 3, 114401, 'inactivo');
-insert into empleado VALUES (114404, 'cr 17 # 01 - 13', '30434504' , 'Alexandra Lopez', 'alexandra.lopez@gmail.com', '2500000', 1, NULL, 'activo');
-insert into empleado VALUES (114405, 'cr 06 # 10 - 15', '30434505' , 'Melissa Millares', 'melissa.millares@gmail.com', '3000000', 4, 114404, 'activo');
-insert into empleado VALUES (114406, 'cr 95 # 29 - 26', '30434506' , 'Felipe Montoya', 'felipe.montoya@gmail.com', '3500000', 5, 114404, 'activo');
+insert into empleado VALUES (114401, 'cr 40 # 71 - 12', '30434501' , 'Carlos Tovar', 'carlos.tovar@gmail.com', '1000000', 1, NULL, 'activa');
+insert into empleado VALUES (114402, 'cr 39 # 8x - 82', '30434502' , 'Juan Jose', 'juan.jose@gmail.com', '1500000', 2, 114401, 'activa');
+insert into empleado VALUES (114403, 'cr 28 # 92 - 43', '30434503' , 'Juan David', 'juan.david@gmail.com', '2000000', 3, 114401, 'inactiva');
+insert into empleado VALUES (114404, 'cr 17 # 01 - 13', '30434504' , 'Alexandra Lopez', 'alexandra.lopez@gmail.com', '2500000', 1, NULL, 'activa');
+insert into empleado VALUES (114405, 'cr 06 # 10 - 15', '30434505' , 'Melissa Millares', 'melissa.millares@gmail.com', '3000000', 4, 114404, 'activa');
+insert into empleado VALUES (114406, 'cr 95 # 29 - 26', '30434506' , 'Felipe Montoya', 'felipe.montoya@gmail.com', '3500000', 5, 114404, 'activa');
 
 --- FIN EMPLEADOS
 
