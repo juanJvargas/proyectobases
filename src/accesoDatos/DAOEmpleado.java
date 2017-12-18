@@ -66,16 +66,20 @@ public class DAOEmpleado {
             System.out.println("consultando la empleado en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
+            System.out.println(tabla);
             while (tabla.next()) {
-
-                empleado.setIdentificacion_empleado(Integer.parseInt(tabla.getString(1)));
-                empleado.setDireccion(tabla.getString(2));
-                empleado.setTelefono(tabla.getString(3));
-                empleado.setNombre(tabla.getString(4));
-                empleado.setEmail(tabla.getString(5));
-                empleado.setSalario(Integer.valueOf(tabla.getString(6)));
+                System.out.println(tabla.getString(1));
+                System.out.println("holi");
+                empleado.setIdentificacion_empleado(Integer.parseInt(tabla.getString(2)));
+                empleado.setDireccion(tabla.getString(3));
+                empleado.setTelefono(tabla.getString(4));
+                empleado.setNombre(tabla.getString(5));
+                empleado.setEmail(tabla.getString(6));
+                empleado.setSalario(Integer.valueOf(tabla.getString(7)));
                 empleado.setCodigo_area(Integer.parseInt(tabla.getString(8)));
-                empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(9)));
+                if (!tabla.getString(8).equals("")) {
+                    empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(9)));
+                }
                 empleado.setEstado(tabla.getString(10));
 
                 System.out.println("ok");

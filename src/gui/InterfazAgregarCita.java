@@ -5,9 +5,11 @@
  */
 package gui;
 
+import controlador.ControladorEmpleado;
 import controlador.ControladorMedico;
 import java.util.ArrayList;
 import java.util.Date;
+import logica.Empleado;
 
 /**
  *
@@ -145,15 +147,15 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
 
         java.util.Date fecha = comoFecha.getSelectedDate().getTime();
         java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
-        
+
         String horaSeleccionada = jComboBox2.getSelectedItem().toString();
         String[] horapartida = horaSeleccionada.split(":");
         int hora = Integer.valueOf(horapartida[0]);
 
         ControladorMedico controladorMedicos = new ControladorMedico();
-        ArrayList <String> medicos = controladorMedicos.todosMedicosLibresEnFechaHora(fechaSql, hora);
-        
-        for(int i=0; i<medicos.size(); i++){
+        ArrayList<String> medicos = controladorMedicos.todosMedicosLibresEnFechaHora(fechaSql, hora);
+
+        for (int i = 0; i < medicos.size(); i++) {
             System.out.println(medicos.get(i));
         }
 
@@ -206,6 +208,11 @@ public class InterfazAgregarCita extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazAgregarCita().setVisible(true);
+                Empleado e = new Empleado();
+                ControladorEmpleado controladorEmpleado = new ControladorEmpleado();
+                System.out.println(controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382")));
+                e = controladorEmpleado.consultarEmpleado(Integer.valueOf("1523382"));
+                System.out.println(e.getNombre());
             }
         });
     }

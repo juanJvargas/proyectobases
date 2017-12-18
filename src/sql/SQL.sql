@@ -135,7 +135,7 @@ CREATE TABLE  especialidad(
 	codigo_especialidad INTEGER PRIMARY KEY NOT NULL,
 	descripcion VARCHAR (500)	
 );
-
+INSERT INTO especialidad VALUES(1, 'EXPERTO EN CIRUGIA PLASTICA DEL DEDO GORDO DEL PIE');
 DROP TABLE IF EXISTS medico CASCADE;
 CREATE TABLE medico(
 	identificacion_empleado INTEGER,
