@@ -47,11 +47,43 @@ public class DAOMedico {
     }
 
     public ArrayList<String> todosMedico() {
-        
+
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
         sql_select = "SELECT identificacion_empleado, nombre FROM  medico NATURAL JOIN empleado  WHERE identificacion_empleado in (SELECT identificacion_empleado FORM empleado WHERE estado='activa')";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                ve.add((tabla.getString(1)));
+                ve.add((tabla.getString(2)));
+
+            }
+            return ve;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<String> todosMedicosLibresEnFechaHora(java.sql.Date fecha, int hora) {
+        
+        String sql = "SELECT * FROM medico NATURAL JOIN "
+                + "(SELECT identificacion_empleado FROM medico "
+                + "EXCEPT "
+                + "SELECT identificacion_empleado FROM cita WHERE fecha = '"+fecha.toString()+"' or hora = '"+hora+"') T";
+        return todosMedicoSQL(sql);
+    }
+
+    public ArrayList<String> todosMedicoSQL(String sql_select) {
+
+        ArrayList<String> ve = new ArrayList<String>();
+
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
@@ -125,11 +157,11 @@ public class DAOMedico {
     }
 
     public ArrayList<String> especialidadesesMedico(int identificacion) {
-       
+
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
-        sql_select = "SELECT codigo_especialidad FROM  medico WHERE identificacion_empleado='"+identificacion+"'";
+        sql_select = "SELECT codigo_especialidad FROM  medico WHERE identificacion_empleado='" + identificacion + "'";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
@@ -146,7 +178,8 @@ public class DAOMedico {
         }
         return null;
     }
-    public ArrayList<String> especialidades(){
+
+    public ArrayList<String> especialidades() {
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
@@ -159,7 +192,7 @@ public class DAOMedico {
             while (tabla.next()) {
                 ve.add((tabla.getString(1)));
                 ve.add((tabla.getString(2)));
-                
+
             }
             return ve;
         } catch (SQLException e) {
@@ -169,4 +202,5 @@ public class DAOMedico {
         }
         return null;
     }
+
 }
