@@ -309,8 +309,8 @@ insert into asignado values(14, 1527471, NOW(), NULL, 'activa');
 insert into asignado values(9, 1527472, NOW(), NOW(), 'inactiva');
 insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
---- FIN ASIGNACIONES
 
 INSERT INTO medicamento VALUES (1, 'Tramadol', 'Medicamento oral para dolores fuertes', '5000', 5);
 INSERT INTO medicamento VALUES (2, 'Acetaminofen', 'Medicamento oral para dolores comunes', '1000', 10);
 INSERT INTO medicamento VALUES (3, 'Amoxicilina', 'Antibiotico de uso general', '3000', 5);
+
