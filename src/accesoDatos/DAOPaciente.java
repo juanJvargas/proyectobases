@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import logica.Paciente;
 
 /**
@@ -50,20 +51,13 @@ public class DAOPaciente {
     }
     
 
-    public Paciente consultarPaciente(int identificacion_paciente) {
+    public Paciente consultarPaciente(String identificacion_paciente) { 
         Paciente paciente = new Paciente();
         String sql_select;
-        sql_select = "SELECT identificacion_paciente, "
-                + "direccion, "
-                + "telefono, "
-                + "fecha_nacimiento, "
-                + "actividad_economica, "
-                + "seguridad_social, "
-                + "fecha_apertura "
-                + "FROM paciente";
+        sql_select = "SELECT * FROM paciente WHERE identificacion_paciente = "+identificacion_paciente;
         try {
             Connection conn = acceso.getConnetion();
-            System.out.println("consultando la empleado en la bd");
+            System.out.println("consultando en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
@@ -84,9 +78,42 @@ public class DAOPaciente {
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println("No se encontro el paciente");
         return null;
     }
 
+    public ArrayList<Paciente> consultarPacientes() { 
+        ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+        String sql_select;
+        sql_select = "SELECT * FROM paciente";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando en la bd");
+            Statement sentencia = conn.createStatement();
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setIdentifiacacionPaciente(Integer.valueOf(tabla.getString(1)));
+                paciente.setDireccion(tabla.getString(2));
+                paciente.setTelefono(tabla.getString(3));
+                paciente.setFechaNacimiento(tabla.getString(4));
+                paciente.setActividadEconomica(tabla.getString(5));
+                paciente.setSeguridadSocial(tabla.getString(6));
+                paciente.setFechaApertura(tabla.getString(7));
+                
+                pacientes.add(paciente);
+                
+            }
+
+            return pacientes;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
     public boolean updatePaciente(Paciente paciente) {
         String sql_select;
         sql_select = "UPDATE paciente "
@@ -101,7 +128,7 @@ public class DAOPaciente {
                 + "' WHERE identificacion_paciente='" + String.valueOf(paciente.getIdentifiacacionPaciente()) + "' ";
         try {
             Connection conn = acceso.getConnetion();
-            System.out.println("actualizando empleado  en  bd");
+            System.out.println("actualizando en la bd");
             Statement sentencia = conn.createStatement();
             sentencia.executeUpdate(sql_select);
 

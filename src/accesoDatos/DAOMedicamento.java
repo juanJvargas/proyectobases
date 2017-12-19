@@ -16,23 +16,21 @@ import logica.*;
  *
  * @author jdtorres
  */
-public class DAOCausa {
+public class DAOMedicamento {
+
     AccesoBD acceso;
-    
-    public DAOCausa(){
+
+    public DAOMedicamento() {
         acceso = new AccesoBD();
     }
-    public boolean insertarCausa(Causa c) {
-        String sql_select;
-        sql_select = "INSERT INTO causa ("
-                
-                + "codigo_causa, "
-                + "nombre, "
-                
-                + "descripcion "
-                + "VALUES ('" + "'" + c.getCodigo_causa() + "', "
-                + "'" + c.getNombre() + "', "
-                + "'" + c.getDescripcion() + "')";
+
+    public boolean agregarMedicamento(Medicamento m) {
+        String sql_select = "INSERT INTO medicamento VALUES ("
+                + String.valueOf(m.getCodigo_medicamento()) + ", '"
+                + m.getNombre() + "', '"
+                + m.getDescripcion() + "', "
+                + String.valueOf(m.getCosto()) + ", "
+                + String.valueOf(m.getCantidad()) + ")";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -46,26 +44,27 @@ public class DAOCausa {
             System.out.println(e);
         }
         return false;
-    } //End insertar
+    }
 
-    public ArrayList<Causa> consultarCausas(){
-        ArrayList<Causa> ca = new ArrayList<Causa>();
-        
+    public ArrayList<Medicamento> consultarMedicamentos() {
+        ArrayList<Medicamento> me = new ArrayList<Medicamento>();
+
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
             Statement sentencia = conn.createStatement();
-            String sql_select = "SELECT * FROM causa";
+            String sql_select = "SELECT * FROM medicamento";
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
-                Causa aux = new Causa();
-                aux.setCodigo_causa(Integer.valueOf(tabla.getString(1)));
+                Medicamento aux = new Medicamento();
+                aux.setCodigo_medicamento(Integer.valueOf(tabla.getString(1)));
                 aux.setNombre(tabla.getString(2));
                 aux.setDescripcion(tabla.getString(3));
-                
-                ca.add(aux); 
+                aux.setCosto(Integer.valueOf(tabla.getString(4)));
+                aux.setCantidad(Integer.valueOf(tabla.getString(5)));
+                me.add(aux);
             }
-            return ca;
+            return me;
         } catch (SQLException e) {
             System.out.println(e);
         } catch (Exception e) {
@@ -73,23 +72,25 @@ public class DAOCausa {
         }
         return null;
     }
-    public Causa consultarCausa(String id){
-        Causa ca = new Causa();
-        
+
+    public Medicamento consultarMedicamento(String id) {
         try {
+            Medicamento me = new Medicamento();
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
             Statement sentencia = conn.createStatement();
-            String sql_select = "SELECT * FROM causa WHERE codigo_causa = "+id;
+            String sql_select = "SELECT * FROM medicamento WHERE codigo_medicamento = " + id;
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
-                
-                ca.setCodigo_causa(Integer.valueOf(tabla.getString(1)));
-                ca.setNombre(tabla.getString(2));
-                ca.setDescripcion(tabla.getString(3));
-                
+
+                me.setCodigo_medicamento(Integer.valueOf(tabla.getString(1)));
+                me.setNombre(tabla.getString(2));
+                me.setDescripcion(tabla.getString(3));
+                me.setCosto(Integer.valueOf(tabla.getString(4)));
+                me.setCantidad(Integer.valueOf(tabla.getString(5)));
+                System.out.println("ok");
             }
-            return ca;
+            return me;
         } catch (SQLException e) {
             System.out.println(e);
         } catch (Exception e) {

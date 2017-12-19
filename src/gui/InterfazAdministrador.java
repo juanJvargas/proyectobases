@@ -5,6 +5,7 @@
  */
 package gui;
 
+import logica.*;
 /**
  *
  * @author jdtorres
@@ -14,6 +15,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     AgregarEmpleados ventanaAgregar;
     AgregarAreas ventanaAgregarArea;
     ModificarArea ventanaModificarArea;
+    Usuario usuarioActual;
 
     /**
      * Creates new form InterfazAdmin
@@ -22,6 +24,12 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         initComponents();
         ventanaAgregarArea = new AgregarAreas();
         ventanaModificarArea = new ModificarArea();
+    }
+    public InterfazAdministrador(Usuario usuario) {
+        initComponents();
+        ventanaAgregarArea = new AgregarAreas();
+        ventanaModificarArea = new ModificarArea();
+        usuarioActual = usuario;
     }
 
     /**

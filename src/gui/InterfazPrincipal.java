@@ -22,11 +22,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     InterfazAdministrador ventanaAdmin;
     InterfazEnfermera ventanaEnfermera;
     InterfazMedico ventanaMedico;
-
+    Usuario usuarioActual;
     /**
      * Creates new form InterfazPrincipal
      */
     public InterfazPrincipal() {
+        usuarioActual = new Usuario();
         initComponents();
         controladorUsuarios = new ControladorUsuarios();
 
@@ -175,24 +176,26 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String nombre = campoUsuario.getText();
         String contraseña = new String(campoPassword.getText());
 
-        Usuario u = new Usuario();
+        
 
-        u = controladorUsuarios.consultarUsuario(nombre);
+        usuarioActual = controladorUsuarios.consultarUsuario(nombre);
 
-        String usuarioCorrecto = u.getLogin();
-        String contraseñaCorrecta = u.getPassword();
+        String usuarioCorrecto = usuarioActual.getLogin();
+        String contraseñaCorrecta = usuarioActual.getPassword();
 
         if (nombre.equals(usuarioCorrecto) && contraseña.equals(contraseñaCorrecta)) { //Valida que el usuario y contraseña sean correctos.
-            if (u.getEstado().equals("activa")) { //valida que el usuario ingresado se encuentra activo.
-                if (u.getTipo().equals("administrador")) {
-                    ventanaAdmin = new InterfazAdministrador();
+
+            if (usuarioActual.getEstado().equals("activo")) { //valida que el usuario ingresado se encuentra activo.
+                if (usuarioActual.getTipo().equals("administrador")) {
+                    ventanaAdmin = new InterfazAdministrador(usuarioActual);
+
                     ventanaAdmin.setVisible(true);
 
-                } else if (u.getTipo().equals("enfermera")) {
-                    ventanaEnfermera = new InterfazEnfermera();
+                } else if (usuarioActual.getTipo().equals("enfermera")) {
+                    ventanaEnfermera = new InterfazEnfermera(usuarioActual);
                     ventanaEnfermera.setVisible(true);
-                } else if (u.getTipo().equals("medico")) {
-                    ventanaMedico = new InterfazMedico();
+                } else if (usuarioActual.getTipo().equals("medico")) {
+                    ventanaMedico = new InterfazMedico(usuarioActual);
                     ventanaMedico.setVisible(true);
                 }
 

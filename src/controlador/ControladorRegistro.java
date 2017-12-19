@@ -24,7 +24,7 @@ public class ControladorRegistro {
         boolean resultado = daoregistro.insertarRegistro(r);
         return resultado;
     }
-    public ArrayList<Registro> consultarRegistroP(int identificacion){
+    public ArrayList<Registro> consultarRegistroP(String identificacion){
          return daoregistro.consultarRegistrosP(identificacion);
     }
     public ArrayList<Registro> consultarRegistroM(int identificacion){

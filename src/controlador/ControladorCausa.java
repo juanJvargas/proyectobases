@@ -27,4 +27,8 @@ public class ControladorCausa {
     public ArrayList<Causa> consultarCausas(){
         return daocausa.consultarCausas();
     }
+    
+    public Causa consultarCausa(String identificacionCausa){
+        return daocausa.consultarCausa(identificacionCausa);
+    }
 }
