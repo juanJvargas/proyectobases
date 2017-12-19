@@ -49,7 +49,7 @@ public class DAORegistro {
         return false;
     } //End insertar
 
-    public ArrayList<Registro> consultarRegistrosP(int identificacion){
+    public ArrayList<Registro> consultarRegistrosP(String identificacion){
         ArrayList<Registro> re = new ArrayList<Registro>();
         
         try {

@@ -14,6 +14,9 @@ public class InterfazMedico extends javax.swing.JFrame {
     Usuario usuarioActual;
     AgregarRegistro agregarRegistro;
     Formular interfazFormulas;
+    ReportesHC historiaClinica;
+    ConsultarFormula consultarFormula;
+    
     /**
      * Creates new form InterfazMedico
      */
@@ -38,6 +41,8 @@ public class InterfazMedico extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         agregarB = new javax.swing.JButton();
         formularB = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        consultarFB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +63,20 @@ public class InterfazMedico extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Consultar historia clínica");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        consultarFB.setText("Consultar formulas");
+        consultarFB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarFBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,13 +85,15 @@ public class InterfazMedico extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarB)
-                            .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(formularB)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formularB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(agregarB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(consultarFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,9 +102,13 @@ public class InterfazMedico extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(agregarB)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addComponent(formularB)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultarFB)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +127,21 @@ public class InterfazMedico extends javax.swing.JFrame {
         interfazFormulas.setVisible(true);
         dispose();
     }//GEN-LAST:event_formularBActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+            historiaClinica = new ReportesHC(usuarioActual);
+            historiaClinica.setVisible(true);
+            dispose();
+ 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void consultarFBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFBActionPerformed
+        // TODO add your handling code here:
+        consultarFormula = new ConsultarFormula(usuarioActual);
+        consultarFormula.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_consultarFBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +180,9 @@ public class InterfazMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarB;
+    private javax.swing.JButton consultarFB;
     private javax.swing.JButton formularB;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

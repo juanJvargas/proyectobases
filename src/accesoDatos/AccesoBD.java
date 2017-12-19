@@ -20,7 +20,7 @@ public class AccesoBD {
     public AccesoBD() {
         url = "jdbc:postgresql://localhost:5432/proyectobases";
         usuario = "postgres";
-        password = "Admin";
+        password = "admin";
     }
 
     public Connection conectar() {

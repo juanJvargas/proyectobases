@@ -73,4 +73,28 @@ public class DAOCausa {
         }
         return null;
     }
+    public Causa consultarCausa(String id){
+        Causa ca = new Causa();
+        
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("consultando la sede en la bd");
+            Statement sentencia = conn.createStatement();
+            String sql_select = "SELECT * FROM causa WHERE codigo_causa = "+id;
+            ResultSet tabla = sentencia.executeQuery(sql_select);
+            while (tabla.next()) {
+                
+                ca.setCodigo_causa(Integer.valueOf(tabla.getString(1)));
+                ca.setNombre(tabla.getString(2));
+                ca.setDescripcion(tabla.getString(3));
+                
+            }
+            return ca;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }

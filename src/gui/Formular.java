@@ -28,6 +28,7 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
     TableRowSorter<TableModel> sorter1;
     DefaultTableModel modelo;
     Usuario usuarioActual;
+    ControladorPaciente controladorPaciente;
 
     /**
      * Creates new form Formular
@@ -61,6 +62,7 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
         controladorFormulaMedicamento = new ControladorFormulaMedicamento();
         controladorMedicamento = new ControladorMedicamento();
         medicamentosS = new ArrayList<FormulaMedicamento>();
+        controladorPaciente = new ControladorPaciente();
 
         modelo = (DefaultTableModel) tableM.getModel();
         modelo.setRowCount(0);
@@ -309,8 +311,19 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
     private boolean validar() {
         boolean resultado = true;
 
+        
         if (idPaciente.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Verifique los campos", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
+        }
+        if(!isNumeric(idPaciente.getText())){
+            JOptionPane.showMessageDialog(this, "La identificacion del paciente debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
+        }
+        if(controladorPaciente.consultarPaciente(idPaciente.getText()) == null){
+            JOptionPane.showMessageDialog(this, "El paciente no se encuentra en la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
             resultado = false;
             return resultado;
         }

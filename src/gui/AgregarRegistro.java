@@ -23,6 +23,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
     ControladorEmpleado controladorEmpleado;
     Usuario usuarioActual;
     InterfazMedico ventanaMedico;
+    ControladorPaciente controladorPaciente;
 
     /**
      * Creates new form AgregarRegistro
@@ -34,11 +35,13 @@ public class AgregarRegistro extends javax.swing.JFrame {
         controladorEmpleado = new ControladorEmpleado();
         causasCB.removeAllItems();
     }
+
     public AgregarRegistro(Usuario usuario) {
         initComponents();
         controladorCausa = new ControladorCausa();
         controladorRegistro = new ControladorRegistro();
         controladorEmpleado = new ControladorEmpleado();
+        controladorPaciente = new ControladorPaciente();
         causasCB.removeAllItems();
         usuarioActual = usuario;
     }
@@ -114,25 +117,24 @@ public class AgregarRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(idPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                        .addComponent(observaciones))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(causasCB, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(causasB)))
+                        .addComponent(causasB))
+                    .addComponent(observaciones)
+                    .addComponent(idPaciente))
                 .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(agregarB)
-                        .addGap(154, 154, 154))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(atrasB))))
+                        .addComponent(atrasB))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(agregarB)
+                        .addGap(167, 167, 167))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,9 +162,9 @@ public class AgregarRegistro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(agregarB)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,9 +195,9 @@ public class AgregarRegistro extends javax.swing.JFrame {
         if (validar()) {
             Registro registro = new Registro();
             registro.setIdentificacion_paciente(Integer.valueOf(idPaciente.getText()));
-            
+
             registro.setIdentificacion_empleado(Integer.valueOf(usuarioActual.getLogin()));
-          
+
             String aux = causasCB.getSelectedItem().toString();
             String[] aux2 = aux.split("-");
             registro.setCodigo_causa(Integer.valueOf(aux2[0]));
@@ -203,11 +205,13 @@ public class AgregarRegistro extends javax.swing.JFrame {
             System.out.println(registro.getIdentificacion_empleado() + " " + registro.getIdentificacion_paciente() + " " + registro.getCodigo_causa() + " " + registro.getObservaciones());
             boolean resultado = controladorRegistro.insertarRegistro(registro);
             if (resultado) {
-                
+
                 JOptionPane.showMessageDialog(this, "Se agrego el registro a la historia clinica del paciente", "Mensaje", JOptionPane.INFORMATION_MESSAGE, null);
-                limpiar();
+                ventanaMedico = new InterfazMedico(usuarioActual);
+                ventanaMedico.setVisible(true);
+                dispose();
             } else {
-               
+
                 JOptionPane.showMessageDialog(this, "Hubo un error al agregar el registro ", "", JOptionPane.INFORMATION_MESSAGE, null);
             }
         }
@@ -235,7 +239,14 @@ public class AgregarRegistro extends javax.swing.JFrame {
             return resultado;
         }
         if (!isNumeric(idPaciente.getText())) {
-
+            JOptionPane.showMessageDialog(this, "La identificacion del paciente debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
+        }
+        if (controladorPaciente.consultarPaciente(idPaciente.getText()) == null) {
+            JOptionPane.showMessageDialog(this, "El paciente no se encuentra en la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
         }
         /*
         if (controladorEmpleado.consultarEmpleado(Integer.valueOf(idEmpleado.getText())) == null) { //Esto se debe adecuar para paciente
@@ -243,7 +254,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
             resultado = false;
             return resultado;
         }
-        */
+         */
         return resultado;
     }
 
@@ -255,10 +266,10 @@ public class AgregarRegistro extends javax.swing.JFrame {
             return false;
         }
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         idPaciente.setText("");
-        
+
         observaciones.setText("");
         causasCB.removeAllItems();
     }
