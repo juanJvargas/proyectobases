@@ -50,7 +50,7 @@ public class DAOPaciente {
     }
     
 
-    public Paciente consultarPaciente(int identificacion_paciente) {
+    public Paciente consultarPaciente(int identificacion_paciente) { 
         Paciente paciente = new Paciente();
         String sql_select;
         sql_select = "SELECT identificacion_paciente, "

@@ -4,18 +4,26 @@
  * and open the template in the editor.
  */
 package gui;
+import logica.*;
 
 /**
  *
  * @author jdtorres
  */
 public class InterfazMedico extends javax.swing.JFrame {
-
+    Usuario usuarioActual;
+    AgregarRegistro agregarRegistro;
+    Formular interfazFormulas;
     /**
      * Creates new form InterfazMedico
      */
     public InterfazMedico() {
         initComponents();
+    }
+    public InterfazMedico(Usuario usuario) {
+        initComponents();
+        usuarioActual = usuario;
+        
     }
 
     /**
@@ -27,21 +35,73 @@ public class InterfazMedico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        agregarB = new javax.swing.JButton();
+        formularB = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Medico");
+
+        agregarB.setText("Agregar registro");
+        agregarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBActionPerformed(evt);
+            }
+        });
+
+        formularB.setText("Formular medicamentos");
+        formularB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formularBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarB)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(formularB)))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(agregarB)
+                .addGap(18, 18, 18)
+                .addComponent(formularB)
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBActionPerformed
+        // TODO add your handling code here:
+        agregarRegistro = new AgregarRegistro(usuarioActual);
+        agregarRegistro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_agregarBActionPerformed
+
+    private void formularBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formularBActionPerformed
+        // TODO add your handling code here:
+        interfazFormulas = new Formular(usuarioActual);
+        interfazFormulas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_formularBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +139,8 @@ public class InterfazMedico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarB;
+    private javax.swing.JButton formularB;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

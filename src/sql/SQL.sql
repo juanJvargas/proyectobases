@@ -55,7 +55,7 @@ CREATE TABLE empleado(
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
-  numero_registro SERIAL PRIMARY KEY,
+        numero_registro SERIAL PRIMARY KEY,
 	identificacion_paciente INTEGER,
 	identificacion_empleado INTEGER,
 	fecha_consulta DATE,
@@ -91,15 +91,18 @@ CREATE TABLE medicamento(
 	codigo_medicamento INTEGER PRIMARY KEY,
 	nombre VARCHAR(100),
 	descripcion VARCHAR(500),
-	costo VARCHAR(6),
+	costo INTEGER,
 	cantidad INTEGER
 );
 
+
+
 DROP TABLE IF EXISTS formula CASCADE;
 CREATE TABLE formula(
-	codigo_formula INTEGER PRIMARY KEY,
+	codigo_formula SERIAL PRIMARY KEY,
 	identificacion_empleado INTEGER,
 	identificacion_paciente INTEGER,
+        fecha DATE,
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente)
 );
@@ -108,6 +111,7 @@ DROP TABLE IF EXISTS formula_medicamento CASCADE;
 CREATE TABLE formula_medicamento(
 	codigo_formula INTEGER,
 	codigo_medicamento INTEGER,
+        cantidad INTEGER,
 	PRIMARY KEY(codigo_formula,codigo_medicamento),
 	FOREIGN KEY (codigo_formula) REFERENCES formula(codigo_formula),
 	FOREIGN KEY (codigo_medicamento) REFERENCES medicamento(codigo_medicamento)
@@ -191,11 +195,7 @@ CREATE TABLE usuarios(
 	estado VARCHAR(10)
 );
 
---- USUSARIOS
-INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
-INSERT INTO usuarios VALUES ('1144099304', 'user', 'enfermera', 'activo');
-INSERT INTO usuarios VALUES ('1144099305', 'user', 'medico', 'activo');
---- FIN USUARIOS
+
 
 
 --- AREAS
@@ -214,6 +214,17 @@ INSERT INTO causa VALUES (4, 'Varicela con pus', 'El paciente fue a la india y l
 INSERT INTO causa VALUES (5, 'Dolor de cabeza psicologico', 'El paciente cree que le duele la cabeza pero en realidad no');
 INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El paciente debe ser remitido inmediatamente a psiquiatria');
 --- FIN CAUSAS
+
+--- USUSARIOS
+INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
+
+INSERT INTO usuarios VALUES ('114401', '114401', 'medico', 'activo');
+INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activo');
+
+INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activo');
+
+
+--- FIN USUARIOS
 
 --- EMPLEADOS
 insert into empleado VALUES (114401, 'cr 40 # 71 - 12', '30434501' , 'Carlos Tovar', 'carlos.tovar@gmail.com', '1000000', 1, NULL, 'activa');
@@ -300,4 +311,6 @@ insert into asignado values(34, 1527473, NOW(), NOW(), 'inactiva');
 insert into asignado values(26, 1527474, NOW(), NOW(), 'inactiva');
 --- FIN ASIGNACIONES
 
-
+INSERT INTO medicamento VALUES (1, 'Tramadol', 'Medicamento oral para dolores fuertes', '5000', 5);
+INSERT INTO medicamento VALUES (2, 'Acetaminofen', 'Medicamento oral para dolores comunes', '1000', 10);
+INSERT INTO medicamento VALUES (3, 'Amoxicilina', 'Antibiotico de uso general', '3000', 5);
