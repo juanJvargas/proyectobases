@@ -55,7 +55,7 @@ CREATE TABLE empleado(
 
 DROP TABLE IF EXISTS registro CASCADE;
 CREATE TABLE registro(
-  numero_registro SERIAL PRIMARY KEY,
+        numero_registro SERIAL PRIMARY KEY,
 	identificacion_paciente INTEGER,
 	identificacion_empleado INTEGER,
 	fecha_consulta DATE,
@@ -99,9 +99,10 @@ CREATE TABLE medicamento(
 
 DROP TABLE IF EXISTS formula CASCADE;
 CREATE TABLE formula(
-	codigo_formula INTEGER PRIMARY KEY,
+	codigo_formula SERIAL PRIMARY KEY,
 	identificacion_empleado INTEGER,
 	identificacion_paciente INTEGER,
+        fecha DATE,
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado),
 	FOREIGN KEY (identificacion_paciente) REFERENCES paciente(identificacion_paciente)
 );

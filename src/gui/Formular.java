@@ -21,6 +21,9 @@ import logica.*;
 public class Formular extends javax.swing.JFrame { //https://www.youtube.com/watch?v=QK9zwfugDxU 
 
     ControladorMedicamento controladorMedicamento;
+    ControladorFormula controladorFormula;
+    ControladorFormulaMedicamento controladorFormulaMedicamento;
+    InterfazMedico ventanaMedico;
     ArrayList<FormulaMedicamento> medicamentosS;
     TableRowSorter<TableModel> sorter1;
     DefaultTableModel modelo;
@@ -31,6 +34,7 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
      */
     public Formular() {
         initComponents();
+        controladorFormula = new ControladorFormula();
         controladorMedicamento = new ControladorMedicamento();
         medicamentosS = new ArrayList<FormulaMedicamento>();
 
@@ -49,9 +53,12 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
         }
     }
+
     public Formular(Usuario usuario) {
         initComponents();
         usuarioActual = usuario;
+        controladorFormula = new ControladorFormula();
+        controladorFormulaMedicamento = new ControladorFormulaMedicamento();
         controladorMedicamento = new ControladorMedicamento();
         medicamentosS = new ArrayList<FormulaMedicamento>();
 
@@ -88,6 +95,8 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
         idPaciente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cantidadM = new javax.swing.JTextField();
+        insertarB = new javax.swing.JButton();
+        atrasB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +114,9 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -126,6 +138,20 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
         jLabel2.setText("Identificacion paciente");
 
+        insertarB.setText("Terminar fórmula");
+        insertarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertarBActionPerformed(evt);
+            }
+        });
+
+        atrasB.setText("Atras");
+        atrasB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,32 +162,41 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(medicamentoCB, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cantidadM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(agregarMB)
-                                .addGap(12, 12, 12)))))
+                                .addComponent(agregarMB))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(28, 28, 28)
+                                .addComponent(atrasB)))
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(insertarB)
+                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(atrasB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -171,8 +206,10 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
                     .addComponent(agregarMB)
                     .addComponent(cantidadM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(insertarB)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,7 +222,7 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
             String aux = medicamentoCB.getSelectedItem().toString();
             String[] aux2 = aux.split("-");
-            
+
             faux.setCodigo_medicamento(aux2[0]);
             faux.setCantidad(cantidadM.getText());
             medicamentosS.add(faux);
@@ -210,6 +247,56 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
     }//GEN-LAST:event_agregarMBActionPerformed
 
+    private void insertarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarBActionPerformed
+        // TODO add your handling code here:
+        if (validar()) {
+            Formula fo = new Formula();
+
+            fo.setIdentificacionEmpleado(Integer.valueOf(usuarioActual.getLogin()));
+
+            fo.setIdentificacionPaciente(Integer.valueOf(idPaciente.getText()));
+            System.out.println("recoger datos");
+            boolean resul = controladorFormula.insertarFormula(fo);
+            if (resul) {
+                boolean res = añadirFormulaMedicamentos();
+                if (res) {
+                    JOptionPane.showMessageDialog(this, "Se agrego la formula a la base de datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE, null);
+                    ventanaMedico = new InterfazMedico(usuarioActual);
+                    ventanaMedico.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al agregar la formula ", "", JOptionPane.INFORMATION_MESSAGE, null);
+                }
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Hubo un error al agregar la formula ", "", JOptionPane.INFORMATION_MESSAGE, null);
+            }
+        }
+
+
+    }//GEN-LAST:event_insertarBActionPerformed
+
+    private boolean añadirFormulaMedicamentos() {
+        boolean resultado = true;
+        String codFormula = controladorFormula.consultarUltimaFormula();
+        for (int i = 0; i < medicamentosS.size(); i++) {
+            FormulaMedicamento aux = medicamentosS.get(i);
+            aux.setCodigo_formula(codFormula);
+            boolean res = controladorFormulaMedicamento.insertarFormulaMedicamento(aux);
+            if (!res) {
+                resultado = false;
+            }
+        }
+        return resultado;
+    }
+
+    private void atrasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBActionPerformed
+        // TODO add your handling code here:
+        ventanaMedico = new InterfazMedico(usuarioActual);
+        ventanaMedico.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_atrasBActionPerformed
+
     private boolean isNumeric(String cadena) {
         try {
             Integer.parseInt(cadena);
@@ -217,6 +304,23 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    private boolean validar() {
+        boolean resultado = true;
+
+        if (idPaciente.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Verifique los campos", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
+        }
+        if (medicamentosS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe añadir medicamentos a la formula", "", JOptionPane.INFORMATION_MESSAGE, null);
+            resultado = false;
+            return resultado;
+        }
+        //Verificar que exista el paciente
+        return resultado;
     }
 
     /**
@@ -256,8 +360,10 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarMB;
+    private javax.swing.JButton atrasB;
     private javax.swing.JTextField cantidadM;
     private javax.swing.JTextField idPaciente;
+    private javax.swing.JButton insertarB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
