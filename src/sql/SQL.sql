@@ -27,6 +27,7 @@ CREATE TABLE cama(
 DROP TABLE IF EXISTS paciente CASCADE;
 CREATE TABLE paciente(
 	identificacion_paciente INTEGER PRIMARY KEY,
+        nombre VARCHAR(100),
 	direccion VARCHAR(100),
 	telefono VARCHAR(100),
 	fecha_nacimiento DATE,
@@ -284,13 +285,13 @@ insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
 --- FIN CAMAS
 
 --- PACIENTES
-insert into paciente values(1523382, 'cr 17 # 31 - 29', '3701720', NOW(), 'Obrero', 'Coomeva', NOW());
-insert into paciente values(1526750, 'cr 26 # 42 - 38', '3702639', NOW(), 'Ingeniero de sistemas', 'Comfandi', NOW());
-insert into paciente values(1530267, 'cr 35 # 53 - 46', '3703548', NOW(), 'Comerciante', 'Cafesalud', NOW());
-insert into paciente values(1527471, 'cr 44 # 64 - 56', '3704457', NOW(), 'Secretaria', 'Coomeva', NOW());
-insert into paciente values(1527472, 'cr 53 # 75 - 65', '3705366', NOW(), 'Contadora', 'Colsalud', NOW());
-insert into paciente values(1527473, 'cr 62 # 86 - 74', '3706275', NOW(), 'Medico', 'Emssanar', NOW());
-insert into paciente values(1527474, 'cr 71 # 97 - 83', '3707184', NOW(), 'Psicologa', 'Sura', NOW());
+insert into paciente values(1523382, 'Luis Granja', 'cr 17 # 31 - 29', '3701720', NOW(), 'Obrero', 'Coomeva', NOW());
+insert into paciente values(1526750, 'Victor Gomez', 'cr 26 # 42 - 38', '3702639', NOW(), 'Ingeniero de sistemas', 'Comfandi', NOW());
+insert into paciente values(1530267, 'Melissa Millares', 'cr 35 # 53 - 46', '3703548', NOW(), 'Comerciante', 'Cafesalud', NOW());
+insert into paciente values(1527471, 'Ivan Toro', 'cr 44 # 64 - 56', '3704457', NOW(), 'Secretaria', 'Coomeva', NOW());
+insert into paciente values(1527472, 'Jose David', 'cr 53 # 75 - 65', '3705366', NOW(), 'Contadora', 'Colsalud', NOW());
+insert into paciente values(1527473, 'Javier Palacios', 'cr 62 # 86 - 74', '3706275', NOW(), 'Medico', 'Emssanar', NOW());
+insert into paciente values(1527474, 'Sebastian Villegas', 'cr 71 # 97 - 83', '3707184', NOW(), 'Psicologa', 'Sura', NOW());
 --- FIN PACIENTES
 
 --- CITAS

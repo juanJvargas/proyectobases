@@ -22,8 +22,8 @@ public class DAOReportes {
     public DAOReportes() {
         acceso = new AccesoBD();
     }
-    
-    public ResultSet obtenerCitas(){
+
+    public ResultSet obtenerCitas() {
         String sql = "select * from cita";
         return consultarSentencia(sql);
     }
@@ -32,7 +32,7 @@ public class DAOReportes {
         try {
             Medicamento me = new Medicamento();
             Connection conn = acceso.getConnetion();
-            System.out.println("consultando la sede en la bd");
+            System.out.println("consultando en la bd");
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql);
             return tabla;
@@ -43,5 +43,14 @@ public class DAOReportes {
         }
         return null;
     }
-    
+
+    public ResultSet obtenerCitasConMedicoFecha(int idmedico, String fecha) {
+        String sql = "select identificacion_paciente, nombre, fecha, hora from cita natural join paciente where identificacion_empleado = '"+idmedico+"' and fecha = '"+fecha+"'";
+        return consultarSentencia(sql);
+    }
+
+    public ResultSet obtenerModeloCitasConPaciente(int identificacionPaciente) {
+        String sql = "select nombre as medico, fecha, hora from cita natural join empleado where identificacion_paciente = '"+identificacionPaciente+"' and fecha >= NOW()";
+        return consultarSentencia(sql);    }
+
 }
