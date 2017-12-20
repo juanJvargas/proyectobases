@@ -176,8 +176,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         String nombre = campoUsuario.getText();
         String contraseña = new String(campoPassword.getText());
 
-        
-
         usuarioActual = controladorUsuarios.consultarUsuario(nombre);
 
         String usuarioCorrecto = usuarioActual.getLogin();
@@ -203,7 +201,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             } else {
 
                 //Icon p = new ImageIcon(getClass().getResource("/GUI/images/user (3).png"));
-
                 JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE/*, p*/);
                 campoPassword.setText("");
                 campoUsuario.setText(null);
