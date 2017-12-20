@@ -13,6 +13,7 @@ import static javax.management.Query.and;
 import javax.swing.JOptionPane;
 import logica.Asignacion;
 import logica.Cama;
+import logica.Usuario;
 
 /**
  *
@@ -21,13 +22,12 @@ import logica.Cama;
 public class InterfazAsignarCamas extends javax.swing.JFrame {
 
     private ControladorArea controlArea;
+    private Usuario usuarioActual;
 
-    /**
-     * Creates new form InterfazAsignarCamas
-     */
-    public InterfazAsignarCamas() {
+    InterfazAsignarCamas(Usuario usuario) {
         initComponents();
         controlArea = new ControladorArea();
+        usuarioActual = usuario;
     }
 
     /**
@@ -48,10 +48,20 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Identificacion paciente:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 45, 166, -1));
 
         codigo_areas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actualice las Areas" }));
         codigo_areas.addItemListener(new java.awt.event.ItemListener() {
@@ -64,12 +74,16 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                 codigo_areasActionPerformed(evt);
             }
         });
+        getContentPane().add(codigo_areas, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 72, 188, -1));
 
         jLabel2.setText("Codigo area:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
         jLabel3.setText("Camas disponibles:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un area" }));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 100, 188, -1));
 
         jButton1.setText("Asignar Cama");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +91,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 126, -1, -1));
 
         jButton2.setText("Actualizar Areas");
         jButton2.addItemListener(new java.awt.event.ItemListener() {
@@ -89,6 +104,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 71, -1, -1));
 
         jButton3.setText("Limpiar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -96,54 +112,54 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 126, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(codigo_areas, 0, 188, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(100, Short.MAX_VALUE))
+        jPanel1.setBackground(new java.awt.Color(255, 204, 51));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("Asignar Camas");
+
+        jButton4.setText("Atras");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codigo_areas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addContainerGap(46, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 30));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/bed.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 80, 70));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/hospital-bed.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, 70));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/hospital-bed (1).png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 70, 60));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 480, 160));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,7 +167,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         actualizarAreas();
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -164,10 +180,10 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             String codigo = this.codigo_areas.getSelectedItem().toString();
             String[] cod = codigo.split(",");
             int areaSeleccionada = Integer.parseInt(cod[0]);
-            
+
             String textoComboSeleccionado = jComboBox2.getSelectedItem().toString();
             String[] tex = textoComboSeleccionado.split("-");
-            
+
             int numeroCama = Integer.valueOf(tex[0]);
             int idpaciente = Integer.valueOf(jTextField1.getText());
 
@@ -183,7 +199,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Asignacion no se pudo agregar", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+
             jTextField1.setText("");
             actualizarAreas();
         } catch (NumberFormatException e) {
@@ -197,7 +213,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
     private void codigo_areasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_codigo_areasItemStateChanged
         // TODO add your handling code here:
         System.out.println(codigo_areas.getSelectedIndex());
-        if (codigo_areas.getSelectedIndex() != 0 && codigo_areas.getSelectedIndex() !=-1) {
+        if (codigo_areas.getSelectedIndex() != 0 && codigo_areas.getSelectedIndex() != -1) {
             jComboBox2.removeAllItems();
             jComboBox2.addItem("Seleccionar:");
             ControladorCama controladorCama = new ControladorCama();
@@ -211,7 +227,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
             for (int i = 0; i < camas.size(); i++) {
                 jComboBox2.addItem(String.valueOf(camas.get(i).getNumeroCama() + "-" + camas.get(i).getDescripcion()));
             }
-        }else{
+        } else {
             jComboBox2.removeAllItems();
             jComboBox2.addItem("Seleccione un area");
         }
@@ -232,6 +248,15 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         jTextField1.setText("");
         actualizarAreas();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (usuarioActual.getTipo().equals("enfermera")) {
+            InterfazEnfermera ventanaEnfermera = new InterfazEnfermera(usuarioActual);
+            ventanaEnfermera.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,7 +288,7 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazAsignarCamas().setVisible(true);
+                //new InterfazAsignarCamas().setVisible(true);
             }
         });
     }
@@ -273,10 +298,17 @@ public class InterfazAsignarCamas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 

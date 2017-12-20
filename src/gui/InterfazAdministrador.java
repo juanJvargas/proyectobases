@@ -16,6 +16,8 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     AgregarAreas ventanaAgregarArea;
     ModificarArea ventanaModificarArea;
     Usuario usuarioActual;
+    AgregarMedicamentos agregarMedicamentos;
+    ModificarMedicamentos modificarMedicamentos;
 
     /**
      * Creates new form InterfazAdmin
@@ -41,16 +43,43 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        agregarMedicamentosB = new javax.swing.JButton();
+        modificarMedicamentosB = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         agregarUsuarioB = new javax.swing.JButton();
         areasButton = new javax.swing.JButton();
         modificarAB = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Administrador");
+        agregarMedicamentosB.setText("Agregar medicamentos");
+        agregarMedicamentosB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarMedicamentosBActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agregarMedicamentosB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 160, -1));
+
+        modificarMedicamentosB.setText("Modificar medicamentos");
+        modificarMedicamentosB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarMedicamentosBActionPerformed(evt);
+            }
+        });
+        getContentPane().add(modificarMedicamentosB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 160, -1));
+
+        jButton2.setText("Agregar / Modificar Camas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 160, -1));
 
         agregarUsuarioB.setText("Agregar usuario");
         agregarUsuarioB.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +87,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 agregarUsuarioBActionPerformed(evt);
             }
         });
+        getContentPane().add(agregarUsuarioB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 160, -1));
 
         areasButton.setText("Areas");
         areasButton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +95,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 areasButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(areasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 160, -1));
 
         modificarAB.setText("Modificar areas");
         modificarAB.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +103,7 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 modificarABActionPerformed(evt);
             }
         });
+        getContentPane().add(modificarAB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 160, -1));
 
         jButton1.setText("Modificar usuario");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,39 +111,34 @@ public class InterfazAdministrador extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 160, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+        jPanel1.setBackground(new java.awt.Color(153, 255, 204));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Administrador");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(modificarAB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(areasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(agregarUsuarioB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(agregarUsuarioB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(areasButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(modificarAB)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 290, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,6 +171,27 @@ public class InterfazAdministrador extends javax.swing.JFrame {
         u.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void agregarMedicamentosBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMedicamentosBActionPerformed
+        // TODO add your handling code here:
+        agregarMedicamentos = new AgregarMedicamentos(usuarioActual);
+        agregarMedicamentos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_agregarMedicamentosBActionPerformed
+
+    private void modificarMedicamentosBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMedicamentosBActionPerformed
+        // TODO add your handling code here:
+        modificarMedicamentos = new ModificarMedicamentos(usuarioActual);
+        modificarMedicamentos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_modificarMedicamentosBActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        InterfazCama i = new InterfazCama(usuarioActual);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,10 +230,15 @@ public class InterfazAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarMedicamentosB;
     private javax.swing.JButton agregarUsuarioB;
     private javax.swing.JButton areasButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modificarAB;
+    private javax.swing.JButton modificarMedicamentosB;
     // End of variables declaration//GEN-END:variables
 }

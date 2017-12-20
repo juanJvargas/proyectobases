@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package gui;
+
 import logica.*;
 
 /**
@@ -11,18 +12,20 @@ import logica.*;
  * @author jdtorres
  */
 public class InterfazEnfermera extends javax.swing.JFrame {
+
     Usuario usuarioActual;
     ConsultarFormula consultarFormula;
     ReportesHC consultarHistoriaClinica;
     AgregarPaciente agregarPaciente;
     ModificarPaciente modificarPaciente;
+
     /**
      * Creates new form InterfazEnfermera
      */
     public InterfazEnfermera() {
         initComponents();
     }
-    
+
     public InterfazEnfermera(Usuario usuario) {
         initComponents();
         usuarioActual = usuario;
@@ -37,14 +40,52 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        botonAsignarCamas = new javax.swing.JButton();
         consultarHCB = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         consultarFB = new javax.swing.JButton();
         agregarPacienteB = new javax.swing.JButton();
         modificarPacienteB = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton3.setText("Ver citas paciente");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 180, -1));
+
+        jButton2.setText("Asginar CITAS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 180, -1));
+
+        jButton1.setText("Gestionar Asginaciones Activas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+
+        botonAsignarCamas.setText("Asignar Camas");
+        botonAsignarCamas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAsignarCamasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonAsignarCamas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 180, -1));
 
         consultarHCB.setText("Consultar historia clinica");
         consultarHCB.addActionListener(new java.awt.event.ActionListener() {
@@ -52,9 +93,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
                 consultarHCBActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Enfermera");
+        getContentPane().add(consultarHCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 180, -1));
 
         consultarFB.setText("Consultar formulas");
         consultarFB.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +101,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
                 consultarFBActionPerformed(evt);
             }
         });
+        getContentPane().add(consultarFB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 180, -1));
 
         agregarPacienteB.setText("Agregar pacientes");
         agregarPacienteB.addActionListener(new java.awt.event.ActionListener() {
@@ -69,47 +109,47 @@ public class InterfazEnfermera extends javax.swing.JFrame {
                 agregarPacienteBActionPerformed(evt);
             }
         });
+        getContentPane().add(agregarPacienteB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 180, -1));
 
         modificarPacienteB.setText("Modificar pacientes");
         modificarPacienteB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarPacienteBActionPerformed(evt);
-
             }
         });
+        getContentPane().add(modificarPacienteB, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 180, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
 
-                .addGap(144, 144, 144)
-                .addComponent(jLabel1)
-                .addContainerGap(145, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(consultarHCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(consultarFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(agregarPacienteB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modificarPacienteB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47))
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Enfermera");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 119, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 120, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(consultarHCB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(consultarFB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(agregarPacienteB)
-                .addGap(10, 10, 10)
-                .addComponent(modificarPacienteB))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 15, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 16, Short.MAX_VALUE)))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/fondo-blanco.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 350, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,6 +183,33 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_modificarPacienteBActionPerformed
 
+    private void botonAsignarCamasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAsignarCamasActionPerformed
+        // TODO add your handling code here:
+        InterfazAsignarCamas i = new InterfazAsignarCamas(usuarioActual);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonAsignarCamasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ConsultarAsignaciones i = new ConsultarAsignaciones(usuarioActual);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        InterfazAgregarCita i = new InterfazAgregarCita(usuarioActual);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ReporteCitasPaciente i = new ReporteCitasPaciente(usuarioActual);
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,12 +247,16 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JButton agregarPacienteB;
+    private javax.swing.JButton botonAsignarCamas;
     private javax.swing.JButton consultarFB;
     private javax.swing.JButton consultarHCB;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modificarPacienteB;
-
     // End of variables declaration//GEN-END:variables
 }

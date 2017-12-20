@@ -44,6 +44,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        atrasB1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         identifiacion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -74,6 +75,8 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        atrasB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,11 +87,21 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("INFORMACION BASICA");
 
+        atrasB1.setText("Atras");
+        atrasB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasB1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(459, Short.MAX_VALUE)
+                .addComponent(atrasB1)
+                .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -97,7 +110,10 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atrasB1)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -273,6 +289,17 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/employee (3).png"))); // NOI18N
         getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 90, 70));
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/images/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 540, 320));
+
+        atrasB.setText("Atras");
+        atrasB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasBActionPerformed(evt);
+            }
+        });
+        getContentPane().add(atrasB, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 9, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -422,6 +449,20 @@ public class AgregarEmpleados extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void atrasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBActionPerformed
+        // TODO add your handling code here:
+        InterfazAdministrador ventanaAdmin = new InterfazAdministrador();
+        ventanaAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_atrasBActionPerformed
+
+    private void atrasB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasB1ActionPerformed
+        // TODO add your handling code here:
+        InterfazAdministrador ventanaAdmin = new InterfazAdministrador();
+        ventanaAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_atrasB1ActionPerformed
     private static boolean sololetras(String prueba) {
         boolean result = false;
         String comparacion = "!!#$%&/()=?¡*¨][_:;°¬|@·~½¬{[]}~─µ";
@@ -478,6 +519,8 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton activa;
+    private javax.swing.JButton atrasB;
+    private javax.swing.JButton atrasB1;
     private javax.swing.JButton buscar_areas;
     private javax.swing.JButton buscar_jefes;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -498,6 +541,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

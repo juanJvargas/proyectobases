@@ -27,7 +27,7 @@ public class DAOUsuarios {
         String sql_select;
         sql_select = "INSERT INTO usuarios ("
                 + "login, "
-                + "contraseña, "
+                + "contrasena, "
                 + "tipo, "
                 + "estado) "
                 + "VALUES ('" + u.getLogin() + "',"
@@ -53,7 +53,7 @@ public class DAOUsuarios {
     public Usuario consultarUsuario(String login) {
         Usuario u = new Usuario();
         String sql_select;
-        sql_select = "SELECT login, contraseña, tipo, estado FROM  usuarios WHERE login='" + login + "'";
+        sql_select = "SELECT login, contrasena, tipo, estado FROM  usuarios WHERE login='" + login + "'";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando en la bd");
@@ -112,7 +112,7 @@ public class DAOUsuarios {
         String sql_select;
         sql_select = "UPDATE usuarios "
                 + "SET "
-                + "contraseña='" + u.getPassword() + "' WHERE login='" + u.getLogin() + "' ";
+                + "contrasena='" + u.getPassword() + "' WHERE login='" + u.getLogin() + "' ";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("actualizando en  bd");
