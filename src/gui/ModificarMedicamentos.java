@@ -13,23 +13,26 @@ import javax.swing.JOptionPane;
  *
  * @author jdtorres
  */
-public class AgregarMedicamentos extends javax.swing.JFrame {
+public class ModificarMedicamentos extends javax.swing.JFrame {
     InterfazAdministrador ventanaAdmin;
     ControladorMedicamento controladorMedicamento;
     Usuario usuarioActual;
+    int codigoM;
 
     /**
      * Creates new form AgregarMedicamentos
      */
-    public AgregarMedicamentos() {
+    public ModificarMedicamentos() {
         initComponents();
         controladorMedicamento = new ControladorMedicamento();
+        codigoM = 0;
     }
 
-    public AgregarMedicamentos(Usuario u) {
+    public ModificarMedicamentos(Usuario u) {
         initComponents();
         usuarioActual = u;
         controladorMedicamento = new ControladorMedicamento();
+        codigoM = 0;
     }
 
     /**
@@ -54,6 +57,7 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
         cantidadB = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         atrasB = new javax.swing.JButton();
+        consultarB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +85,13 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
         atrasB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasBActionPerformed(evt);
+            }
+        });
+
+        consultarB.setText("Consultar");
+        consultarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarBActionPerformed(evt);
             }
         });
 
@@ -121,7 +132,9 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
                     .addComponent(idMedicamento)
                     .addComponent(nombreMedicamento)
                     .addComponent(descripcionM, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                .addGap(122, 122, 122))
+                .addGap(30, 30, 30)
+                .addComponent(consultarB)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +146,8 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(consultarB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +166,7 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(agregarB)
                 .addContainerGap())
         );
@@ -164,19 +178,19 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (validar()) {
             Medicamento m = new Medicamento();
-            m.setCodigo_medicamento(Integer.valueOf(idMedicamento.getText()));
+            m.setCodigo_medicamento(codigoM);
             m.setNombre(nombreMedicamento.getText());
             m.setDescripcion(descripcionM.getText());
             m.setCosto(Integer.valueOf(costoB.getText()));
             m.setCantidad(Integer.valueOf(cantidadB.getText()));
-            boolean resultado = controladorMedicamento.agregarMedicamento(m);
+            boolean resultado = controladorMedicamento.modificarMedicamento(m);
             if (resultado) {
 
-                JOptionPane.showMessageDialog(this, "Se agrego el medicamento a la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
+                JOptionPane.showMessageDialog(this, "Se modifico el medicamento en la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
                 limpiar();
 
             } else {
-                JOptionPane.showMessageDialog(this, "Hubo un error al agregar el medicamento", "", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Hubo un error al modificar el medicamento", "", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -190,6 +204,24 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_atrasBActionPerformed
 
+    private void consultarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBActionPerformed
+        // TODO add your handling code here:
+        if(!idMedicamento.getText().equals("")){
+           
+            if (controladorMedicamento.consultarMedicamento(idMedicamento.getText()) == null) {
+                JOptionPane.showMessageDialog(this, "No se puede encontrar el Medicamento", "", JOptionPane.INFORMATION_MESSAGE, null);
+            } else {
+                 Medicamento m = controladorMedicamento.consultarMedicamento(idMedicamento.getText());
+                codigoM = m.getCodigo_medicamento();
+                nombreMedicamento.setText(m.getNombre());
+                descripcionM.setText(m.getDescripcion());
+                costoB.setText(String.valueOf(m.getCosto()));
+                cantidadB.setText(String.valueOf(m.getCantidad()));
+                
+            }
+        }
+    }//GEN-LAST:event_consultarBActionPerformed
+
     private void limpiar() {
         idMedicamento.setText("");
         nombreMedicamento.setText("");
@@ -201,17 +233,13 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
     private boolean validar() {
         boolean resultado = true;
 
-        if (idMedicamento.getText().equals("") || nombreMedicamento.getText().equals("") || descripcionM.getText().equals("") || costoB.getText().equals("") || cantidadB.getText().equals("")) {
+        if (nombreMedicamento.getText().equals("") || descripcionM.getText().equals("") || costoB.getText().equals("") || cantidadB.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "", JOptionPane.INFORMATION_MESSAGE, null);
             resultado = false;
             return resultado;
         }
 
-        if (!isNumeric(idMedicamento.getText())) {
-            JOptionPane.showMessageDialog(this, "La identificacion del medicamento debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
+       
         if (!isNumeric(costoB.getText())) {
             JOptionPane.showMessageDialog(this, "El costo del medicamento debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
             resultado = false;
@@ -251,20 +279,21 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarMedicamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarMedicamentos().setVisible(true);
+                new ModificarMedicamentos().setVisible(true);
             }
         });
     }
@@ -273,6 +302,7 @@ public class AgregarMedicamentos extends javax.swing.JFrame {
     private javax.swing.JButton agregarB;
     private javax.swing.JButton atrasB;
     private javax.swing.JTextField cantidadB;
+    private javax.swing.JButton consultarB;
     private javax.swing.JTextField costoB;
     private javax.swing.JTextField descripcionM;
     private javax.swing.JTextField idMedicamento;
