@@ -11,8 +11,9 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import logica.Enfermera;
-import controlador.ControladorEnfermera;
+import logica.*;
+import controlador.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,16 @@ public class AgregarEnfermera extends javax.swing.JFrame {
     int codigo;
     ControladorEnfermera controladorEnfermera = new ControladorEnfermera();
     TableRowSorter<TableModel> sorter1;
+    Empleado empleado = new Empleado();
+    ControladorEmpleado controlEmpleado = new ControladorEmpleado();
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
 
     /**
      * Creates new form AgregarUsuario
@@ -79,12 +90,10 @@ public class AgregarEnfermera extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         habilidades = new javax.swing.JTextField();
-        numero_licencia = new javax.swing.JTextField();
         anos_experiencia = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
 
@@ -112,9 +121,6 @@ public class AgregarEnfermera extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("INFORMACION PROFESIONAL.");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Numero licencia:");
-
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Años de expetiencia:");
 
@@ -123,12 +129,6 @@ public class AgregarEnfermera extends javax.swing.JFrame {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Ides de habilidades:");
-
-        numero_licencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numero_licenciaActionPerformed(evt);
-            }
-        });
 
         agregar.setText("agregar");
         agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,25 +142,21 @@ public class AgregarEnfermera extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(agregar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(211, 211, 211)
+                                .addComponent(agregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(numero_licencia)
-                                    .addComponent(anos_experiencia)))
+                                .addComponent(anos_experiencia))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,11 +168,7 @@ public class AgregarEnfermera extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(numero_licencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(anos_experiencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,22 +184,39 @@ public class AgregarEnfermera extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(agregar)
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addGap(0, 61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numero_licenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numero_licenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numero_licenciaActionPerformed
-
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Enfermera enfermera = new Enfermera();
-        enfermera.setCodigo_habilidad(habilidades.getText());
+        try {
+            enfermera.setAnos_experiencia(Integer.parseInt(anos_experiencia.getText()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Hubo un error, los años de experiencia deben ser numericos", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if(controladorEnfermera.buscarHabilidades(habilidades.getText().split(",")) && !habilidades.getText().endsWith(",")){
+            enfermera.setCodigo_habilidad(habilidades.getText());
+        }else{
+            JOptionPane.showMessageDialog(this, "Hubo un error, las habilidades deben tener el formato #,#,#,......#\n Ademas los codigos deben coincidir con los presentados en la tabla", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         enfermera.setIdentificacion_empleado(codigo);
-        enfermera.setAnos_experiencia(Integer.parseInt(numero_licencia.getText()));
+        
+        Usuario u = new Usuario();
+        ControladorUsuarios controlUsuario= new ControladorUsuarios();
+        controlEmpleado.agregarEmpleado(empleado);
         controladorEnfermera.agregarEnfermera(enfermera);
+        u.setEstado(empleado.getEstado());
+        u.setLogin(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setPassword(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setTipo("enfermera");
+        controlUsuario.agregarUsuario(u);
+
         InterfazAdministrador interfaz = new InterfazAdministrador();
         interfaz.setVisible(true);
         dispose();
@@ -255,13 +264,11 @@ public class AgregarEnfermera extends javax.swing.JFrame {
     private javax.swing.JTextField anos_experiencia;
     private javax.swing.JTextField habilidades;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField numero_licencia;
     // End of variables declaration//GEN-END:variables
 }

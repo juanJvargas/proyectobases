@@ -121,7 +121,8 @@ DROP TABLE IF EXISTS enfermera CASCADE;
 CREATE TABLE enfermera(
 	identificacion_empleado INTEGER,
 	anos_experiencia INTEGER,
-        codigo_habilidad INTEGER,
+        codigo_habilidad VARCHAR(50),
+        PRIMARY KEY(identificacion_empleado),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
@@ -216,12 +217,11 @@ INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El pacien
 --- FIN CAUSAS
 
 --- USUSARIOS
-INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
-
-INSERT INTO usuarios VALUES ('114401', '114401', 'medico', 'activo');
-INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activo');
-
-INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activo');
+INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activa');
+INSERT INTO usuarios VALUES ('enfermera', 'enfermera', 'enfermera', 'activa');
+INSERT INTO usuarios VALUES ('114401', '114401', '1144099304medico', 'activa');
+INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activa');
+INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activa');
 
 
 --- FIN USUARIOS

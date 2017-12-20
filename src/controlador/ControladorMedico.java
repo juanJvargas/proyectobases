@@ -61,5 +61,14 @@ public class ControladorMedico {
         ve = daoMedico.todosMedicosLibresEnFechaHora(fecha, hora);
         return ve;
     }
+    public boolean buscarEspecialidades(String[] especialidad){
+        for (int i = 0; i < especialidad.length; i++) {
+            ArrayList lista= especialidades();
+            if(!lista.contains(especialidad[i])){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
