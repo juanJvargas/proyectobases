@@ -28,4 +28,7 @@ public class ControladorPaciente {
     public ArrayList<Paciente> consultarPacientes(){
         return daopaciente.consultarPacientes();
     }
+    public boolean modificarPaciente(Paciente p){
+        return daopaciente.updatePaciente(p);
+    }
 }
