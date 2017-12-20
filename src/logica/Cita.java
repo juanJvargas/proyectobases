@@ -16,6 +16,25 @@ public class Cita {
     private String fecha;
     private int hora;
 
+    public int getCosto() {
+        return costo;
+    }
+    private String atendida;
+    private int costo;
+
+    public Cita() {
+
+    }
+    
+    public void atenderCita(int costo){
+        atendida = "si";
+        this.costo = costo;
+    }
+
+    public void setAtendida(String atendida) {
+        this.atendida = atendida;
+    }
+
     public int getIdentificacionPaciente() {
         return identificacionPaciente;
     }
@@ -48,8 +67,8 @@ public class Cita {
         return hora;
     }
 
-    public Cita() {
-
+    public String getAtendida() {
+        return atendida;
     }
 
 }

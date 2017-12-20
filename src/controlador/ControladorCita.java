@@ -23,6 +23,10 @@ public class ControladorCita {
         return dao.insertarCita(cita);
     }
     
+    public boolean actualizarCita(Cita cita){
+        return dao.actualizarCita(cita);
+    }
+    
     
     
 }

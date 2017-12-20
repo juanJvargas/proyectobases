@@ -28,7 +28,7 @@ public class DAOCita {
                 + " VALUES('" + cita.getIdentificacionPaciente()
                 + "','" + cita.getIdentificacionEmpleado()
                 + "','" + cita.getFecha()
-                + "','" + cita.getHora() +"')";
+                + "','" + cita.getHora() + ", 'no', 0)";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -42,4 +42,30 @@ public class DAOCita {
         }
         return false;
     }
+
+    public boolean actualizarCita(Cita c) {
+        String sql_select;
+        sql_select = "UPDATE Cita "
+                + "SET "
+                + "atendida = 'si', "
+                + "costo = '" + c.getCosto() + "', "
+                + " WHERE identificacion_paciente = '" + c.getIdentificacionPaciente() + "' and"
+                + " identificacion_empleado = '"+c.getIdentificacionEmpleado()+"' and fecha = '"+c.getFecha()+"'";
+        System.out.println(sql_select);
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("actualizando area  en  bd");
+            Statement sentencia = conn.createStatement();
+            sentencia.executeUpdate(sql_select);
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+
+    }
+
 }
