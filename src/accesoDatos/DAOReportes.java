@@ -45,12 +45,19 @@ public class DAOReportes {
     }
 
     public ResultSet obtenerCitasConMedicoFecha(int idmedico, String fecha) {
-        String sql = "select identificacion_paciente, nombre, fecha, hora from cita natural join paciente where identificacion_empleado = '"+idmedico+"' and fecha = '"+fecha+"'";
+        String sql = "select identificacion_paciente, nombre, fecha, hora from cita natural join paciente where identificacion_empleado = '" + idmedico + "' and fecha = '" + fecha + "'";
         return consultarSentencia(sql);
     }
 
     public ResultSet obtenerModeloCitasConPaciente(int identificacionPaciente) {
-        String sql = "select nombre as medico, fecha, hora from cita natural join empleado where identificacion_paciente = '"+identificacionPaciente+"' and fecha >= NOW()";
-        return consultarSentencia(sql);    }
+        String sql = "select nombre as medico, fecha, hora from cita natural join empleado where identificacion_paciente = '" + identificacionPaciente + "' and fecha >= NOW()";
+        return consultarSentencia(sql);
+    }
+
+    public ResultSet obtenerModeloAgendaMesMedico(int identificacionMedico, String fechaInferior, String fechaSuperior) {
+        String sql = "select identificacion_paciente, nombre, fecha, hora from cita natural join paciente where identificacion_empleado = '" + identificacionMedico + "' and fecha >= '" + fechaInferior + "' and fecha < '"+fechaSuperior+"'";
+        System.out.println(sql);
+        return consultarSentencia(sql);
+    }
 
 }

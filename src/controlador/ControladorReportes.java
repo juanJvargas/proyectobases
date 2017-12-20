@@ -77,5 +77,16 @@ public class ControladorReportes {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;    }
+        return null;   
+    }
+
+    public TableModel obtenerModeloAgendaMesMedico(int identificacionMedico, String fechaInferior, String fechaSuperior) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloAgendaMesMedico(identificacionMedico, fechaInferior, fechaSuperior));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;   
+
+    }
 }
