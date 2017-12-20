@@ -24,6 +24,7 @@ public class ConsultarFormula extends javax.swing.JFrame {
     ControladorFormulaMedicamento controladorFormulaMedicamento;
     ControladorMedicamento controladorMedicamento;
     InterfazMedico ventanaMedico;
+    InterfazEnfermera ventanaEnfermera;
 
     /**
      * Creates new form ConsultarFormula
@@ -246,9 +247,15 @@ public class ConsultarFormula extends javax.swing.JFrame {
 
     private void atrasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBActionPerformed
         // TODO add your handling code here:
-        ventanaMedico = new InterfazMedico(usuarioActual);
-        ventanaMedico.setVisible(true);
-        dispose();
+        if (usuarioActual.getTipo().equals("enfermera")) {
+            ventanaEnfermera = new InterfazEnfermera(usuarioActual);
+            ventanaEnfermera.setVisible(true);
+            dispose();
+        } else {
+            ventanaMedico = new InterfazMedico(usuarioActual);
+            ventanaMedico.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_atrasBActionPerformed
 
     private void consultarMBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarMBActionPerformed

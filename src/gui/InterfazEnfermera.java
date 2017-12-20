@@ -12,6 +12,10 @@ import logica.*;
  */
 public class InterfazEnfermera extends javax.swing.JFrame {
     Usuario usuarioActual;
+    ConsultarFormula consultarFormula;
+    ReportesHC consultarHistoriaClinica;
+    AgregarPaciente agregarPaciente;
+    ModificarPaciente modificarPaciente;
     /**
      * Creates new form InterfazEnfermera
      */
@@ -33,21 +37,107 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        consultarHCB = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        consultarFB = new javax.swing.JButton();
+        agregarPacienteB = new javax.swing.JButton();
+        modificarPacienteB = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        consultarHCB.setText("Consultar historia clinica");
+        consultarHCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarHCBActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Enfermera");
+
+        consultarFB.setText("Consultar formulas");
+        consultarFB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarFBActionPerformed(evt);
+            }
+        });
+
+        agregarPacienteB.setText("Agregar pacientes");
+        agregarPacienteB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarPacienteBActionPerformed(evt);
+            }
+        });
+
+        modificarPacienteB.setText("Modificar pacientes");
+        modificarPacienteB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarPacienteBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel1)
+                .addContainerGap(145, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(consultarHCB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(consultarFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(agregarPacienteB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(modificarPacienteB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addComponent(consultarHCB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultarFB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(agregarPacienteB)
+                .addGap(10, 10, 10)
+                .addComponent(modificarPacienteB))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void consultarHCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarHCBActionPerformed
+        // TODO add your handling code here:
+        consultarHistoriaClinica = new ReportesHC(usuarioActual);
+        consultarHistoriaClinica.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_consultarHCBActionPerformed
+
+    private void consultarFBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFBActionPerformed
+        // TODO add your handling code here:
+        consultarFormula = new ConsultarFormula(usuarioActual);
+        consultarFormula.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_consultarFBActionPerformed
+
+    private void agregarPacienteBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPacienteBActionPerformed
+        // TODO add your handling code here:
+        agregarPaciente = new AgregarPaciente(usuarioActual);
+        agregarPaciente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_agregarPacienteBActionPerformed
+
+    private void modificarPacienteBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarPacienteBActionPerformed
+        // TODO add your handling code here:
+        modificarPaciente = new ModificarPaciente(usuarioActual);
+        modificarPaciente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_modificarPacienteBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,5 +175,10 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarPacienteB;
+    private javax.swing.JButton consultarFB;
+    private javax.swing.JButton consultarHCB;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton modificarPacienteB;
     // End of variables declaration//GEN-END:variables
 }
