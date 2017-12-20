@@ -52,7 +52,7 @@ public class DAOMedico {
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
-        sql_select = "SELECT identificacion_empleado, nombre FROM  medico NATURAL JOIN empleado  WHERE identificacion_empleado in (SELECT identificacion_empleado FORM empleado WHERE estado='activa')";
+        sql_select = "SELECT identificacion_empleado, nombre FROM  medico NATURAL JOIN empleado  WHERE identificacion_empleado in (SELECT identificacion_empleado FROM empleado WHERE estado='activa')";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
@@ -134,16 +134,16 @@ public class DAOMedico {
 
     public boolean updatemedico(Medico medico) {
         String sql_select;
-        sql_select = "UPDATE empleado "
+        sql_select = "UPDATE medico "
                 + "SET "
-                + "identificaion_empleado='" + medico.getIdentificacion_empleado() + "', "
+                + "identificacion_empleado='" + medico.getIdentificacion_empleado() + "', "
                 + "numero_licencia='" + medico.getNumero_licencia() + "', "
                 + "codigo_especialidad='" + medico.getCodigo_especialidad() + "', "
-                + "universidad='" + medico.getUniversidad() + "' "
-                + "' WHERE idenitfiacion_empleado='" + medico.getIdentificacion_empleado() + "' ";
+                + "universidad='" + medico.getUniversidad()
+                + "' WHERE identificacion_empleado='" + medico.getIdentificacion_empleado() + "' ";
         try {
             Connection conn = acceso.getConnetion();
-            System.out.println("actualizando empleado  en  bd");
+            System.out.println("actualizando medico  en  bd");
             Statement sentencia = conn.createStatement();
             sentencia.executeUpdate(sql_select);
 

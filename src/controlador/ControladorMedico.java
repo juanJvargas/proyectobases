@@ -70,5 +70,10 @@ public class ControladorMedico {
         }
         return true;
     }
+    public ArrayList<String> todosMedicos(){
+    ArrayList<String> ve = new ArrayList<String>();
+        ve = daoMedico.todosMedico() ;
+        return ve;
+    }
 
 }

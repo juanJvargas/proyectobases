@@ -29,10 +29,10 @@ public class ControladorEnfermera {
     }
 
     public Enfermera consultarEnfermera(int codigo) {
-        Enfermera empleado = new Enfermera();
-        System.out.println("Se va a consultar un area");
-        empleado = daoEnfermera.consultarEnfermera(codigo);
-        return empleado;
+        Enfermera enfermera = new Enfermera();
+        System.out.println("Se va a consultar una enfermera");
+        enfermera = daoEnfermera.consultarEnfermera(codigo);
+        return enfermera;
 
     }
 

@@ -8,4 +8,4 @@
  * Created: 15-dic-2017
  */
 
-SELECT * FROM area;
+SELECT * FROM campana_prevencion;

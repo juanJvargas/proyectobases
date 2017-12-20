@@ -1,3 +1,4 @@
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,7 +28,6 @@ CREATE TABLE cama(
 DROP TABLE IF EXISTS paciente CASCADE;
 CREATE TABLE paciente(
 	identificacion_paciente INTEGER PRIMARY KEY,
-        nombre VARCHAR(100),
 	direccion VARCHAR(100),
 	telefono VARCHAR(100),
 	fecha_nacimiento DATE,
@@ -120,14 +120,12 @@ CREATE TABLE formula_medicamento(
 
 DROP TABLE IF EXISTS enfermera CASCADE;
 CREATE TABLE enfermera(
-	identificacion_empleado INTEGER PRIMARY KEY,
+	identificacion_empleado INTEGER,
 	anos_experiencia INTEGER,
         codigo_habilidad VARCHAR(50),
-
-
+        PRIMARY KEY(identificacion_empleado),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
-
 
 DROP TABLE IF EXISTS habilidad CASCADE;
 CREATE TABLE habilidad(
@@ -135,7 +133,7 @@ CREATE TABLE habilidad(
 	descripcion VARCHAR(500)
 	
 );
-
+INSERT INTO habilidad VALUES(1,'INYECTARLE LAS NALGAS A CARLOS');
 
 
 DROP TABLE IF EXISTS  especialidad CASCADE;
@@ -194,13 +192,13 @@ CREATE TABLE incluye(
 DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios(
 	login VARCHAR(20) PRIMARY KEY NOT NULL,
-	contraseña VARCHAR(20),
+	contrasena VARCHAR(20),
 	tipo VARCHAR(20),
 	estado VARCHAR(10)
 );
 
 
-INSERT INTO habilidad VALUES(1,'INYECTARLE LAS NALGAS A CARLOS');
+
 
 --- AREAS
 INSERT INTO area VALUES (1, 'GINECOLOGIA Y OBSTETRICIA', 'Todo relacionado con embarazos y ginecologia','activa');
@@ -220,20 +218,14 @@ INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El pacien
 --- FIN CAUSAS
 
 --- USUSARIOS
-
-INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
-
-INSERT INTO usuarios VALUES ('114401', '114401', 'medico', 'activo');
-INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activo');
-
-INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activo');
-INSERT INTO usuarios VALUES ('114405', '114405', 'enfermera', 'activo');
-
+INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activa');
+INSERT INTO usuarios VALUES ('enfermera', 'enfermera', 'enfermera', 'activa');
+INSERT INTO usuarios VALUES ('114401', '114401', '1144099304medico', 'activa');
+INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activa');
+INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activa');
 
 
 --- FIN USUARIOS
-
-
 
 --- EMPLEADOS
 insert into empleado VALUES (114401, 'cr 40 # 71 - 12', '30434501' , 'Carlos Tovar', 'carlos.tovar@gmail.com', '1000000', 1, NULL, 'activa');
@@ -242,17 +234,19 @@ insert into empleado VALUES (114403, 'cr 28 # 92 - 43', '30434503' , 'Juan David
 insert into empleado VALUES (114404, 'cr 17 # 01 - 13', '30434504' , 'Alexandra Lopez', 'alexandra.lopez@gmail.com', '2500000', 1, NULL, 'activa');
 insert into empleado VALUES (114405, 'cr 06 # 10 - 15', '30434505' , 'Melissa Millares', 'melissa.millares@gmail.com', '3000000', 4, 114404, 'activa');
 insert into empleado VALUES (114406, 'cr 95 # 29 - 26', '30434506' , 'Felipe Montoya', 'felipe.montoya@gmail.com', '3500000', 5, 114404, 'activa');
+insert into empleado VALUES (114407,'cr 96 # 30-27','3218552604','Jose David','jose.david.mamian@correounivalle.edu.co','1000',1,114402,'inactiva');
 
 --- FIN EMPLEADOS
-
-INSERT INTO enfermera VALUES (114405, 2, '1');
 
 --- MEDICOS
 insert into medico VALUES(114401,'1000123','1,2,3','UNIVALLE');
 insert into medico VALUES(114402,'1000124','1,3,4','UNILIBRE');
 insert into medico VALUES(114404,'1000125','2,3,4','UNIANDES');
 --- FIN MEDICOS
+--- ENFERMERA
+INSERT INTO enfermera VALUES(114407,'5','1'); 
 
+--- FIN ENFERMERA
 --- CAMAS
 insert into cama values (1, 'Partos 1', 'activa', 1);
 insert into cama values (2, 'Partos 2', 'activa', 1);
@@ -296,14 +290,13 @@ insert into cama values (35, 'Habitacion 3 - UCI', 'inactiva', 5);
 --- FIN CAMAS
 
 --- PACIENTES
-insert into paciente values(1523382, 'Luis Granja', 'cr 17 # 31 - 29', '3701720', NOW(), 'Obrero', 'Coomeva', NOW());
-insert into paciente values(1526750, 'Victor Gomez', 'cr 26 # 42 - 38', '3702639', NOW(), 'Ingeniero de sistemas', 'Comfandi', NOW());
-insert into paciente values(1530267, 'Melissa Millares', 'cr 35 # 53 - 46', '3703548', NOW(), 'Comerciante', 'Cafesalud', NOW());
-insert into paciente values(1527471, 'Ivan Toro', 'cr 44 # 64 - 56', '3704457', NOW(), 'Secretaria', 'Coomeva', NOW());
-insert into paciente values(1527472, 'Jose David', 'cr 53 # 75 - 65', '3705366', NOW(), 'Contadora', 'Colsalud', NOW());
-insert into paciente values(1527473, 'Javier Palacios', 'cr 62 # 86 - 74', '3706275', NOW(), 'Medico', 'Emssanar', NOW());
-insert into paciente values(1527474, 'Sebastian Villegas', 'cr 71 # 97 - 83', '3707184', NOW(), 'Psicologa', 'Sura', NOW());
-
+insert into paciente values(1523382, 'cr 17 # 31 - 29', '3701720', NOW(), 'Obrero', 'Coomeva', NOW());
+insert into paciente values(1526750, 'cr 26 # 42 - 38', '3702639', NOW(), 'Ingeniero de sistemas', 'Comfandi', NOW());
+insert into paciente values(1530267, 'cr 35 # 53 - 46', '3703548', NOW(), 'Comerciante', 'Cafesalud', NOW());
+insert into paciente values(1527471, 'cr 44 # 64 - 56', '3704457', NOW(), 'Secretaria', 'Coomeva', NOW());
+insert into paciente values(1527472, 'cr 53 # 75 - 65', '3705366', NOW(), 'Contadora', 'Colsalud', NOW());
+insert into paciente values(1527473, 'cr 62 # 86 - 74', '3706275', NOW(), 'Medico', 'Emssanar', NOW());
+insert into paciente values(1527474, 'cr 71 # 97 - 83', '3707184', NOW(), 'Psicologa', 'Sura', NOW());
 --- FIN PACIENTES
 
 --- CITAS

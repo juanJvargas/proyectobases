@@ -6,9 +6,11 @@
 package gui;
 
 import controlador.*;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logica.Usuario;
 
@@ -30,6 +32,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         usuarioActual = new Usuario();
         initComponents();
         controladorUsuarios = new ControladorUsuarios();
+        
 
     }
 
@@ -167,6 +170,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazPrincipal().setVisible(true);
+                
             }
         });
     }
