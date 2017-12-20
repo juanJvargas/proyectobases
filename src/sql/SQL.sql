@@ -311,7 +311,11 @@ insert into paciente values(1527474, 'Sebastian Villegas', 'cr 71 # 97 - 83', '3
 insert into cita values(1527471, 114401, '2017-12-18', 7, 'no', 0);
 insert into cita values(1527472, 114401, '2017-12-19', 10, 'no', 0);
 insert into cita values(1527473, 114402, '2017-12-20', 13, 'no', 0);
-insert into cita values(1527474, 114404, '2017-12-20', 16, 'no', 0);
+
+insert into cita values(1523382, 114404, '2017-12-20', 14, 'no', 0);
+insert into cita values(1526750, 114404, '2017-12-20', 15, 'no', 0);
+insert into cita values(1530267, 114404, '2017-12-20', 16, 'no', 0);
+
 --- FIN CITAS
 
 --- ASIGNACIONES

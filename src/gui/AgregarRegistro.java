@@ -87,8 +87,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        idPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         observaciones = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -109,14 +107,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Agregar registro consulta paciente");
-
-        jLabel2.setText("Identificacion paciente");
-
-        idPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idPacienteActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Observaciones consulta");
 
@@ -211,7 +201,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel6)
@@ -224,7 +213,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(causasB))
                             .addComponent(observaciones)
-                            .addComponent(idPaciente)
                             .addComponent(costoCita))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(atrasB))
@@ -241,11 +229,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel1)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(costoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,10 +263,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idPacienteActionPerformed
-
     private void causasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_causasBActionPerformed
         // TODO add your handling code here:
         causasCB.removeAllItems();
@@ -304,10 +284,10 @@ public class AgregarRegistro extends javax.swing.JFrame {
         if (validar()) {
             Formula fo = new Formula();
             fo.setIdentificacionEmpleado(Integer.valueOf(usuarioActual.getLogin()));
-            fo.setIdentificacionPaciente(Integer.valueOf(idPaciente.getText()));
+            fo.setIdentificacionPaciente(Integer.valueOf(citaActual.getIdentificacionPaciente()));
 
             Registro registro = new Registro();
-            registro.setIdentificacion_paciente(Integer.valueOf(idPaciente.getText()));
+            registro.setIdentificacion_paciente(Integer.valueOf(citaActual.getIdentificacionPaciente()));
             registro.setIdentificacion_empleado(Integer.valueOf(usuarioActual.getLogin()));
 
             String aux = causasCB.getSelectedItem().toString();
@@ -379,26 +359,13 @@ public class AgregarRegistro extends javax.swing.JFrame {
 
     public boolean validar() { //Falta validar que exista un paciente manualmente, no dejarselo a la BD
         boolean resultado = true;
-        if (idPaciente.getText().equals("") || observaciones.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Verifique los campos", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
+
         if (causasCB.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una causa", "", JOptionPane.INFORMATION_MESSAGE, null);
             resultado = false;
             return resultado;
         }
-        if (!isNumeric(idPaciente.getText())) {
-            JOptionPane.showMessageDialog(this, "La identificacion del paciente debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
-        if (controladorPaciente.consultarPaciente(idPaciente.getText()) == null) {
-            JOptionPane.showMessageDialog(this, "El paciente no se encuentra en la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
+
 
         if (medicamentosS.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe añadir medicamentos a la formula", "", JOptionPane.INFORMATION_MESSAGE, null);
@@ -432,8 +399,6 @@ public class AgregarRegistro extends javax.swing.JFrame {
     }
 
     public void limpiar() {
-        idPaciente.setText("");
-
         observaciones.setText("");
         causasCB.removeAllItems();
     }
@@ -495,9 +460,7 @@ public class AgregarRegistro extends javax.swing.JFrame {
     private javax.swing.JButton causasB;
     private javax.swing.JComboBox<String> causasCB;
     private javax.swing.JTextField costoCita;
-    private javax.swing.JTextField idPaciente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

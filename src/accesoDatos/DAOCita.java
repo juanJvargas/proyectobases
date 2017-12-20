@@ -48,7 +48,7 @@ public class DAOCita {
         sql_select = "UPDATE Cita "
                 + "SET "
                 + "atendida = 'si', "
-                + "costo = '" + c.getCosto() + "', "
+                + "costo = '" + c.getCosto() + "' "
                 + " WHERE identificacion_paciente = '" + c.getIdentificacionPaciente() + "' and"
                 + " identificacion_empleado = '"+c.getIdentificacionEmpleado()+"' and fecha = '"+c.getFecha()+"'";
         System.out.println(sql_select);
