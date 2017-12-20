@@ -27,6 +27,24 @@ public class ControladorReportes {
         daoreportes = new DAOReportes();
     }
 
+    public DefaultTableModel obtenerModeloMedicamentosDeFormula(int idpaciente, int idmedico, String fecha) {
+        try {
+            return buildTableModel(daoreportes.obtenerMedicamentosDeFormula( idpaciente,  idmedico,  fecha));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public DefaultTableModel obtenerModeloCitasHOY(int idmedico) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloCitasHOY(idmedico));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public DefaultTableModel obtenerModeloCitas() {
         try {
             return buildTableModel(daoreportes.obtenerCitas());
@@ -77,7 +95,7 @@ public class ControladorReportes {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;   
+        return null;
     }
 
     public TableModel obtenerModeloAgendaMesMedico(int identificacionMedico, String fechaInferior, String fechaSuperior) {
@@ -86,7 +104,16 @@ public class ControladorReportes {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;   
+        return null;
 
+    }
+
+    public TableModel obtenerModeloCitasAtendidasPorMedico(String fechaInferior, String fechaSuperior) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloCitasAtendidasPorMedico(fechaInferior, fechaSuperior));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
