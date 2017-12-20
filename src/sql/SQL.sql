@@ -191,7 +191,7 @@ CREATE TABLE incluye(
 DROP TABLE IF EXISTS usuarios CASCADE;
 CREATE TABLE usuarios(
 	login VARCHAR(20) PRIMARY KEY NOT NULL,
-	contraseña VARCHAR(20),
+	contrasena VARCHAR(20),
 	tipo VARCHAR(20),
 	estado VARCHAR(10)
 );
