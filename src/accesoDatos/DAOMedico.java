@@ -52,7 +52,7 @@ public class DAOMedico {
         String sql_select;
         ArrayList<String> ve = new ArrayList<String>();
 
-        sql_select = "SELECT identificacion_empleado, nombre FROM  medico NATURAL JOIN empleado  WHERE identificacion_empleado in (SELECT identificacion_empleado FORM empleado WHERE estado='activa')";
+        sql_select = "SELECT identificacion_empleado, nombre FROM  medico NATURAL JOIN empleado  WHERE identificacion_empleado in (SELECT identificacion_empleado FROM empleado WHERE estado='activa')";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("consultando la sede en la bd");
