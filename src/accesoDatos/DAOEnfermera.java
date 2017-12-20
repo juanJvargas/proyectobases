@@ -81,7 +81,8 @@ public class DAOEnfermera {
             Statement sentencia = conn.createStatement();
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
-
+               
+                System.out.println(tabla.getString(1)+"|"+Integer.parseInt(tabla.getString(2))+"|"+tabla.getString(3));
                 enfermera.setIdentificacion_empleado(Integer.valueOf(tabla.getString(1)));
                 enfermera.setAnos_experiencia(Integer.parseInt(tabla.getString(2)));
                 enfermera.setCodigo_habilidad(tabla.getString(3));
@@ -101,15 +102,15 @@ public class DAOEnfermera {
 
     public boolean updateenfermera(Enfermera enfermera) {
         String sql_select;
-        sql_select = "UPDATE empleado "
+        sql_select = "UPDATE enfermera "
                 + "SET "
-                + "identificaion_empleado='" + enfermera.getIdentificacion_empleado() + "', "
-                + "numero_licencia='" + enfermera.getAnos_experiencia()+ "', "
-                + "codigo_habilidad='" + enfermera.getCodigo_habilidad() + "' "
-                + "' WHERE idenitfiacion_empleado='" + enfermera.getIdentificacion_empleado() + "' ";
+                + "identificacion_empleado='" + enfermera.getIdentificacion_empleado() + "', "
+                + "anos_experiencia='" + enfermera.getAnos_experiencia()+ "', "
+                + "codigo_habilidad='" + enfermera.getCodigo_habilidad()
+                + "' WHERE identificacion_empleado='" + enfermera.getIdentificacion_empleado() + "' ";
         try {
             Connection conn = acceso.getConnetion();
-            System.out.println("actualizando empleado  en  bd");
+            System.out.println("actualizando enfermera  en  bd");
             Statement sentencia = conn.createStatement();
             sentencia.executeUpdate(sql_select);
 

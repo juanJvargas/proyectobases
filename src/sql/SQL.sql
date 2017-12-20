@@ -233,6 +233,7 @@ insert into empleado VALUES (114403, 'cr 28 # 92 - 43', '30434503' , 'Juan David
 insert into empleado VALUES (114404, 'cr 17 # 01 - 13', '30434504' , 'Alexandra Lopez', 'alexandra.lopez@gmail.com', '2500000', 1, NULL, 'activa');
 insert into empleado VALUES (114405, 'cr 06 # 10 - 15', '30434505' , 'Melissa Millares', 'melissa.millares@gmail.com', '3000000', 4, 114404, 'activa');
 insert into empleado VALUES (114406, 'cr 95 # 29 - 26', '30434506' , 'Felipe Montoya', 'felipe.montoya@gmail.com', '3500000', 5, 114404, 'activa');
+insert into empleado VALUES (114407,'cr 96 # 30-27','3218552604','Jose David','jose.david.mamian@correounivalle.edu.co','1000',1,114402,'inactiva');
 
 --- FIN EMPLEADOS
 
@@ -241,7 +242,10 @@ insert into medico VALUES(114401,'1000123','1,2,3','UNIVALLE');
 insert into medico VALUES(114402,'1000124','1,3,4','UNILIBRE');
 insert into medico VALUES(114404,'1000125','2,3,4','UNIANDES');
 --- FIN MEDICOS
+--- ENFERMERA
+INSERT INTO enfermera VALUES(114407,'5','1'); 
 
+--- FIN ENFERMERA
 --- CAMAS
 insert into cama values (1, 'Partos 1', 'activa', 1);
 insert into cama values (2, 'Partos 2', 'activa', 1);
