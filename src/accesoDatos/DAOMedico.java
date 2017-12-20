@@ -29,7 +29,7 @@ public class DAOMedico {
 
         sql_select = "INSERT INTO medico"
                 + " VALUES('" + String.valueOf(medico.getIdentificacion_empleado())
-                + "','" + medico.getNumero_licencia()
+                + "','" + String.valueOf(medico.getNumero_licencia())
                 + "','" + medico.getCodigo_especialidad()
                 + "','" + medico.getUniversidad() + "')";
         try {
@@ -115,7 +115,7 @@ public class DAOMedico {
             while (tabla.next()) {
 
                 medico.setIdentificacion_empleado(Integer.valueOf(tabla.getString(1)));
-                medico.setNumero_licencia(tabla.getString(2));
+                medico.setNumero_licencia(Integer.parseInt(tabla.getString(2)));
                 medico.setCodigo_especialidad(tabla.getString(3));
                 medico.setUniversidad(tabla.getString(4));
 

@@ -12,3 +12,4 @@
 
 SELECT * FROM empleado;
 --SELECT * FROM empleado WHERE identificacion_empleado='1523382'
+--SELECT * FROM  empleado WHERE estado='activa'

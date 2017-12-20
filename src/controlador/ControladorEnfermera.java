@@ -57,5 +57,13 @@ public class ControladorEnfermera {
         return ve;
     }
 
-
+    public boolean buscarHabilidades(String[] habilidades){
+        for (int i = 0; i < habilidades.length; i++) {
+            ArrayList lista= habilidades();
+            if(!lista.contains(habilidades[i])){
+                return false;
+            }
+        }
+        return true;
+    }
 }

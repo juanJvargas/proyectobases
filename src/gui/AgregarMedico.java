@@ -9,18 +9,23 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import controlador.ControladorMedico;
+import controlador.*;
 import java.util.ArrayList;
-import logica.Medico;
+import javax.swing.JOptionPane;
+import logica.*;
 
 /**
  *
  * @author juan
  */
 public class AgregarMedico extends javax.swing.JFrame {
+
     int codigo;
     ControladorMedico controladorMedico = new ControladorMedico();
     TableRowSorter<TableModel> sorter1;
+    Empleado empleado = new Empleado();
+    ControladorEmpleado controlEmpleado = new ControladorEmpleado();
+
     /**
      * Creates new form agregarMedico
      */
@@ -29,9 +34,15 @@ public class AgregarMedico extends javax.swing.JFrame {
         acomodarTabla();
     }
 
-    
-    
-    private void acomodarTabla(){
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    private void acomodarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
         sorter1 = new TableRowSorter<>(modelo);
@@ -54,11 +65,7 @@ public class AgregarMedico extends javax.swing.JFrame {
         }
 
         // TODO add your handling code here:
-    }                                        
-
-        
-
-    
+    }
 
     public int getCodigo() {
         return codigo;
@@ -68,6 +75,7 @@ public class AgregarMedico extends javax.swing.JFrame {
         this.codigo = codigo;
         acomodarTabla();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,15 +218,28 @@ public class AgregarMedico extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Medico medico = new Medico();
-        medico.setCodigo_especialidad(especialidades.getText());
+
+        try {
+            medico.setNumero_licencia(Integer.parseInt(numero_licencia.getText()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Hubo un error, la especialidad debe ser numerica", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if (controladorMedico.buscarEspecialidades(especialidades.getText().split(",")) && !especialidades.getText().endsWith(",")) {
+            medico.setCodigo_especialidad(especialidades.getText());
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error, las especialidades deben tener el formato #,#,#,......# \n Ademas los codigos deben coincidir con los presentados en la tabla", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         medico.setIdentificacion_empleado(codigo);
-        medico.setNumero_licencia(numero_licencia.getText());
         medico.setUniversidad(Universidad.getText());
+        controlEmpleado.agregarEmpleado(empleado);
         controladorMedico.agregarMedico(medico);
+
         InterfazAdministrador interfaz = new InterfazAdministrador();
         interfaz.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_agregarActionPerformed
 
     /**

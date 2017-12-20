@@ -20,14 +20,12 @@ import javax.swing.JOptionPane;
 public class AgregarEmpleados extends javax.swing.JFrame {
 
     ControladorArea controlArea;
-    ControladorEmpleado controlEmpleado;
+    ControladorEmpleado controlEmpleado = new ControladorEmpleado();
 
     /**
      * Creates new form AgregarEmpleados
      */
     public AgregarEmpleados() {
-        controlArea = new ControladorArea();
-        controlEmpleado = new ControladorEmpleado();
         initComponents();
         controlArea = new ControladorArea();
 
@@ -348,7 +346,11 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
         codigo_jefe.removeAllItems();
         ArrayList<String> ve = new ArrayList<String>();
-        ve = controlEmpleado.retornarEmpleados();
+        try {
+            ve = controlEmpleado.retornarEmpleados();
+        } catch (NullPointerException e) {
+            System.out.println(ve);
+        }
         codigo_jefe.addItem("");
 
         for (int i = 0; i < ve.size() - 1; i += 2) {
@@ -395,70 +397,94 @@ public class AgregarEmpleados extends javax.swing.JFrame {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Empleado empleado = new Empleado();
-        empleado.setIdentificacion_empleado(Integer.parseInt(this.identifiacion.getText()));
-        empleado.setDireccion(this.direccion.getText());
-        empleado.setTelefono(this.telefono.getText());
-        empleado.setNombre(this.nombre.getText());
-        empleado.setEmail(this.email.getText());
-        empleado.setSalario(Integer.parseInt(this.salario.getText()));
-
-
-        String codigo = this.codigo_areas.getSelectedItem().toString();
-        String[] cod = codigo.split(",");
-
-        boolean seModifico = false;
-        boolean aux = false;
-        if ((cod[0].compareTo("null") != 0) && (cod[0].compareTo("") != 0) && !(aux)) {
-            empleado.setCodigo_area(Integer.parseInt(cod[0]));
-        } else {
-            aux = true;
-        }
-        String parametro = "" + this.codigo_jefe.getSelectedItem();
-        if ((parametro.compareTo("null") != 0) && (parametro.compareTo("") != 0) && !(aux)) {
-
-            codigo = this.codigo_jefe.getSelectedItem().toString();
-            cod = codigo.split(",");
-            empleado.setIdentificacion_jefe(Integer.parseInt(cod[0]));
-        } else {
-            empleado.setIdentificacion_jefe(0);
-        }
-
-        if (!(medico.isSelected()||enfermera.isSelected())) {
-            aux=true;
-        }
-        if (this.activa.isSelected() && !(aux)) {
-            empleado.setEstado("activa");
-            seModifico = controlEmpleado.agregarEmpleado(empleado);
-        } else if (this.inactiva.isSelected() && !(aux)) {
-
-            empleado.setEstado("inactiva");
-            seModifico = controlEmpleado.agregarEmpleado(empleado);
-        }
-
-
-        if (seModifico) {
-            JOptionPane.showMessageDialog(this, "Se modifico  la base de datos");
-
-            if (medico.isSelected()) {
-                   AgregarMedico medico= new AgregarMedico();
-                   medico.setCodigo(Integer.parseInt(identifiacion.getText()));
-                   medico.setVisible(true);
-                   dispose();
+        if (!direccion.getText().equalsIgnoreCase("") && !telefono.getText().equalsIgnoreCase("")
+                && !nombre.getText().equalsIgnoreCase("") && !email.getText().equalsIgnoreCase("")) {
+            Empleado empleado = new Empleado();
+            
+            empleado.setDireccion(this.direccion.getText());
+            empleado.setTelefono(this.telefono.getText());
+            empleado.setNombre(this.nombre.getText());
+            empleado.setEmail(this.email.getText());
+            
+            String codigo = "";
+            boolean seModifico = false;
+            boolean aux = false;
+            try {
+                empleado.setIdentificacion_empleado(Integer.parseInt(this.identifiacion.getText()));
+                empleado.setSalario(Integer.parseInt(this.salario.getText()));
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Hubo un error, el codigo y el salario deben ser nuemrico", "Error", JOptionPane.INFORMATION_MESSAGE);
+                aux = true;
             }
-            if (enfermera.isSelected()) {
-                AgregarEnfermera enfermera = new AgregarEnfermera();
-                enfermera.setVisible(true);
-                enfermera.setCodigo(Integer.parseInt(identifiacion.getText()));
-                dispose();
+            String parametro = "" + this.codigo_areas.getSelectedItem();
+            if ((parametro.compareTo("null") != 0) && (parametro.compareTo("") != 0) && !(aux)) {
+                codigo = this.codigo_areas.getSelectedItem().toString();
+                String[] cod = codigo.split(",");
+                empleado.setCodigo_area(Integer.parseInt(cod[0]));
+            } else {
+                aux = true;
+            }
+            parametro = "" + this.codigo_jefe.getSelectedItem();
+            if ((parametro.compareTo("null") != 0) && (parametro.compareTo("") != 0) && !(aux)) {
+
+                codigo = this.codigo_jefe.getSelectedItem().toString();
+                String[] cod = codigo.split(",");
+                empleado.setIdentificacion_jefe(Integer.parseInt(cod[0]));
+            } else {
+                empleado.setIdentificacion_jefe(0);
             }
 
+            if (!(medico.isSelected() || enfermera.isSelected())) {
+                aux = true;
+            }
+            if (this.activa.isSelected() && !(aux)) {
+                empleado.setEstado("activa");
+            } else if (this.inactiva.isSelected() && !(aux)) {
+                empleado.setEstado("inactiva");
+            } else {
+                seModifico = false;
+            }
+
+            if (seModifico) {
+
+                if (medico.isSelected()) {
+                    AgregarMedico medico = new AgregarMedico();
+                    medico.setCodigo(Integer.parseInt(identifiacion.getText()));
+                    medico.setEmpleado(empleado);
+                    medico.setVisible(true);
+                    dispose();
+                }
+                if (enfermera.isSelected()) {
+                    AgregarEnfermera enfermera = new AgregarEnfermera();
+                    enfermera.setVisible(true);
+                    enfermera.setEmpleado(empleado);
+                    enfermera.setCodigo(Integer.parseInt(identifiacion.getText()));
+                    dispose();
+                }
+
+            } else {
+                //Icon p = new ImageIcon(getClass().getResource("/gui/images/x.png"));
+                JOptionPane.showMessageDialog(this, "Hubo un error, revise los datos", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         } else {
-            //Icon p = new ImageIcon(getClass().getResource("/gui/images/x.png"));
-            JOptionPane.showMessageDialog(this, "Hubo un error al modificar", "", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Hubo un error, los datos no pueden ser vacios \n(Excepto el codigo del jefe)", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+    private static boolean sololetras(String prueba) {
+        boolean result = false;
+        String comparacion = "!!#$%&/()=?¡*¨][_:;°¬|@·~½¬{[]}~─µ";
+        for (int i = prueba.length() - 1; i >= 0; i--) {
+            for (int j = comparacion.length() - 1; j >= 0; j--) {
+                if (prueba.charAt(i) == comparacion.charAt(j)) {
+                    result = true;
+                    return result;
+                }
+            }
+        }
+        return result;
+    }
 
     /**
      * @param args the command line arguments
@@ -474,16 +500,21 @@ public class AgregarEmpleados extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEmpleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEmpleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEmpleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgregarEmpleados.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

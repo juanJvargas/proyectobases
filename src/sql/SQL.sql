@@ -121,7 +121,8 @@ DROP TABLE IF EXISTS enfermera CASCADE;
 CREATE TABLE enfermera(
 	identificacion_empleado INTEGER,
 	anos_experiencia INTEGER,
-        codigo_habilidad INTEGER,
+        codigo_habilidad VARCHAR(50),
+        PRIMARY KEY(identificacion_empleado),
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
