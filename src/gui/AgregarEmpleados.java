@@ -407,7 +407,7 @@ public class AgregarEmpleados extends javax.swing.JFrame {
             empleado.setEmail(this.email.getText());
             
             String codigo = "";
-            boolean seModifico = false;
+            boolean seModifico = true;
             boolean aux = false;
             try {
                 empleado.setIdentificacion_empleado(Integer.parseInt(this.identifiacion.getText()));

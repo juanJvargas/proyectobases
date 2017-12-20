@@ -185,7 +185,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         if (nombre.equals(usuarioCorrecto) && contraseña.equals(contraseñaCorrecta)) { //Valida que el usuario y contraseña sean correctos.
 
-            if (usuarioActual.getEstado().equals("activo")) { //valida que el usuario ingresado se encuentra activo.
+            if (usuarioActual.getEstado().equals("activa")) { //valida que el usuario ingresado se encuentra activo.
                 if (usuarioActual.getTipo().equals("administrador")) {
                     ventanaAdmin = new InterfazAdministrador(usuarioActual);
 

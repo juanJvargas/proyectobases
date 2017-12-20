@@ -19,6 +19,7 @@ public class ControladorEnfermera {
 
     public ControladorEnfermera() {
         daoEnfermera = new DAOEnfermera();
+        
     }
 
     public boolean agregarEnfermera(Enfermera enfermera) {

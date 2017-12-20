@@ -8,4 +8,4 @@
  * Created: 16-dic-2017
  */
 
-SELECT * FROM enfermera;
+SELECT * FROM medico;

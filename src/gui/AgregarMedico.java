@@ -233,9 +233,16 @@ public class AgregarMedico extends javax.swing.JFrame {
         }
         medico.setIdentificacion_empleado(codigo);
         medico.setUniversidad(Universidad.getText());
+        
+         Usuario u = new Usuario();
+        ControladorUsuarios controlUsuario= new ControladorUsuarios();
         controlEmpleado.agregarEmpleado(empleado);
         controladorMedico.agregarMedico(medico);
-
+        u.setEstado(empleado.getEstado());
+        u.setLogin(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setPassword(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setTipo("medico");
+        controlUsuario.agregarUsuario(u);
         InterfazAdministrador interfaz = new InterfazAdministrador();
         interfaz.setVisible(true);
         dispose();

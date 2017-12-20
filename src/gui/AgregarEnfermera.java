@@ -207,10 +207,15 @@ public class AgregarEnfermera extends javax.swing.JFrame {
         }
         enfermera.setIdentificacion_empleado(codigo);
         
-        
+        Usuario u = new Usuario();
+        ControladorUsuarios controlUsuario= new ControladorUsuarios();
         controlEmpleado.agregarEmpleado(empleado);
         controladorEnfermera.agregarEnfermera(enfermera);
-        
+        u.setEstado(empleado.getEstado());
+        u.setLogin(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setPassword(String.valueOf(empleado.getIdentificacion_empleado()));
+        u.setTipo("enfermera");
+        controlUsuario.agregarUsuario(u);
 
         InterfazAdministrador interfaz = new InterfazAdministrador();
         interfaz.setVisible(true);
