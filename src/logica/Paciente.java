@@ -28,10 +28,19 @@ public class Paciente {
     private String actividadEconomica;
     private String seguridadSocial;
     private String fechaApertura;
+    private String nombre;
     
     private int identifiacacionPaciente;
 
     public Paciente() {
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setIdentifiacacionPaciente(int identifiacacionPaciente) {
