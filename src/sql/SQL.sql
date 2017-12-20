@@ -217,10 +217,9 @@ INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El pacien
 
 --- USUSARIOS
 INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
-
-INSERT INTO usuarios VALUES ('114401', '114401', 'medico', 'activo');
+INSERT INTO usuarios VALUES ('enfermera', 'enfermera', 'enfermera', 'activo');
+INSERT INTO usuarios VALUES ('114401', '114401', '1144099304medico', 'activo');
 INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activo');
-
 INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activo');
 
 
