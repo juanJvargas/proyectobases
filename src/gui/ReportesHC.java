@@ -23,6 +23,7 @@ public class ReportesHC extends javax.swing.JFrame {
     Usuario usuarioActual;
     InterfazMedico ventanaMedico;
     ControladorPaciente controladorPaciente;
+    InterfazEnfermera ventanaEnfermera;
 
     /**
      * Creates new form ReportesHC
@@ -219,9 +220,15 @@ public class ReportesHC extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ventanaMedico = new InterfazMedico(usuarioActual);
-        ventanaMedico.setVisible(true);
-        dispose();
+        if (usuarioActual.getTipo().equals("enfermera")) {
+            ventanaEnfermera = new InterfazEnfermera(usuarioActual);
+            ventanaEnfermera.setVisible(true);
+            dispose();
+        } else {
+            ventanaMedico = new InterfazMedico(usuarioActual);
+            ventanaMedico.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -204,7 +204,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
                 //Icon p = new ImageIcon(getClass().getResource("/GUI/images/user (3).png"));
 
-                JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE/*, p*/);
+
+                JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE, null);
+
                 campoPassword.setText("");
                 campoUsuario.setText(null);
 
