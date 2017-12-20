@@ -23,6 +23,29 @@ public class DAOMedicamento {
     public DAOMedicamento() {
         acceso = new AccesoBD();
     }
+    public boolean updateMedicamento(Medicamento m){
+        String sql_select = "UPDATE medicamento "
+                + "SET "
+                
+                + "nombre='" + m.getNombre() + "', "
+                + "descripcion='" + m.getDescripcion()+ "', "
+                + "costo='" + String.valueOf(m.getCosto()) + "', "
+                + "cantidad='" + String.valueOf(m.getCantidad()) + "' " 
+                + " WHERE codigo_medicamento='" + String.valueOf(m.getCodigo_medicamento()) +"' ";
+        try {
+            Connection conn = acceso.getConnetion();
+            System.out.println("insertando en la bd");
+            Statement sentencia = conn.createStatement();
+            sentencia.executeUpdate(sql_select);
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 
     public boolean agregarMedicamento(Medicamento m) {
         String sql_select = "INSERT INTO medicamento VALUES ("

@@ -16,8 +16,12 @@ import java.util.ArrayList;
 public class ControladorMedicamento {
     DAOMedicamento daomedicamento;
     
+    
     public ControladorMedicamento(){
         daomedicamento = new DAOMedicamento();
+    }
+    public boolean modificarMedicamento(Medicamento m){
+        return daomedicamento.updateMedicamento(m);
     }
     public boolean agregarMedicamento(Medicamento m){
         return daomedicamento.agregarMedicamento(m);

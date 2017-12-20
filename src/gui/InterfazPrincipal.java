@@ -185,7 +185,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         if (nombre.equals(usuarioCorrecto) && contraseña.equals(contraseñaCorrecta)) { //Valida que el usuario y contraseña sean correctos.
 
-            if (usuarioActual.getEstado().equals("activa")) { //valida que el usuario ingresado se encuentra activo.
+            if (usuarioActual.getEstado().equals("activo")) { //valida que el usuario ingresado se encuentra activo.
                 if (usuarioActual.getTipo().equals("administrador")) {
                     ventanaAdmin = new InterfazAdministrador(usuarioActual);
 
@@ -204,7 +204,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
                 //Icon p = new ImageIcon(getClass().getResource("/GUI/images/user (3).png"));
 
-                JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE/*, p*/);
+
+                JOptionPane.showMessageDialog(this, "El usuario no  esta activo", "No puede ingresar", JOptionPane.INFORMATION_MESSAGE, null);
+
                 campoPassword.setText("");
                 campoUsuario.setText(null);
 

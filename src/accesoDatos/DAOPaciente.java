@@ -29,13 +29,13 @@ public class DAOPaciente {
         String sql_select, ide_jefe;
 
         sql_select = "INSERT INTO paciente"
-                + " VALUES('" + String.valueOf(paciente.getIdentifiacacionPaciente())
+                + " VALUES(" + String.valueOf(paciente.getIdentifiacacionPaciente())
+                + ", '" + paciente.getNombre()
                 + "','" + paciente.getDireccion()
                 + "','" + paciente.getTelefono()
                 + "','" + paciente.getFechaNacimiento()
                 + "','" + paciente.getActividadEconomica()
-                + "','" + paciente.getSeguridadSocial()
-                + "','" + paciente.getFechaApertura()+"')";
+                + "','" + paciente.getSeguridadSocial() +"', now())";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("insertando en la bd");
@@ -62,12 +62,13 @@ public class DAOPaciente {
             ResultSet tabla = sentencia.executeQuery(sql_select);
             while (tabla.next()) {
                 paciente.setIdentifiacacionPaciente(Integer.valueOf(tabla.getString(1)));
-                paciente.setDireccion(tabla.getString(2));
-                paciente.setTelefono(tabla.getString(3));
-                paciente.setFechaNacimiento(tabla.getString(4));
-                paciente.setActividadEconomica(tabla.getString(5));
-                paciente.setSeguridadSocial(tabla.getString(6));
-                paciente.setFechaApertura(tabla.getString(7));
+                paciente.setNombre(tabla.getString(2));
+                paciente.setDireccion(tabla.getString(3));
+                paciente.setTelefono(tabla.getString(4));
+                paciente.setFechaNacimiento(tabla.getString(5));
+                paciente.setActividadEconomica(tabla.getString(6));
+                paciente.setSeguridadSocial(tabla.getString(7));
+                paciente.setFechaApertura(tabla.getString(8));
 
                 System.out.println("ok");
             }
@@ -118,14 +119,15 @@ public class DAOPaciente {
         String sql_select;
         sql_select = "UPDATE paciente "
                 + "SET "
-                + "identificacion_paciente='" + paciente.getIdentifiacacionPaciente() + "', "
+                
+                + "nombre='" + paciente.getNombre()+ "', "
                 + "direccion='" + paciente.getDireccion()+ "', "
                 + "telefono='" + paciente.getTelefono() + "', "
                 + "fecha_nacimiento='" + paciente.getFechaNacimiento()+ "', "
                 + "actividad_economica='" + paciente.getActividadEconomica() + "', "
-                + "seguridad_social='" + paciente.getSeguridadSocial() + "', "
-                + "fecha_apertura='" + paciente.getFechaApertura() + "', "
-                + "' WHERE identificacion_paciente='" + String.valueOf(paciente.getIdentifiacacionPaciente()) + "' ";
+                + "seguridad_social='" + paciente.getSeguridadSocial() + "' "
+                
+                + " WHERE identificacion_paciente='" + String.valueOf(paciente.getIdentifiacacionPaciente()) + "' ";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("actualizando en la bd");

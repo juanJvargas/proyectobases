@@ -23,6 +23,7 @@ public class ReportesHC extends javax.swing.JFrame {
     Usuario usuarioActual;
     InterfazMedico ventanaMedico;
     ControladorPaciente controladorPaciente;
+    InterfazEnfermera ventanaEnfermera;
 
     /**
      * Creates new form ReportesHC
@@ -57,6 +58,9 @@ public class ReportesHC extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaR = new javax.swing.JTable();
         buscarB = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +108,11 @@ public class ReportesHC extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tablaR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaRMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaR);
 
         buscarB.setText("Buscar");
@@ -113,18 +122,25 @@ public class ReportesHC extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jLabel3.setText("Medicamentos del registro:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buscarB)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addComponent(jLabel1)
@@ -132,9 +148,24 @@ public class ReportesHC extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarB))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,10 +178,13 @@ public class ReportesHC extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarB))
+                    .addComponent(buscarB)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -219,10 +253,30 @@ public class ReportesHC extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ventanaMedico = new InterfazMedico(usuarioActual);
-        ventanaMedico.setVisible(true);
-        dispose();
+        if (usuarioActual.getTipo().equals("enfermera")) {
+            ventanaEnfermera = new InterfazEnfermera(usuarioActual);
+            ventanaEnfermera.setVisible(true);
+            dispose();
+        } else {
+            ventanaMedico = new InterfazMedico(usuarioActual);
+            ventanaMedico.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablaRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaRMouseClicked
+        // TODO add your handling code here:
+        ControladorReportes cr = new ControladorReportes();
+        
+        int i= tablaR.getSelectedRow();
+        int idpaciente = Integer.valueOf(idPaciente.getText());
+        int idmedico = (int) tablaR.getValueAt(i, 1);
+        String fecha = (String) tablaR.getValueAt(i, 2);
+        
+        DefaultTableModel model = cr.obtenerModeloMedicamentosDeFormula(idpaciente, idmedico, fecha);
+        
+        jTable1.setModel(model);
+    }//GEN-LAST:event_tablaRMouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,7 +319,10 @@ public class ReportesHC extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable tablaR;
     // End of variables declaration//GEN-END:variables
 }

@@ -103,7 +103,7 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Formular medicamentos");
+        jLabel1.setText("MALO NO FUNCIONA");
 
         medicamentoCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -219,78 +219,16 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
 
     private void agregarMBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarMBActionPerformed
         // TODO add your handling code here:
-        if (isNumeric(cantidadM.getText()) && !(medicamentoCB.getSelectedIndex() == -1)) {
-            FormulaMedicamento faux = new FormulaMedicamento();
-
-            String aux = medicamentoCB.getSelectedItem().toString();
-            String[] aux2 = aux.split("-");
-
-            faux.setCodigo_medicamento(aux2[0]);
-            faux.setCantidad(cantidadM.getText());
-            medicamentosS.add(faux);
-
-            Medicamento me = new Medicamento();
-            me = controladorMedicamento.consultarMedicamento(aux2[0]);
-
-            Vector u = new Vector();
-            u.add(String.valueOf(me.getCodigo_medicamento()));
-            u.add(me.getNombre());
-            u.add(me.getDescripcion());
-            u.add(String.valueOf(me.getCosto()));
-            u.add(cantidadM.getText());
-
-            modelo.addRow(u);
-            tableM.setModel(modelo);
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un medicamento", "", JOptionPane.INFORMATION_MESSAGE, null);
-        }
-
 
     }//GEN-LAST:event_agregarMBActionPerformed
 
     private void insertarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarBActionPerformed
         // TODO add your handling code here:
-        if (validar()) {
-            Formula fo = new Formula();
-
-            fo.setIdentificacionEmpleado(Integer.valueOf(usuarioActual.getLogin()));
-
-            fo.setIdentificacionPaciente(Integer.valueOf(idPaciente.getText()));
-            System.out.println("recoger datos");
-            boolean resul = controladorFormula.insertarFormula(fo);
-            if (resul) {
-                boolean res = añadirFormulaMedicamentos();
-                if (res) {
-                    JOptionPane.showMessageDialog(this, "Se agrego la formula a la base de datos", "Mensaje", JOptionPane.INFORMATION_MESSAGE, null);
-                    ventanaMedico = new InterfazMedico(usuarioActual);
-                    ventanaMedico.setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Hubo un error al agregar la formula ", "", JOptionPane.INFORMATION_MESSAGE, null);
-                }
-            } else {
-
-                JOptionPane.showMessageDialog(this, "Hubo un error al agregar la formula ", "", JOptionPane.INFORMATION_MESSAGE, null);
-            }
-        }
 
 
     }//GEN-LAST:event_insertarBActionPerformed
 
-    private boolean añadirFormulaMedicamentos() {
-        boolean resultado = true;
-        String codFormula = controladorFormula.consultarUltimaFormula();
-        for (int i = 0; i < medicamentosS.size(); i++) {
-            FormulaMedicamento aux = medicamentosS.get(i);
-            aux.setCodigo_formula(codFormula);
-            boolean res = controladorFormulaMedicamento.insertarFormulaMedicamento(aux);
-            if (!res) {
-                resultado = false;
-            }
-        }
-        return resultado;
-    }
+
 
     private void atrasBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasBActionPerformed
         // TODO add your handling code here:
@@ -299,40 +237,10 @@ public class Formular extends javax.swing.JFrame { //https://www.youtube.com/wat
         dispose();
     }//GEN-LAST:event_atrasBActionPerformed
 
-    private boolean isNumeric(String cadena) {
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
 
     private boolean validar() {
         boolean resultado = true;
 
-        
-        if (idPaciente.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Verifique los campos", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
-        if(!isNumeric(idPaciente.getText())){
-            JOptionPane.showMessageDialog(this, "La identificacion del paciente debe ser un dato numerico", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
-        if(controladorPaciente.consultarPaciente(idPaciente.getText()) == null){
-            JOptionPane.showMessageDialog(this, "El paciente no se encuentra en la base de datos", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
-        if (medicamentosS.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe añadir medicamentos a la formula", "", JOptionPane.INFORMATION_MESSAGE, null);
-            resultado = false;
-            return resultado;
-        }
-        //Verificar que exista el paciente
         return resultado;
     }
 

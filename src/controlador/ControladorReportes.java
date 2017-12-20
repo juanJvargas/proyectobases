@@ -13,22 +13,50 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author tovar
  */
 public class ControladorReportes {
-    
+
     DAOReportes daoreportes;
 
     public ControladorReportes() {
-       daoreportes = new DAOReportes();
+        daoreportes = new DAOReportes();
     }
-    
-    public DefaultTableModel obtenerModeloCitas(){
+
+    public DefaultTableModel obtenerModeloMedicamentosDeFormula(int idpaciente, int idmedico, String fecha) {
+        try {
+            return buildTableModel(daoreportes.obtenerMedicamentosDeFormula( idpaciente,  idmedico,  fecha));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public DefaultTableModel obtenerModeloCitasHOY(int idmedico) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloCitasHOY(idmedico));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public DefaultTableModel obtenerModeloCitas() {
         try {
             return buildTableModel(daoreportes.obtenerCitas());
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public DefaultTableModel obtenerModeloCitasConMedicoFecha(int idmedico, String fecha) {
+        try {
+            return buildTableModel(daoreportes.obtenerCitasConMedicoFecha(idmedico, fecha));
         } catch (SQLException ex) {
             Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,5 +87,33 @@ public class ControladorReportes {
 
         return new DefaultTableModel(data, columnNames);
 
+    }
+
+    public TableModel obtenerModeloCitasConPaciente(int identificacionPaciente) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloCitasConPaciente(identificacionPaciente));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public TableModel obtenerModeloAgendaMesMedico(int identificacionMedico, String fechaInferior, String fechaSuperior) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloAgendaMesMedico(identificacionMedico, fechaInferior, fechaSuperior));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public TableModel obtenerModeloCitasAtendidasPorMedico(String fechaInferior, String fechaSuperior) {
+        try {
+            return buildTableModel(daoreportes.obtenerModeloCitasAtendidasPorMedico(fechaInferior, fechaSuperior));
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
