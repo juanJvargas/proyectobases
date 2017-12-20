@@ -27,9 +27,9 @@ public class DAOUsuarios {
         String sql_select;
         sql_select = "INSERT INTO usuarios ("
                 + "login, "
-                + "password, "
+                + "contraseña, "
                 + "tipo, "
-                + "estado "
+                + "estado) "
                 + "VALUES ('" + u.getLogin() + "',"
                 + "'" + u.getPassword() + "', "
                 + "'" + u.getTipo() + "', "

@@ -37,6 +37,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         consultarHCB = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         consultarFB = new javax.swing.JButton();
@@ -73,6 +74,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         modificarPacienteB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarPacienteBActionPerformed(evt);
+
             }
         });
 
@@ -81,6 +83,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+
                 .addGap(144, 144, 144)
                 .addComponent(jLabel1)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -111,6 +114,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void consultarHCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarHCBActionPerformed
         // TODO add your handling code here:
         consultarHistoriaClinica = new ReportesHC(usuarioActual);
@@ -138,6 +142,7 @@ public class InterfazEnfermera extends javax.swing.JFrame {
         modificarPaciente.setVisible(true);
         dispose();
     }//GEN-LAST:event_modificarPacienteBActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -175,10 +180,12 @@ public class InterfazEnfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton agregarPacienteB;
     private javax.swing.JButton consultarFB;
     private javax.swing.JButton consultarHCB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modificarPacienteB;
+
     // End of variables declaration//GEN-END:variables
 }

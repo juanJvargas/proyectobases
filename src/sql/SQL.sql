@@ -123,6 +123,8 @@ CREATE TABLE enfermera(
 	identificacion_empleado INTEGER PRIMARY KEY,
 	anos_experiencia INTEGER,
         codigo_habilidad VARCHAR(50),
+
+
 	FOREIGN KEY (identificacion_empleado) REFERENCES empleado(identificacion_empleado)
 );
 
@@ -218,6 +220,7 @@ INSERT INTO causa VALUES (6, 'Desorden mental extremo por ver memes', 'El pacien
 --- FIN CAUSAS
 
 --- USUSARIOS
+
 INSERT INTO usuarios VALUES ('admin', 'admin', 'administrador', 'activo');
 
 INSERT INTO usuarios VALUES ('114401', '114401', 'medico', 'activo');
@@ -225,6 +228,7 @@ INSERT INTO usuarios VALUES ('114402', '114402', 'medico', 'activo');
 
 INSERT INTO usuarios VALUES ('114404', '114404', 'medico', 'activo');
 INSERT INTO usuarios VALUES ('114405', '114405', 'enfermera', 'activo');
+
 
 
 --- FIN USUARIOS
