@@ -71,7 +71,7 @@ public class DAOEmpleado {
             while (tabla.next()) {
 
                 encontro = true;
-                System.out.print(tabla.getString(1));
+                
                 empleado.setIdentificacion_empleado(Integer.parseInt(tabla.getString(1)));
                 empleado.setDireccion(tabla.getString(2));
                 empleado.setTelefono(tabla.getString(3));
@@ -79,11 +79,18 @@ public class DAOEmpleado {
                 empleado.setEmail(tabla.getString(5));
                 empleado.setSalario(Integer.valueOf(tabla.getString(6)));
                 empleado.setCodigo_area(Integer.parseInt(tabla.getString(7)));
+                String cod_jef= ""+tabla.getString(8);
+                if (!cod_jef.equals("null") && !cod_jef.equals("NULL")) {
+                    empleado.setIdentificacion_jefe(Integer.valueOf(tabla.getString(8)));
+                } else {
+                    empleado.setIdentificacion_jefe(0);
+                }
+                empleado.setEstado(tabla.getString(9));
                 try {
                     empleado.setIdentificacion_jefe(Integer.parseInt(tabla.getString(8)));
                 } catch (NullPointerException e) {
 
-                }catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
 
                 }
                 empleado.setEstado(tabla.getString(9));
@@ -106,22 +113,28 @@ public class DAOEmpleado {
     }
 
     public boolean updateEmpleado(Empleado empleado) {
-        String sql_select;
+        String sql_select, ide_jefe;
+        if (empleado.getIdentificacion_jefe() == 0) {
+            ide_jefe = "NULL";
+        } else {
+            ide_jefe = String.valueOf(empleado.getIdentificacion_jefe());
+        }
         sql_select = "UPDATE empleado "
                 + "SET "
-                + "identificaion_empleado='" + empleado.getIdentificacion_empleado() + "', "
+                + "identificacion_empleado='" + empleado.getIdentificacion_empleado() + "', "
                 + "direccion='" + empleado.getDireccion() + "', "
                 + "telefono='" + empleado.getTelefono() + "', "
                 + "nombre='" + empleado.getNombre() + "', "
                 + "email='" + empleado.getEmail() + "', "
                 + "salario='" + empleado.getSalario() + "', "
                 + "codigo_area='" + empleado.getCodigo_area() + "', "
-                + "identificacion_jefe='" + empleado.getIdentificacion_jefe() + "', "
-                + "estado='" + empleado.getEstado() + "' "
-                + "' WHERE idenitfiacion_empleado='" + empleado.getIdentificacion_empleado() + "' ";
+                + "identificacion_jefe=" + ide_jefe + ", "
+                + "estado='" + empleado.getEstado()
+                + "' WHERE identificacion_empleado='" + empleado.getIdentificacion_empleado() + "' ";
         try {
             Connection conn = acceso.getConnetion();
             System.out.println("actualizando empleado  en  bd");
+            System.out.println(empleado.getEstado());
             Statement sentencia = conn.createStatement();
             sentencia.executeUpdate(sql_select);
 

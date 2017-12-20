@@ -40,7 +40,7 @@ public class Enfermera {
         return anos_experiencia;
     }
 
-    public void setAnos_experiencia(int años_experiencia) {
+    public void setAnos_experiencia(int anos_experiencia) {
         this.anos_experiencia = anos_experiencia;
     }
 

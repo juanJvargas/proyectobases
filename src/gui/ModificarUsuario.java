@@ -28,6 +28,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     public ModificarUsuario() {
         initComponents();
         controlArea = new ControladorArea();
+
     }
 
     /**
@@ -39,6 +40,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         codigo_areas = new javax.swing.JComboBox<>();
         buscar_areas = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -51,7 +53,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         identifiacion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         direccion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         telefono = new javax.swing.JTextField();
@@ -87,12 +88,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("INFORMACION BASICA");
 
+        buttonGroup1.add(activa);
         activa.setText("activa");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Identificacion empelado:");
         jLabel2.setToolTipText("");
 
+        buttonGroup1.add(inactiva);
         inactiva.setText("incativa");
 
         identifiacion.setToolTipText("");
@@ -112,8 +115,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Direccion:");
         jLabel3.setToolTipText("");
-
-        jLabel8.setText("Cargo:");
 
         direccion.setToolTipText("");
         direccion.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +164,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         });
 
         medico.setText("medico");
+        medico.setEnabled(false);
         medico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 medicoActionPerformed(evt);
@@ -174,6 +176,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel7.setToolTipText("");
 
         enfermera.setText("enfermera");
+        enfermera.setEnabled(false);
         enfermera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enfermeraActionPerformed(evt);
@@ -245,10 +248,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                 .addComponent(salario)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(buscar_areas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscar_jefes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buscar_jefes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -264,9 +267,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(218, 218, 218))
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(220, 220, 220)
                 .addComponent(medico)
                 .addGap(25, 25, 25)
                 .addComponent(enfermera)
@@ -294,7 +295,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -305,8 +306,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enfermera)
-                    .addComponent(medico)
-                    .addComponent(jLabel8))
+                    .addComponent(medico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,17 +401,15 @@ public class ModificarUsuario extends javax.swing.JFrame {
             if (seModifico) {
 
                 if (medico.isSelected()) {
-                    AgregarMedico medico = new AgregarMedico();
-                    medico.setCodigo(Integer.parseInt(identifiacion.getText()));
-                    medico.setEmpleado(empleado);
+                    ModificarMedico medico = new ModificarMedico();
                     medico.setVisible(true);
+                    medico.iniciar(Integer.parseInt(identifiacion.getText()), empleado);
                     dispose();
                 }
                 if (enfermera.isSelected()) {
-                    AgregarEnfermera enfermera = new AgregarEnfermera();
+                    ModificarEnfermera enfermera = new ModificarEnfermera();
                     enfermera.setVisible(true);
-                    enfermera.setEmpleado(empleado);
-                    enfermera.setCodigo(Integer.parseInt(identifiacion.getText()));
+                    enfermera.iniciar(Integer.parseInt(identifiacion.getText()), empleado);
                     dispose();
                 }
 
@@ -473,32 +471,51 @@ public class ModificarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_salarioActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        Empleado empleado=controlEmpleado.consultarEmpleado(Integer.parseInt(identifiacion.getText()));
-        direccion.setText(empleado.getDireccion());
-        telefono.setText(empleado.getTelefono());
-        nombre.setText(empleado.getNombre());
-        email.setText(empleado.getEmail());
-        salario.setText(String.valueOf(empleado.getSalario()));
-        if(empleado.getCargo()=="medico"){
-            medico.setSelected(true);
-        }else{
-            enfermera.setSelected(true);
+        try {
+            Empleado empleado = controlEmpleado.consultarEmpleado(Integer.parseInt(identifiacion.getText()));
+            direccion.setText(empleado.getDireccion());
+            telefono.setText(empleado.getTelefono());
+            nombre.setText(empleado.getNombre());
+            email.setText(empleado.getEmail());
+            salario.setText(String.valueOf(empleado.getSalario()));
+            try {
+                ControladorMedico medic1 = new ControladorMedico();
+                Medico me = medic1.consultarMedico(empleado.getIdentificacion_empleado());
+                if (me.getIdentificacion_empleado() == empleado.getIdentificacion_empleado()) {
+                    medico.setSelected(true);
+                }
+            } catch (NullPointerException e) {
+                System.out.println(e);
+
+            }
+            try {
+                ControladorEnfermera medic1 = new ControladorEnfermera();
+                Enfermera me = medic1.consultarEnfermera(empleado.getIdentificacion_empleado());
+                if (me.getIdentificacion_empleado() == empleado.getIdentificacion_empleado()) {
+                    enfermera.setSelected(true);
+                }
+            } catch (NullPointerException i) {
+
+            }
+            Area area = new Area();
+            ControladorArea control = new ControladorArea();
+            area = control.consultarArea(empleado.getCodigo_area());
+            codigo_areas.removeAllItems();
+            codigo_areas.addItem(area.getCodigo() + "," + area.getNombre());
+            codigo_jefe.removeAllItems();
+            if (!(empleado.getIdentificacion_jefe() == 0)) {
+                Empleado aux = controlEmpleado.consultarEmpleado(empleado.getIdentificacion_jefe());
+                codigo_jefe.addItem(aux.getIdentificacion_empleado() + "," + aux.getNombre());
+            }
+            if (empleado.getEstado().equals("activa")) {
+                activa.setSelected(true);
+            } else {
+                inactiva.setSelected(true);
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Hubo un error, La identifiacion suministrada no existe en la base de datos", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        Area area= new Area();
-        ControladorArea control= new ControladorArea();
-        area= control.consultarArea(empleado.getCodigo_area());
-        codigo_areas.removeAllItems();
-        codigo_areas.addItem(area.getEstado()+","+area.getNombre());
-        codigo_jefe.removeAllItems();
-        if(!(empleado.getIdentificacion_jefe()==0)){
-            Empleado aux=controlEmpleado.consultarEmpleado(empleado.getIdentificacion_jefe());
-            codigo_jefe.addItem(aux.getIdentificacion_empleado()+","+aux.getNombre());
-        }
-        if(empleado.getEstado()=="activa"){
-            activa.setSelected(true);
-        }else{
-            inactiva.setSelected(true);
-        }
+
 
     }//GEN-LAST:event_BuscarActionPerformed
 
@@ -542,6 +559,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButton activa;
     private javax.swing.JButton buscar_areas;
     private javax.swing.JButton buscar_jefes;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> codigo_areas;
     private javax.swing.JComboBox<String> codigo_jefe;
     private javax.swing.JTextField direccion;
@@ -559,7 +577,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton medico;
     private javax.swing.JTextField nombre;

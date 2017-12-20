@@ -42,6 +42,8 @@ public class InterfazMedico extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         consultarFB = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        campana = new javax.swing.JButton();
+        Modificar_campana = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +68,17 @@ public class InterfazMedico extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+        campana.setText("Agregar campaña");
+        campana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campanaActionPerformed(evt);
+            }
+        });
+
+        Modificar_campana.setText("Modificar Campaña");
+        Modificar_campana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modificar_campanaActionPerformed(evt);
             }
         });
 
@@ -80,11 +93,13 @@ public class InterfazMedico extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                                .addComponent(consultarFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(formularB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(agregarB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(consultarFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Modificar_campana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,7 +113,11 @@ public class InterfazMedico extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(consultarFB)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campana)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Modificar_campana)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,12 +138,26 @@ public class InterfazMedico extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_consultarFBActionPerformed
 
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         VerCitasParaAtenderHoy vc = new VerCitasParaAtenderHoy((usuarioActual));
         vc.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void campanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campanaActionPerformed
+        AgregarCampanaPrevencion campana= new AgregarCampanaPrevencion();
+        campana.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_campanaActionPerformed
+
+    private void Modificar_campanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar_campanaActionPerformed
+        ModificarCampanasPrevencion campana = new ModificarCampanasPrevencion();
+        campana.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Modificar_campanaActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -162,6 +195,10 @@ public class InterfazMedico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JButton Modificar_campana;
+    private javax.swing.JButton agregarB;
+    private javax.swing.JButton campana;
     private javax.swing.JButton consultarFB;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
